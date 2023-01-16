@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <import type="android.view.View" />
+
+        <import type="net.sharetrip.shared.utils.ValidationExtensionKt" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.hotel.booking.view.roomlist.RoomViewModel" />
+        <variable
+            name="size"
+            type="Integer" />
+        <variable
+            name="position"
+            type="Integer" />
+        <variable
+            name="isExpand"
+            type="Boolean" />
+        <variable
+            name="roomCount"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <View
+            android:id="@+id/topBorder"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#efeff4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mealText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            app:drawableTint="#2e7d31"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:text='@{viewModel.roomInfo.meal.isEmpty()? "No meals included": viewModel.roomInfo.meal.toString().replace("[","").replace("]","").replace("nomeal","No meals included")}'
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/start_vertical_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableLeftCompat="@drawable/ic_done_light_14dp"
+            tools:text="No meals included" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/refundableText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            app:drawableTint="#2e7d31"
+            android:text='@{viewModel.roomInfo.cancellationPolicy.nonRefundable ? "Non-refundable" : "Refundable" }'
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/start_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/mealText"
+            app:drawableLeftCompat="@drawable/ic_done_light_14dp"
+            tools:text="No meals included" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/smokingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            app:drawableTint="#2e7d31"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:text='@{viewModel.roomInfo.smokingPolicies==null || !viewModel.roomInfo.smokingPolicies ? "Non-Smoking Room" : "Smoking Room" }'
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/start_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/refundableText"
+            app:drawableLeftCompat="@drawable/ic_done_light_14dp"
+            tools:text="No meals included" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/discountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/ic_discount_mono"
+            android:drawablePadding="6dp"
+            android:text='@{"" + NumberFormat.getNumberInstance(Locale.US).format(viewModel.roomInfo.price.discount) + "% OFF"}'
+            android:visibility='@{viewModel.roomInfo.price.discount == 0 ? View.GONE : View.VISIBLE }'
+            app:drawableTint="@color/bright_orange"
+            app:layout_constraintTop_toTopOf="@id/mealText"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            android:textColor="@color/bright_orange"
+            android:lineSpacingExtra="4sp"
+            android:gravity="center_horizontal"
+            tools:text="5% OFF" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/discountedPriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#8e8e93"
+            android:strikeText='@{"BDT " + NumberFormat.getNumberInstance(Locale.US).format(Math.ceil((double)viewModel.roomInfo.price.perNight/roomCount))}'
+            android:visibility='@{viewModel.roomInfo.price.discount==0? View.GONE : View.VISIBLE }'
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@id/discountedNightText"
+            app:layout_constraintTop_toBottomOf="@id/discountText"
+            android:lineSpacingExtra="2sp"
+            android:gravity="end"
+            tools:text="BDT 8,553" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/discountedNightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:strikeText='@{"/night"}'
+            android:visibility='@{viewModel.roomInfo.price.discount==0? View.GONE : View.VISIBLE }'
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toTopOf="@id/discountedPriceText"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            android:textColor="#8e8e93"
+            android:lineSpacingExtra="6sp"
+            tools:text="2 night(s)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/finalPriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:text='@{"BDT " + NumberFormat.getNumberInstance(Locale.US).format(Math.ceil((double)viewModel.roomInfo.price.discountedPerNight/roomCount))}'
+            app:layout_constraintEnd_toStartOf="@id/finalNightText"
+            app:layout_constraintTop_toBottomOf="@id/discountedNightText"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/blue_blue"
+            android:lineSpacingExtra="4sp"
+            tools:text="BDT 6,843" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/finalNightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:layout_marginTop="2dp"
+            android:text="@string/night"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@id/finalPriceText"
+            android:textColor="@color/greyish_brown"
+            android:lineSpacingExtra="6sp"
+            tools:text="/night" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="smokingText,finalPriceText"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/roomInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintStart_toStartOf="@id/start_vertical_guideline"
+            app:layout_constraintEnd_toStartOf="@id/cancellationPolicyText"
+            app:layout_constraintTop_toBottomOf="@id/barrier"
+            android:lineSpacingExtra="2sp"
+            android:text='@{viewModel.roomInfo.name.replace(", ","\n")}'
+            tools:text="3 X Deluxe Room" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cancellationPolicyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            app:layout_constraintTop_toTopOf="@id/roomInfo"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            android:textColor="@color/clear_blue"
+            android:lineSpacingExtra="8sp"
+            android:gravity="end"
+            android:text="@string/cancellation_policy" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/cancellationInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="@color/mid_green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/roomInfo"
+            android:lineSpacingExtra="7.5sp"
+            android:visibility='@{!viewModel.roomInfo.cancellationPolicy.nonRefundable &amp;&amp; !ValidationExtensionKt.isCancelDateExpire(viewModel.roomInfo.cancellationPolicy.freeCancellationDate) ? View.VISIBLE : View.GONE }'
+            android:gravity="center_horizontal"
+            android:text="@string/no_risk_no_cancellation_fee" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/reserveBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/start_vertical_guideline"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            app:layout_constraintBottom_toTopOf="@id/bottomBorder"
+            android:onClick="@{() -> viewModel.onClickSelector()}"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/cancellationInfo"
+            android:text="@string/reserve"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/reserveBtn" />
+
+        <View
+            android:id="@+id/bottomBorder"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#efeff4"
+            tools:visibility="gone"
+            android:layout_marginTop="17dp"
+            android:visibility='@{(size>2 &amp;&amp; position==1 &amp;&amp; !isExpand)? View.VISIBLE : View.GONE }'
+            app:layout_constraintTop_toBottomOf="@id/reserveBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:lineSpacingExtra="6sp"
+            android:textColor="@color/clear_blue"
+            android:textSize="14sp"
+            tools:visibility="visible"
+            app:drawableRightCompat="@drawable/ic_expand_more_black_24dp"
+            android:visibility='@{(size>2 &amp;&amp; position==1 &amp;&amp; !isExpand)? View.VISIBLE : View.GONE }'
+            android:layout_marginTop="11dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@id/start_vertical_guideline"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/bottomBorder"
+            tools:layout_editor_absoluteY="-3dp"
+            android:text="@string/show_more" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

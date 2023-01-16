@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tour_history_nav_graph"
+    app:startDestination="@id/tourHistoryListFragment">
+
+    <fragment
+        android:id="@+id/tourHistoryListFragment"
+        android:name="net.sharetrip.tour.history.list.TourHistoryListFragment"
+        tools:layout="@layout/fragment_tour_upcoming" >
+        <action
+            android:id="@+id/action_tourHistoryListFragment_to_tourBookingDetailFragment"
+            app:destination="@id/tourBookingDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/tourBookingDetailFragment"
+        android:name="net.sharetrip.tour.history.detail.TourBookingDetailFragment"
+        tools:layout="@layout/fragment_tour_booking_history_detail">
+        <argument
+            android:name="ARG_TOUR_BOOKING_CODE"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_tourBookingDetailFragment_to_tourContactInfoFragment"
+            app:destination="@id/tourContactInfoFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_tourBookingDetailFragment_to_tourCancellationPolicyFragment"
+            app:destination="@id/tourCancellationPolicyFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_tourBookingDetailFragment_to_tourInfoFragment"
+            app:destination="@id/tourInfoFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_tourBookingDetailFragment_to_tourPricingFragment"
+            app:destination="@id/tourPricingFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/tourContactInfoFragment"
+        android:name="net.sharetrip.tour.history.contact.TourContactInfoFragment"
+        tools:layout="@layout/fragment_tour_booking_history_contact_person" >
+        <argument
+            android:name="ARG_TOUR_BOOKING_CONTACT_INFO_PRIMARY"
+            app:argType="net.sharetrip.tour.model.PrimaryContact" />
+    </fragment>
+    <fragment
+        android:id="@+id/tourCancellationPolicyFragment"
+        android:name="net.sharetrip.tour.history.cancellationpolicy.TourCancellationPolicyFragment"
+        tools:layout="@layout/fragment_tour_html" >
+        <argument
+            android:name="ARG_TOUR_HISTORY_HTML_STRING"
+            app:argType="string" />
+        <argument
+            android:name="ARG_TOUR_HISTORY_TITLE"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/tourInfoFragment"
+        android:name="net.sharetrip.tour.history.information.TourInfoFragment"
+       tools:layout="@layout/tour_info_fragment" >
+        <argument
+            android:name="ARG_TOUR_HISTORY_ITEM"
+            app:argType="net.sharetrip.tour.model.TourHistoryItem" />
+        <action
+            android:id="@+id/action_tourInfoFragment_to_tourCancellationPolicyFragment"
+            app:destination="@id/tourCancellationPolicyFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/tourPricingFragment"
+        android:name="net.sharetrip.tour.history.pricing.TourPricingFragment"
+        tools:layout="@layout/fragment_tour_pricing_info">
+        <argument
+            android:name="ARG_TOUR_HISTORY_ITEM"
+            app:argType="net.sharetrip.tour.model.TourHistoryItem" />
+    </fragment>
+</navigation>

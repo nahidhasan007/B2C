@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.hotel.booking.view.travelleroom.RoomViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#fafafa"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_small"
+            android:text="@{viewModel.roomNumberText}"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_remove"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Room 1 (max 6 persons)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fafafa"
+            android:onClick="@{() -> viewModel.onClickRemoveRoom()}"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingTop="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_small"
+            android:text="@string/remove"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_adult_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:text="@{String.valueOf(viewModel.adultCount)}"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/text_view_child_count"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_number"
+            tools:text="2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/level_adult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@string/adult_12_yrs"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_adult_count"
+            app:layout_constraintStart_toEndOf="@+id/text_view_adult_count"
+            app:layout_constraintTop_toTopOf="@+id/text_view_adult_count" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_remove_adult"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickRemoveAdult()}"
+            app:icon="@drawable/ic_remove_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/level_adult"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add_adult"
+            app:layout_constraintTop_toTopOf="@+id/level_adult"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_adult"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickAddAdult()}"
+            app:icon="@drawable/ic_add_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/level_adult"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/level_adult"
+            app:strokeColor="@color/colorPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_child_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:text="@{String.valueOf(viewModel.childCount)}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_adult_count"
+            tools:text="2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/level_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@string/children_1_10_yrs"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_child_count"
+            app:layout_constraintStart_toEndOf="@+id/text_view_child_count"
+            app:layout_constraintTop_toTopOf="@+id/text_view_child_count" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_remove_child"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickRemoveChild()}"
+            app:icon="@drawable/ic_remove_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/level_child"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add_adult"
+            app:layout_constraintTop_toTopOf="@+id/level_child"
+            app:strokeColor="@color/colorPrimary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_child"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickAddChild()}"
+            app:icon="@drawable/ic_add_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/level_child"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/level_child"
+            app:strokeColor="@color/colorPrimary" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_person"
+            android:layout_width="@dimen/spacing_large"
+            android:layout_height="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/default_spacing_xxxx"
+            android:tint="@color/gray_800"
+            android:visibility="@{viewModel.childCount > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_child_count"
+            app:srcCompat="@drawable/ic_person_24dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/level_age_of_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="@string/age_of_the_children"
+            android:visibility="@{viewModel.childCount > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/image_view_person"
+            app:layout_constraintStart_toEndOf="@+id/image_view_person" />
+
+        <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+            android:id="@+id/first_children_age_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:afterTextChanged="@{() -> viewModel.afterChangedFirstChildAge()}"
+            android:gravity="center"
+            android:text="@={viewModel.firstChildAge}"
+            android:visibility="@{viewModel.childCount > 0 ? View.VISIBLE : View.GONE}"
+            app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/second_children_age_spinner"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/image_view_person"
+            app:layout_constraintTop_toBottomOf="@+id/level_age_of_child" />
+
+        <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+            android:id="@+id/second_children_age_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:afterTextChanged="@{() -> viewModel.onChangedSecondChildAge()}"
+            android:gravity="center"
+            android:text="@={viewModel.secondChildAge}"
+            android:visibility="@{viewModel.childCount > 1 ? View.VISIBLE : View.INVISIBLE}"
+            app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/first_children_age_spinner"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/first_children_age_spinner"
+            app:layout_constraintTop_toTopOf="@+id/first_children_age_spinner" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,582 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">ShareTrip</string>
+    <string name="get_started">Get started</string>
+    <string name="onboarding_trip_title">Play &amp; Win Trip Coin</string>
+    <string name="onboarding_trip_subtitle">Sign up to enjoy amazing offers</string>
+    <string name="onboarding_coin_title">Book More Earn More</string>
+    <string name="onboarding_coin_subtitle">Enjoy more Trip Coin through booking</string>
+    <string name="onboarding_book_title">Booking is Now Easy</string>
+    <string name="onboarding_book_subtitle">Sign up to enjoy amazing offers</string>
+
+    <string name="next">Next</string>
+    <string name="enter_email_address">Enter email address</string>
+    <string name="skip">Skip</string>
+    <string name="back">Back</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="mobile_number_optional">Mobile Number</string>
+
+    <string name="home">Home</string>
+    <string name="booking">Booking</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="support_center">Support Center</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="about_us">About Us</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="flights">Flight</string>
+    <string name="hotels">Hotel</string>
+    <string name="title_hotels">Hotels</string>
+
+    <string name="transfer">Transfer</string>
+    <string name="tours">Tour</string>
+    <string name="departure_date">Departure Date</string>
+    <string name="return_date">Return Date</string>
+    <string name="travelers_and_class">Travelers &amp; Class</string>
+    <string name="search_flights">Search Flights</string>
+
+    <string name="round_trip">ROUND-TRIP</string>
+    <string name="one_way">One Way</string>
+    <string name="multi_city">Multi-City</string>
+
+    <string name="origin_city_or_Airport">Origin City or Airport</string>
+    <string name="destination_city_or_airport">Destination City or Airport</string>
+    <string name="adult_12_years">Adult</string>
+    <string name="children_2_12_yrs">Children</string>
+    <string name="children_2_12">Children</string>
+    <string name="infants_0_2_yrs">Infants</string>
+    <string name="_classes">Class</string>
+    <string name="title_fragment_travellers_and_class">Travellers and Class</string>
+    <string name="title_activity_flights">Flight</string>
+    <string name="apply">Apply</string>
+    <string name="select_date">Select Date</string>
+    <string name="book_now">Book now</string>
+    <string name="total_airfare">Total Airfare</string>
+    <string name="discount">Discount</string>
+    <string name="total_payable">Total Payable</string>
+    <string name="air_fare_rules">Air Fare Rules</string>
+    <string name="baggage">Baggage</string>
+    <string name="fare_details">Fare Details</string>
+
+    <string name="title_activity_flight_checkout">Checkout</string>
+    <string name="travelers_details">Traveler\'s Information</string>
+    <string name="_continue">continue</string>
+    <string name="adult_number">Adult %d</string>
+    <string name="adult_number_Primary">Adult %d (Primary)</string>
+    <string name="children__number">Children %d</string>
+    <string name="infants__number">Infants %d</string>
+
+    <string name="required">*Required</string>
+    <string name="title">Title</string>
+    <string name="given_name">Given Name</string>
+    <string name="given_name_with_details">Given Name (First &amp; Middle Name)*</string>
+    <string name="sur_name">Sur Name</string>
+    <string name="sur_name_details">Surname (Last Name)*</string>
+    <string name="birth_day">Birth Day</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email </string>
+    <string name="address">Address</string>
+    <string name="nationality">Nationality </string>
+    <string name="passport_number">Passport Number</string>
+    <string name="passport_expire_date">Passport Expire Date</string>
+    <string name="coupon">Coupon</string>
+
+    <string name="cancellation_policy">Cancellation Policy</string>
+    <string name="pricing_information">Pricing Information</string>
+
+    <string name="date">Date</string>
+
+
+    <string name="remove">Remove</string>
+    <string name="view_on_map">View on Map</string>
+    <string name="reserve">Reserve</string>
+
+    <string name="travellers">Travellers</string>
+
+    <string name="please_wait">Please wait</string>
+    <string name="error_booking_declined">Booking Declined!</string>
+    <string name="error_payment_fail">Don’t worry.\nPlease enter all your valid data and try again.</string>
+    <string name="cancel">Cancel</string>
+    <string name="booking_succeed">Booking Succeed!</string>
+    <string name="thank_you_for_booking_the_ticket">Thank you for booking\nthe ticket</string>
+    <string name="see_all">See All</string>
+    <string name="contact_name">Contact name</string>
+    <string name="details">Details</string>
+    <string name="retry">Retry</string>
+    <string name="itinerary">Itinerary</string>
+    <string name="special_notes">Special Notes</string>
+    <string name="tax">Tax</string>
+    <string name="general_conditions">General Conditions</string>
+    <string name="contact_information">Contact Information</string>
+    <string name="add_city">Add city</string>
+    <string name="airport">Airport</string>
+    <string name="flying_from">Flying from</string>
+    <string name="flying_to">Flying to</string>
+    <string name="price_inclusive_of_vat_tax">*Price inclusive of VAT &amp; Tax</string>
+    <string name="flights_found">%d Flights Found</string>
+    <string name="reset_password">Reset password</string>
+    <string name="login_with_email">LOGIN WITH EMAIL</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="redeem_coin">Redeem Coins</string>
+    <string name="redeem_coupon">Redeem Coupon</string>
+    <string name="card_prefix">Card Prefix</string>
+    <string name="travellers_information">Travellers Information</string>
+    <string name="edit_profile_new">Edit Profile</string>
+    <string name="refer_amp_earn"><![CDATA[Refer & Earn]]></string>
+    <string name="saved_cards">Saved Cards</string>
+    <string name="change_password">Change Password</string>
+    <string name="leader_board">Leader Board</string>
+    <string name="reward">Rewards</string>
+    <string name="logout">Logout</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="email_address">Email Address</string>
+    <string name="passport_expiry_date">Passport Expiry Date</string>
+    <string name="enter_old_password">Enter old password</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="update_password">Update Password</string>
+    <string name="expiring_in">Expiring in</string>
+    <string name="pending_tripcoins">Pending TripCoins</string>
+    <string name="expiring_60_days">Expiring in 60 Days</string>
+    <string name="invite_text_friend">When your friend uses the referral and register you’ll get the Trip Coins. Invite more friends &amp; earn more Trip Coins.</string>
+    <string name="your_invite_code">Your invite code</string>
+    <string name="invite_friend">INVITE FRIENDS</string>
+    <string name="BDT">BDT</string>
+    <string name="faq">FAQ</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="title_activity_tour_history_list">Tour History</string>
+    <string name="title_activity_hotel_booking">Hotel</string>
+    <string name="title_activity_flight_history">Flight History</string>
+    <string name="travel_date">Travel Date</string>
+    <string name="time">Time</string>
+    <string name="tour_information">Tour Information</string>
+    <string name="holiday_history">Holiday History</string>
+    <string name="loading">loading...</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="search_city_or_destination">Search By Destinations</string>
+    <string name="trips_in_popular_cities">Trips in popular Cities</string>
+    <string name="text_oh_no">Oh no!</string>
+    <string name="no_internet_found_check_connectivity">No internet found. Check connectivity.</string>
+    <string name="favourite_guest_lists">Favourite Guest List</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="back_to_search">Back to search</string>
+    <string name="check_in_check_out_date">Check In - Check Out Date</string>
+    <string name="pricing_details">Pricing Details</string>
+    <string name="transport_name">Transport Name (Ex. Bangladesh Biman)</string>
+    <string name="code">Code (Ex. BG-701)</string>
+    <string name="final_price">Final Price</string>
+    <string name="discount_amount">Discount Amount</string>
+
+    <string name="price_per_single_person">Price Per Person Single:</string>
+    <string name="price_per_double_person">Price Per Person Double:</string>
+    <string name="price_per_person_twin">Price Per Person Twin:</string>
+    <string name="price_per_person_triple">Price Per Person Triple:</string>
+    <string name="price_per_person_quad_">Price Per Person Quad:</string>
+    <string name="price_per_child_3_5">Price Per Child 3 To 6:</string>
+    <string name="price_per_child_7_12_">Price Per Child 7 To 12:</string>
+    <string name="price_per_infant">Price Per Infant:</string>
+    <string name="referral_msg">Hi, check out the ShareTrip App! The easiest way to book all your travel services! Use my referral code %1$s and also win air tickets and many more. Click to download ShareTrip app now http://bit.ly/stappinc</string>
+    <string name="referral_msg_other">Hi, check out the new ShareTrip App! The easiest way to book all your travel services! You can also win  air tickets and many more. Click to download ShareTrip app now http://bit.ly/stappinc</string>
+
+    <!-- Facebook app data-->
+
+    <string name="fb_app_name">ShareTrip</string>
+    <string name="facebook_app_id">575994546140179</string>
+    <string name="fb_login_protocol_scheme">fb575994546140179</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">8a18b884d262a068885a0fd8a6a8c11f</string>
+    <string name="winner_reward_board">Special Rewards</string>
+    <string name="trip_coins_reward">Trip Coin Rewards</string>
+    <string name="loyalty">Loyalty</string>
+    <string name="available_trip_coins">Available Trip Coins</string>
+    <string name="trip_coin_bdt_1">1 Trip Coin = BDT 1</string>
+
+    <!-- Summary String-->
+    <string name="first_summary">I want to Earn Trip Coin &amp; Avail Discount Offer.</string>
+
+    <!-- Name Guideine-->
+    <string name="note_name_guideline"> Please insert your name according to your passport. Make sure that you write the gender, date of birth, passport number and expiry date, exactly as your passport. Modification to any passenger information is not always allowed or you may have to pay an extra charge to do so. Passport validity should be at least 6 months after your departure date.</string>
+    <string name="special_char_name_guideline">You are not allowed to use any special character on your name. Special characters like accents, hyphens, or any other punctuation marks are not allowed (i.e *, -, @, etc). You cannot use any spaces in your last name (Surname), but you can use spaces in your given name. (If your full name is AHMED TAOHID RAFI, you can not write TAOHID RAFI in the last name, as last name does not allow using spaces, you can, however, write AHMED TAOHID in the Given Name, and RAFI in the last name.)</string>
+    <string name="name_length_name_guideline">If your first name or middle name is too long, consider using just the initial. However, the last name (Surname) should not be modified. However, if your last name is too long, we suggest you to call our hotline for support or book tickets directly from our office.</string>
+    <string name="passport_info_name_guideline">We need you to fill up all the information according to your passport, as bookings done from ShareTrip will use the name you entered on the app or website. The airport authority will not let you fly in case of any mismatch in the name or any other information with your passport. So we request you to enter the name, expiry date, DOB, and other required information exactly as per your passport.</string>
+
+    <!-- Name Guideine-->
+    <string name="common_faq">Common Overview</string>
+    <string name="flight_faq">Flight</string>
+    <string name="hotel_faq">Hotel</string>
+    <string name="holiday_faq">Holiday</string>
+    <string name="tour_faq">Tour</string>
+    <string name="transfer_faq">Transfer</string>
+    <string name="trip_coin_faq">Trip coin</string>
+
+    <string name="terms_and_condition">T&amp;C</string>
+
+    <!-- Terms and condition html value -->
+    <string name="privacy_policy_title_html">Privacy Policy</string>
+
+    <string name="privacy_policy_body_html"> <![CDATA[
+    <html>
+	<body>
+
+		<p>ShareTrip Ltd built the ShareTrip app as a Free app. This SERVICE is provided by ShareTrip Ltd at no cost and is intended for use as is.</p>
+		<p>This page provides an overview of our policies governing the collection, use, and disclosure of personally identifying information (“Personal Information”) of those who use our Service.</p>
+		<p>By using our Service, you agree that we may collect and use your Personal Information. The Personal Information that we collect is used for providing and improving the Service. We will not use or share your Personal Information with anyone except as described in this Privacy Policy.</p>
+		<p>The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at ShareTrip unless otherwise defined in this Privacy Policy.</p>
+
+		<p><strong>Information Collection and Use</strong></p>
+		<p>ShareTrip collects the following personal sensitive information from you while transacting through ShareTrip, this includes your Name and Sex, Phone Number, Email Address, Billing Address, and Date of birth.</p>
+		<p>ShareTrip does not sell or trade upon any of the above foregoing information without the consent of the user or customer. ShareTrip does not store any credit/debit card details and all card related information is stored at the respective bank after the selection of the payment gateway.</p>
+		<p>The foregoing information collected from the users/customers/travelers is put to the following use:<br>
+		&emsp;Customer name, address, phone number, travelers name, and age are shared with applicable service providers like the airlines, hotels, etc., for the purpose of reservation and booking the services for the customer/traveler.</p>
+		<p>Information like Phone number, email address and billing address may be used for promotional purposes, unless the customer/user has unsubscribed from such services. If you choose not to share this information, you can still visit the ShareTrip website, but you may be unable to access certain options, offers, and services.</p>
+
+		<!---->
+		<p><strong>Log Data</strong></p>
+		<p>When you use our Service, in case of an error in the app we collect data and information on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.</p>
+
+
+		<p><strong>Cookies</strong></p>
+		<p>Cookies are files with small amount of data that is commonly used as an anonymous unique identifier. These are sent to your browser from the website that you visit and are stored on your device internal memory.</p>
+		<p>This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and to improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.</p>
+
+
+		<p><strong>Service Providers</strong></p>
+		<p>We may employ third-party companies and individuals for the following:</p>
+		<ul>
+			<li>To facilitate our Service;</li>
+			<li>To provide the Service on our behalf; or</li>
+			<li>To perform Service-related services.</li>
+		</ul>
+		<p>These third parties have access to your Personal Information during the performance of certain tasks that we assign to them. However, they are obligated not to disclose or use the information for any other purpose.</p>
+
+
+		<p><strong>Security</strong></p>
+		<p>We value your trust in providing us with your Personal Information, and we are using commercially acceptable means of protecting it. We are caution, however, that no method of transmission over the Internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.</p>
+
+
+		<p><strong>Children’s Privacy</strong></p>
+		<p>This Service is not for use by anyone under the age of 13. We do not knowingly collect Personal Information from children under 13. If we discover that a child under 13 has provided us with personal information, we will immediately delete it from our servers. If you are a parent or guardian and you become aware that your child has provided us with personal information, please contact us immediately so that we can delete the information from our servers.</p>
+
+
+		<p><strong>Changes to This Privacy Policy</strong></p>
+		<p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.</p>
+
+		<p><strong>Contact Us</strong></p>
+		<p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.</p>
+
+	</body>
+	</html>]]>
+    </string>
+    <string name="i_want_to_use_coupon">I want to use a coupon</string>
+    <string name="i_want_to_redeem_tripcoins">I want to redeem TripCoins</string>
+    <string name="edit_string">EDIT</string>
+    <string name="no_history_data_found">No history found!</string>
+    <string name="TRANSIT_THAILAND_MORE_THAN_12_HOURS">his flight contains more than 12 hours of transit, before booking this flight please check your visa requirements as per your nationality.</string>
+    <string name="TRANSIT_MORE_THAN_24_HOURS">This flight contains more than 24 hours of transit, before booking this flight please check your visa requirements as per your nationality.</string>
+
+    <!--Guest String-->
+    <string name="travel_like_a_pro">Travel Like A Pro</string>
+    <string name="please_log_in_or_sign_up_on_the_app_to_access_the_booking_history">Please log in or sign up on the app to access the booking history</string>
+    <string name="loyalty_title">Earn &amp; Win</string>
+    <string name="loyalty_body">Please log in or sign up on the app to access the Trip Coin history</string>
+    <string name="profile_title">Hello Guest</string>
+    <string name="profile_body">Please log in or sign up on the app to access your user profile</string>
+    <string name="to_continue">Please log in or sign up on the app to continue and more</string>
+    <string name="spin_title">Spin To Win</string>
+    <string name="spin_body">Please log in or sign up on the app to play and win free Tickets and more.</string>
+    <string name="discount_body">Please log in or sign up on the app to avail the discount offers.</string>
+    <string name="trip_coin_title">Free Coins!</string>
+    <string name="trip_coin_body">Please log in or sign up on the app to win more free TripCoins.</string>
+    <string name="trivia_body">Please log in or sign up on the app to play the Quiz and WIN exciting gifts</string>
+    <string name="trivia_title">Daily Quiz!</string>
+    <string name="common_title">Dear Guest User</string>
+    <string name="flight_body">Please log in or sign up on the app to avail the flight services.</string>
+    <string name="hotel_body">Please log in or sign up on the app to avail the hotel services.</string>
+    <string name="holiday_body">Please log in or sign up on the app to avail the holiday services.</string>
+    <string name="visa_body">Please log in or sign up on the app to avail the Visa services.</string>
+    <string name="bundle_information">Bundle Information</string>
+    <string name="visa_our_destination">Our Top Destinations</string>
+    <string name="visa_apply">Apply</string>
+    <string name="visa_date_of_entry">Date of Entry</string>
+    <string name="visa_date_of_exit">Date of Exit (Optional)</string>
+    <string name="visa_travelers">Travellers</string>
+    <string name="activity_visa_booking">Visa</string>
+    <string name="visa_destination_country">Destination Country</string>
+    <string name="visa_selection_header">We currently process Tourist visas only!</string>
+    <string name="visa_next">Next</string>
+    <string name="visa_traveller_info_hint">Select from Favourite Guest List</string>
+    <string name="visa_traveller_profession_hint">Select your profession</string>
+    <string name="profession">Profession</string>
+    <string name="current_address">Current Address</string>
+    <string name="destination_address">Destination Address</string>
+    <string name="done">Done</string>
+    <string name="visa_notice_pass_validation">Every travellers must have 7 months valid passport before the entry date.</string>
+    <string name="visa_before_proceed">Before you proceed…</string>
+    <string name="visa_not_now">Not Now</string>
+    <string name="visa_yes_proceed">Yes Proceed</string>
+    <string name="visa_application_info">Keep all the documents handy before proceeding.</string>
+    <string name="visa_confirmation">I confirm that the documents and the information provided are correct and can be used for processing the visa application.</string>
+    <string name="activity_visa_booking_history">Visa Booking History</string>
+    <string name="no_country_found">No country found</string>
+    <string name="contact_address">Contact Address</string>
+    <string name="meal_type">Select meal type (optional)</string>
+    <string name="request_wheelchair">Request wheelchair (optional)</string>
+    <string name="airfare_change_text">The airfare for your selected flight has changed (as per airline policy). The updated price is available now. To avail the ticket at the new price, please tap on the ‘Continue’ button and proceed with your payment. You can also check other available flight options.</string>
+    <string name="price_change_header">The fare for your selected flight has changed</string>
+    <string name="travel_trivia">Travel Trivia</string>
+    <string name="term_and_condition">Terms &amp; Conditions</string>
+    <string name="share">SHARE TO CHALLENGE YOUR FRIEND</string>
+    <string name="term_condition_title_trivia">Travel Trivia</string>
+    <string name="sign_in_with_apple">Sign in with Apple</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="optional">optional</string>
+    <string name="other_services">Other Services</string>
+    <string name="user_profile">User Profile</string>
+    <string name="flight_tracker">Flight Tracker</string>
+    <string name="visa_application_tracker">Visa Application Tracker</string>
+    <string name="rate_app">Rate App</string>
+    <string name="app_name_with_promotion">ShareTrip - Travel App for All</string>
+    <string name="settingsAndSupport">Settings &amp; Support</string>
+    <string name="flight_number">Flight Number</string>
+    <string name="track_flight">Track Flight</string>
+    <string name="tracking_flight">Tracking flight, please wait</string>
+    <string name="delay">Delay: </string>
+    <string name="terminal">Terminal: </string>
+    <string name="gate">Gate: </string>
+    <string name="status">Status: </string>
+    <string name="visa">Visa</string>
+    <string name="holiday">Holiday</string>
+    <string name="holiday_in_popular_cities">Holiday in Popular Cities</string>
+    <string name="i_agree_to_terms_condition">I agree to the Terms &amp; Condition and Privacy Policy</string>
+    <string name="terms_condition_user_hints">Click to agree on the terms &amp; conditions and privacy policy to continue with your booking.</string>
+    <string name="select_discount_option">Select Discount Option</string>
+    <string name="select_travel_date">Select Travel Date</string>
+    <string name="silver">Silver</string>
+    <string name="gold">Gold</string>
+    <string name="platinum">Platinum</string>
+    <string name="blog">Blog</string>
+    <string name="blog_top_destination">Top Destinations</string>
+    <string name="explore_all">Explore All</string>
+    <string name="blog_trending_topics">Trending Topics</string>
+    <string name="search">Search</string>
+    <string name="you_might_like">You Might Like</string>
+    <string name="share_post_on">Share post</string>
+    <string name="load_more">Load More</string>
+    <string name="payment_charged_in_usd">The payment will be charged \n in USD ($)</string>
+    <string name="payment_process_usd_continue">Tap on “CONTINUE” to proceed with the payment.</string>
+
+    <string name="can_i_travel">Can I travel to</string>
+    <string name="can_i_travel_to">Can I travel to...?</string>
+    <string name="tips_can_i_go">Search for safe destinations available now!</string>
+    <string name="destination">Destination</string>
+    <string name="quarantine">Quarantine</string>
+    <string name="covid_test">Covid Test</string>
+    <string name="mask">Mask</string>
+    <string name="total_case">Total Case</string>
+    <string name="total_death">Total Death</string>
+    <string name="know_before_your_go">Know Before You Go</string>
+    <string name="deals">Deals</string>
+    <string name="deals_and_updates">Deals &amp; Updates</string>
+    <string name="dialog_keep_playing_details"><![CDATA[Keep playing to win Free Trips, Air Tickets,  Trip Coins & more!]]></string>
+    <string name="dialog_keep_playing_title">Win up to *** Coins</string>
+    <string name="keep_playing">Keep Playing</string>
+    <string name="leave">Leave</string>
+    <string name="special_rewards">Special Rewards</string>
+    <string name="share_only">Share</string>
+
+    <string-array name="covid_prevention_info">
+
+        <item>Maintain a distance of 6 feet (2 meters) between you and others as much as possible.</item>
+        <item>Avoid contact with anyone who is sick</item>
+        <item>Limit contact with frequently touched surfaces, such as handrails, elevator buttons and kiosks. If you must touch these surfaces, use hand sanitizer or wash your hands afterward.</item>
+        <item>Wear a cloth face mask.</item>
+        <item>Cover coughs and sneezes.</item>
+        <item>Clean your hands often. It’s especially important after going to the bathroom, before eating, and after coughing, sneezing or blowing your nose.</item>
+
+    </string-array>
+
+    <string name="travel_advisory_level_info"><![CDATA[<p><strong>Travel Advice:</strong></p>
+<ol>
+<li>Travel recommendations are based on each country&rsquo;s travel restriction information. Recommendations integrate entry/exit restriction policies with pubic information about travel restrictions by local governments and are provided for users to form a decision about travel.</li>
+<li>In the event of failure to display inaccurate information regarding the location, an error will occur. In this case, please decide after careful consideration of policy information whether it is safe to travel.</li>
+<li>In addition to considering your current location and travel history from the past 14 days, we recommend reviewing relevant policy information in detail and deciding whether it is safe to travel.</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p><strong>Regarding COVID-19 notices issued by local governments:</strong></p>
+<ol>
+<li>Data of current entry restrictions are gathered from official sources and publicly available information.</li>
+<li>The recommendations presented here are for reference only. While every effort is made to ensure the accuracy of the information, policies may change with little to no warning.</li>
+</ol>
+<p>&nbsp;</p>
+<p><strong>Regarding COVID-19 travel restrictions:</strong></p>
+<p>The outbreak of Covid-19 continues to cause international concern. Some countries and regions have responded with travel restrictions and advisories. The safety of travelers is our top priority. ShareTrip offers the above information of official entry restrictions and conditions to customers for reference only. We only provide entry policy information for the destinations where we offer products and services on ShareTrip. User nationalities are not considered in search results. When selecting a country/region visited in the past 14 days, search results will assume by default that you have traveled to cities/areas severely affected by COVID-19 in that destination. The status of a destination does not account for the status of the country/region&rsquo;s official travel prohibitions, warnings, announcements, and advisories. This page will be kept up-to-date, but we urge all travelers to confirm travel restrictions with the relevant authorities. ShareTrip continues to monitor the situation to ensure the safety of all travelers and urges travelers to remain vigilant at all times and take all necessary precautionary measures to support their health and the well-being of others and consider the advice of the local authorities.</p>
+<p>&nbsp;</p>
+<p><strong>Regarding COVID-19 real-time data:</strong></p>
+<p>Information regarding COVID-19 is sourced from official national/regional reports and authorized media outlets.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>]]></string>
+    <string name="no_data_found">No data found!</string>
+    <string name="saudia_guideline_for_passenger">For booking Saudia Airlines (SV) flights, Passenger’s with single name has to insert  Passenger’s Father’s name as in passport in the GIVEN Name Field, as per Saudia(SV) airlines guideline.</string>
+    <string name="no_apps_found">No application found to send email.</string>
+    <string name="no_baggage_data_found">No Baggage Data Found!</string>
+    <string name="helper_country_code_with_mobile_number">Please provide a valid phone number with proper country code. Ex: +88 01234567890</string>
+    <string name="passport_copy">Passport Copy</string>
+    <string name="upload">Upload</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="frequent_flyer_number_if_any">Frequent Flyer Number (If any)</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="select_your_gender">Select Your Gender</string>
+    <string name="more_information">More Information</string>
+    <string name="naming_guideline">Please enter your name as it appears on your passport. Visit the Name Guideline page to know more in details.</string>
+    <string name="covid_info_title">Covid-19 test (Optional)</string>
+    <string name="travel_insurance_info">Travel Insurance (Optional)</string>
+    <string name="baggage_protection_info">Baggage Protection(Optional)</string>
+    <string name="add_to_collect_the_sample">Address to collect the sample</string>
+    <string name="rt_pcr_test_is_mandatory_for_all_international_travels_from_govt_approved_labs">RT-PCR test is mandatory for all international travels from Govt. approved labs.</string>
+    <string name="covid_19_test">COVID-19 test</string>
+    <string name="travel_insurance">Travel Insurance</string>
+    <string name="baggage_protection">Baggage Protection</string>
+    <string name="total_baggage">Total Baggage:</string>
+    <string name="available_coupon">Available Coupon</string>
+    <string name="how_to_read_rules">How to Read Rules</string>
+    <string name="read_rules"><![CDATA[<p>Pay attention to the following notifications in the CANCELLATIONS section:</p>
+<p>TICKET IS NON-REFUNDABLE &mdash; the ticket is non-refundable;<br />TICKET IS NON-REFUNDABLE FOR CANCEL/REFUND &mdash; the ticket is non-refundable;<br />REFUND IS NOT PERMITTED &mdash; the ticket is non-refundable;<br />ANY TIME TICKET IS NON-REFUNDABLE &mdash; the ticket is non-refundable;<br />TICKET IS NON-REFUNDABLE IN CASE OF NO-SHOW &mdash; the ticket cannot be refunded in case of no-show.</p>
+<p>Change rules are described in the section with the CHANGES subtitle.</p>
+<p>The CHANGES ARE NOT PERMITTED line means that you cannot make any changes and in such a case, you are not allowed to change the date/time/route of the flight.</p>]]></string>
+    <string name="notes_meal_wheelchair">Meal and wheelchair services are accessible if provided by the airlines (depends on availability).</string>
+    <string name="categories">categories</string>
+    <string name="location_data_not_available">Location data not available</string>
+    <string name="advance_income_tax">Advance Income Tax</string>
+    <string name="search_flights_again">Search Flight Again</string>
+    <string name="flight_booking_data_changed">Flight Booking Data Changed</string>
+    <string name="sub_total">Sub-Total</string>
+    <string name="total_amount_before_discount">Total Amount Before Discount</string>
+    <string name="select_your_preferd_bank">Select Your Preferred Bank</string>
+    <string name="choose_your_payment_method">Choose your Payment Method</string>
+    <string name="choose_your_discount_option">Choose your discount option</string>
+    <string name="drag_to_slider_to_redeem_trip_coin">Drag slider to redeem trip coin</string>
+    <string name="enter_the_coupon_code">Enter the coupon code</string>
+    <string name="no_name">No Name</string>
+    <string name="have_referral_code_optional">Have referral code (Optional)</string>
+    <string name="have_an_account">Have an account</string>
+    <string name="bus">Bus</string>
+
+    <string name="activity_bus">Bus</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="journey_date">Journey Date</string>
+    <string name="search_bus">Search Bus</string>
+    <string name="sort">Sort</string>
+    <string name="filter">Filter</string>
+    <string name="cheapest">Cheapest</string>
+    <string name="fastest">Fastest</string>
+    <string name="earliest">Earliest</string>
+    <string name="selected_seats">Selected Seats</string>
+    <string name="service_charge">Service Charge</string>
+    <string name="add_this_person_to">Add this person to</string>
+    <string name="policy">Policy</string>
+    <string name="price_range">Price Range</string>
+    <string name="string_any">Any</string>
+    <string name="price_include_vat_tax"><![CDATA[*Price includes VAT & Tax]]></string>
+    <string name="available_buses_200">200 Aailable Buses</string>
+    <string name="reset_filter_text_view">RESET</string>
+    <string name="minimum_price">Minimum Price</string>
+    <string name="maximum_price">Maximum Price</string>
+    <string name="deselect_all">DESELECT ALL</string>
+    <string name="title_class">Class</string>
+    <string name="title_schedule">Schedule</string>
+    <string name="title_operators">Operators</string>
+    <string name="depature_time">Departure Time</string>
+    <string name="arrival_time">Arrival Time</string>
+    <string name="select_all">SELECT ALL</string>
+
+    <string name="status2">Status:</string>
+    <string name="departure">Departure</string>
+    <string name="boarding">Boarding</string>
+    <string name="onwards">Onwards</string>
+    <string name="booking_id">Booking ID:</string>
+    <string name="dropping">Dropping</string>
+    <string name="arrive">Arrive</string>
+    <string name="seats">Seats</string>
+    <string name="bus_type">Bus Type</string>
+    <string name="tripcoin_value">2000</string>
+    <string name="departure_time_date">10:30 PM, 20 Oct 2021</string>
+    <string name="chottogram">Chottogram</string>
+    <string name="dhaka">Dhaka</string>
+    <string name="boarding_counter_name">Kolabagan Counter</string>
+    <string name="bus_service_Hanif_Enterprize">Hanif Enterprize</string>
+    <string name="completed">COMPLETED</string>
+    <string name="boarding_counter">Kolabagan</string>
+    <string name="droping_counter">Dampara</string>
+    <string name="dhk_ctg_d">31-DHK-CTG (D)</string>
+    <string name="booking_id_value">ST862149990</string>
+    <string name="journey">Journey</string>
+    <string name="time_value_1">11:30 PM</string>
+    <string name="time_value_2">05:30 AM</string>
+    <string name="date_value">20 Oct 2021</string>
+    <string name="seats_value">A4, B4, C4, C5</string>
+    <string name="bus_type_value">AC</string>
+    <string name="total_amount_3050">BDT 3,050</string>
+    <string name="resend_voucher">Resend Voucher</string>
+    <string name="details_info">Details Information</string>
+    <string name="passenger_detail">Passenger Detail</string>
+    <string name="policies">Policy</string>
+
+    <string name="f_name">Full Name (First name + Last Name)</string>
+    <string name="f_name_value">Choudhury Shaheb</string>
+    <string name="gender">Gender</string>
+    <string name="insurance">Insurance</string>
+    <string name="total_price">Total Price</string>
+    <string name="total_price_3000">3,000</string>
+    <string name="service_charge_50">50</string>
+    <string name="final_price_value">BDT 3,050</string>
+    <string name="full_name_title">Full Name(First Name + Last Name)</string>
+    <string name="i_want_to_avail">I want to avail </string>
+    <string name="insurance_service">Insurance Service</string>
+    <string name="verify_info">Verify Information</string>
+    <string name="only_use_letter">Only Use Letter</string>
+    <string name="i_want_to_redeem_trip_coins">I want to Redeem Trip Coins</string>
+    <string name="_870">870</string>
+    <string name="i_agree_to">I agree to the</string>
+    <string name="and">and</string>
+    <string name="favorite_passenger_list">Favorite Passenger List</string>
+    <string name="dear_valued_customer_no_hotels">Dear Valued Customer, we do not have any hotel inventory for your desired destination.</string>
+    <string name="trip_coin_reduction">Reduction For Trip Coin</string>
+    <string name="reduction_for_coupon">Reduction For Coupon</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="pickup_note">Pickup Note</string>
+    <string name="check_in_date">Check-out Date</string>
+    <string name="check_out_date">Check-out Date</string>
+    <string name="travellers_detail">Traveller(s) Detail</string>
+
+    <string name="convenience_fee">ST Convenience Fee</string>
+    <string name="vat_on_st_convenience_fee">VAT on ST Convenience Fee</string>
+    <string name="categories_pascal_case">Categories</string>
+    <string name="blog_details"> Blog Details </string>
+    <string name="signup"> Signup </string>
+    <string name="data_error">Data Error</string>
+    <string name="data_error_occured">Data Error Occurred.</string>
+    <string name="ok">OK</string>
+
+    <string name="local_notification_title">Flight Reminder</string>
+    <string name="local_notification_description">\"You have a flight at \"</string>
+    <string name="local_notification_channel_name">Flight Reminder</string>
+    <string name="local_notification_channel_description">Flight reminders will be sent before flight</string>
+
+    <string name="use_another_number">Use another number?</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="verify">Verify</string>
+    <string name="we_have_sent_a_6_digit_otp_to">"\"We have sent a 6 digit OTP to "</string>
+    <string name="please_input_that_number_to_proceed">and your registered email. Please input that number to proceed</string>
+    <string name="gp_star_coupon_verified">GP STAR Coupon Verified!</string>
+    <string name="please_allow_us_to_verify_this_number_belongs_to_you_enter_your_grameenphone_number_below">Please allow us to verify this number belongs to you. Enter your Grameenphone Number below.</string>
+</resources>

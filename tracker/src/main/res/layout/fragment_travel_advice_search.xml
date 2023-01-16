@@ -1,0 +1,864 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="net.sharetrip.shared.utils.ValidationExtensionKt" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.tracker.view.search.TravelAdviceSearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/pale_grey"
+            android:clickable="true"
+            android:focusable="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/spacing_large">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/flight_sheet_background"
+                    android:paddingTop="@dimen/spacing_large"
+                    android:paddingBottom="@dimen/spacing_large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/begin_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/end_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivTravelLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/layout_destination"
+                        app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/layout_destination"
+                        app:srcCompat="@drawable/ic_location_white_mono_24dp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_destination"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:background="@drawable/touch_effect"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{() -> viewModel.onClickedDestinationCountry()}"
+                        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                        app:layout_constraintStart_toEndOf="@+id/ivTravelLocation"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/travelers_and_class_hint_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="4sp"
+                            android:text="@string/destination"
+                            android:textColor="@color/pale_grey"
+                            android:textSize="@dimen/font_tiny"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/travelers_and_class_count_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@{viewModel.countryName}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/font_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/travelers_and_class_hint_text_view"
+                            tools:text="Select Destination" />
+
+                        <View
+                            android:id="@+id/view_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:background="#5bb4ff"
+                            app:layout_constraintTop_toBottomOf="@+id/travelers_and_class_count_text_view" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_marginRight="@dimen/spacing_normal"
+                        android:background="@drawable/ripple_bg_white"
+                        android:onClick="@{() -> viewModel.onClickedSearchFlightButton()}"
+                        android:text="@string/search"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                        app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_destination" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_safe_travel_advice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:layout_marginRight="@dimen/spacing_normal"
+                    android:elevation="0dp"
+                    android:visibility="@{viewModel.isCovidGuideAvailable ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_search">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvSafeTravel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif-medium"
+                            android:lineSpacingExtra="8sp"
+                            android:text="Stay safe when you travel"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_safe_travel_description"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:layout_marginRight="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif"
+                            android:text="The Centers for Disease Control and Prevention (CDC) recommends following these steps to protect yourself and others when you travel:"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@id/tvSafeTravel"
+                            app:layout_constraintStart_toStartOf="@id/tvSafeTravel"
+                            app:layout_constraintTop_toBottomOf="@+id/tvSafeTravel" />
+
+                        <LinearLayout
+                            android:id="@+id/container_covid_safety_msg"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_normal"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_safe_travel_description" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_Advisory_Level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_small"
+                    android:visibility="@{viewModel.isDataAvailable ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_search">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_advisory_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_normal"
+                            android:background="@drawable/ripple_bg_white"
+                            android:drawablePadding="@dimen/spacing_small"
+                            android:fontFamily="sans-serif-medium"
+                            android:onClick="@{()-> viewModel.onClickTravelAdvisoryLevel()}"
+                            android:text="Travel Advisory Level"
+                            android:textColor="@color/greyish_brown"
+                            android:textSize="@dimen/font_normal"
+                            app:drawableEndCompat="@drawable/ic_info_mono_14dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_travel_normally"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:drawablePadding="@dimen/spacing_small"
+                            android:fontFamily="sans-serif"
+                            android:text="Travel with normal safety precautions"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            android:textStyle="normal"
+                            app:drawableLeftCompat="@drawable/green_rectangle"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/text_view_advisory_level"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_advisory_level" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_travel_cautiously"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:drawablePadding="@dimen/spacing_small"
+                            android:fontFamily="sans-serif"
+                            android:text="Travel cautiously and note local policies"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            android:textStyle="normal"
+                            app:drawableLeftCompat="@drawable/amber_rectangle"
+                            app:layout_constraintEnd_toEndOf="@+id/text_view_travel_normally"
+                            app:layout_constraintStart_toStartOf="@+id/text_view_travel_normally"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_travel_normally" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_travel_essential_only"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:layout_marginBottom="@dimen/spacing_normal"
+                            android:drawablePadding="@dimen/spacing_small"
+                            android:fontFamily="sans-serif"
+                            android:text="Avoid non-essential travel"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            app:drawableLeftCompat="@drawable/red_rectangle"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/text_view_travel_cautiously"
+                            app:layout_constraintStart_toStartOf="@+id/text_view_travel_cautiously"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_travel_cautiously" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_small"
+                    android:background="@color/white"
+                    android:elevation="0dp"
+                    android:visibility="@{viewModel.isDataAvailable ? View.VISIBLE : View.GONE}"
+                    app:cardCornerRadius="@dimen/spacing_tiny"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_Advisory_Level">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif"
+                            android:text='@{"Destination: " + viewModel.countryName}'
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:text="Destination: India" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_restriction_lavel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:layout_marginRight="@dimen/spacing_normal"
+                            android:layout_marginBottom="@dimen/spacing_normal"
+                            android:background="@color/very_light_pink"
+                            android:drawablePadding="@dimen/spacing_small"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:padding="@dimen/spacing_normal"
+                            android:textColor="@color/red_800"
+                            android:textSize="@dimen/font_normal"
+                            app:drawableStartCompat="@drawable/ic_close_circle_mono"
+                            tools:text="Travel prohibited" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_Know_before"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:background="@color/white"
+                    android:elevation="0dp"
+                    android:visibility="@{viewModel.isDataAvailable ? View.VISIBLE : View.GONE}"
+                    app:cardCornerRadius="@dimen/spacing_tiny"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardStatus">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/begin_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/end_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideOneThird"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent=".33" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideTwoThird"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent=".66" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_know_before_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/know_before_your_go"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="@id/end_vertical"
+                            app:layout_constraintStart_toStartOf="@id/begin_vertical"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_recommendation_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_normal"
+                            android:layout_marginRight="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif-medium"
+                            android:text='@{"Recommendation by the country " + viewModel.countryName + ":"}'
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toStartOf="@+id/icon_restriction_arrow"
+                            app:layout_constraintStart_toStartOf="@id/begin_vertical"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_know_before_header"
+                            tools:text="Recommendation by the country India:" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/text_view_recommendation_arrow"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:onClick="@{() -> viewModel.onRecommendationArrowClicked()}"
+                            android:rotation="@{viewModel.isRecommendationArrowExpanded ? 270 : 90}"
+                            app:layout_constraintBottom_toBottomOf="@id/text_view_recommendation_header"
+                            app:layout_constraintEnd_toEndOf="@id/end_vertical"
+                            app:layout_constraintTop_toTopOf="@+id/text_view_recommendation_header"
+                            app:srcCompat="@drawable/ic_navigate_next_blue_color_24dp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_recommendation"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:fontFamily="sans-serif"
+                            android:text="@{viewModel.travelInfoResponse.trips.get(0).advice.recommendation}"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            android:visibility="@{viewModel.isRecommendationArrowExpanded ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintEnd_toEndOf="@id/end_vertical"
+                            app:layout_constraintStart_toStartOf="@id/begin_vertical"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_recommendation_header"
+                            tools:text="Recommendation by the country India:" />
+
+                        <View
+                            android:id="@+id/line_zero"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/spacing_small"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_small"
+                            android:background="@color/ripple_custom_gray"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_recommendation" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_restriction_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_normal"
+                            android:layout_marginRight="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif-medium"
+                            android:text='@{"Entry restrictions on other countries by "+viewModel.countryName+":"}'
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toStartOf="@+id/icon_restriction_arrow"
+                            app:layout_constraintStart_toStartOf="@id/begin_vertical"
+                            app:layout_constraintTop_toBottomOf="@+id/line_zero"
+                            tools:text="Entry restrictions on other countries by India" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/icon_restriction_arrow"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="@dimen/spacing_small_tiny"
+                            android:layout_marginEnd="@dimen/spacing_normal"
+                            android:layout_marginRight="@dimen/spacing_normal"
+                            android:onClick="@{() -> viewModel.onRestrictionArrowClicked()}"
+                            android:rotation="@{viewModel.isRestrictionDetailsExpanded ? 270 : 90}"
+                            app:layout_constraintBottom_toBottomOf="@id/text_view_restriction_header"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/text_view_restriction_header"
+                            app:srcCompat="@drawable/ic_navigate_next_blue_color_24dp" />
+
+                        <LinearLayout
+                            android:id="@+id/layout_restriction_list"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.isRestrictionDetailsExpanded ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="@id/line_one"
+                            app:layout_constraintEnd_toEndOf="@id/icon_restriction_arrow"
+                            app:layout_constraintStart_toStartOf="@id/text_view_restriction_header"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_restriction_header" />
+
+                        <View
+                            android:id="@+id/line_one"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/spacing_small"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_small"
+                            android:background="@color/ripple_custom_gray"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/layout_restriction_list" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_requirement_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif-medium"
+                            android:text='@{"Requirements by countries " + viewModel.countryName + ":"}'
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@id/end_vertical"
+                            app:layout_constraintStart_toStartOf="@id/begin_vertical"
+                            app:layout_constraintTop_toBottomOf="@+id/line_one"
+                            tools:text="Requirements by country" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_quarantine_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_horizontal"
+                            android:text="@string/quarantine"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@drawable/little_active_dot"
+                            app:layout_constraintStart_toStartOf="@id/begin_vertical"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_requirement_header" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_quarantine"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:layout_marginEnd="@dimen/spacing_tiny"
+                            android:layout_marginRight="@dimen/spacing_tiny"
+                            android:ellipsize="marquee"
+                            android:fontFamily="sans-serif"
+                            android:marqueeRepeatLimit="-1"
+                            android:singleLine="true"
+                            android:text="@{viewModel.travelInfoResponse.requirements.quarantine}"
+                            android:textColor="@color/greyish_brown"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="@id/divider_one_third"
+                            app:layout_constraintStart_toStartOf="@id/text_view_quarantine_header"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_quarantine_header"
+                            tools:text="Required" />
+
+                        <View
+                            android:id="@+id/divider_one_third"
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:layout_marginBottom="@dimen/spacing_tiny"
+                            android:background="@color/ripple_custom_gray"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_view_quarantine"
+                            app:layout_constraintStart_toStartOf="@id/guideOneThird"
+                            app:layout_constraintTop_toTopOf="@id/text_view_quarantine_header" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_covid_test_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_horizontal"
+                            android:text="@string/covid_test"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@drawable/little_active_dot"
+                            app:layout_constraintStart_toStartOf="@id/guideOneThird"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_requirement_header" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_covid_test"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:layout_marginEnd="@dimen/spacing_tiny"
+                            android:layout_marginRight="@dimen/spacing_tiny"
+                            android:ellipsize="marquee"
+                            android:fontFamily="sans-serif"
+                            android:marqueeRepeatLimit="-1"
+                            android:singleLine="true"
+                            android:text="@{viewModel.travelInfoResponse.requirements.tests}"
+                            android:textColor="@color/greyish_brown"
+                            android:textSize="10sp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="@id/divider_two_third"
+                            app:layout_constraintStart_toStartOf="@id/text_view_covid_test_header"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_covid_test_header"
+                            tools:text="Required" />
+
+                        <View
+                            android:id="@+id/divider_two_third"
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:layout_marginBottom="@dimen/spacing_tiny"
+                            android:background="@color/ripple_custom_gray"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_view_quarantine"
+                            app:layout_constraintStart_toStartOf="@id/guideTwoThird"
+                            app:layout_constraintTop_toTopOf="@id/text_view_quarantine_header" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_mask_test__header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_horizontal"
+                            android:text="@string/mask"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:drawableStartCompat="@drawable/little_active_dot"
+                            app:layout_constraintStart_toStartOf="@id/guideTwoThird"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_requirement_header" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_mask"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:layout_marginEnd="@dimen/spacing_normal"
+                            android:layout_marginRight="@dimen/spacing_normal"
+                            android:ellipsize="marquee"
+                            android:fontFamily="sans-serif"
+                            android:marqueeRepeatLimit="-1"
+                            android:singleLine="true"
+                            android:text="@{viewModel.travelInfoResponse.requirements.masks}"
+                            android:textColor="@color/greyish_brown"
+                            android:textSize="10sp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/text_view_mask_test__header"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_mask_test__header"
+                            tools:text="Required" />
+
+                        <View
+                            android:id="@+id/line_two"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/spacing_small"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_small"
+                            android:background="@color/ripple_custom_gray"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_mask" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_travel_advice_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif-medium"
+                            android:text='@{"Advice for the travellers by "+viewModel.countryName+":"}'
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/begin_vertical"
+                            app:layout_constraintTop_toBottomOf="@+id/line_two"
+                            tools:text="Advice for the travellers by India" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_travel_advice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:fontFamily="sans-serif"
+                            android:text="@{viewModel.travelInfoResponse.trips.get(0).advice.getCustomizedLevelDescription()}"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/text_view_travel_advice_header"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_travel_advice_header"
+                            tools:text="Circumstances normal" />
+
+                        <View
+                            android:id="@+id/line_three"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="@dimen/spacing_small"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:layout_marginEnd="@dimen/spacing_small"
+                            android:background="@color/ripple_custom_gray"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_travel_advice" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_covid_stats_header"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:fontFamily="sans-serif-medium"
+                            android:lineSpacingExtra="8sp"
+                            android:text="COVID-19 Tracker"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/line_three" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_covid_stats_message"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="4sp"
+                            android:text='@{viewModel.countryName + " has "+viewModel.travelInfoResponse.trips.get(0).covid19Stats.newCases.toString()+ " cases for 1 day"}'
+                            android:textColor="#00c5f5"
+                            android:textSize="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/text_view_covid_stats_header"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_covid_stats_header"
+                            tools:text="India has had 0 new cases for 1 day" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_new_case"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal"
+                            android:text='@{"New "+viewModel.travelInfoResponse.trips.get(0).covid19Stats.newCases.toString()}'
+                            android:textColor="@color/greyish_brown"
+                            android:textSize="10sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_covid_stats_message"
+                            tools:text="New 84523" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_viewtotal_case"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_horizontal"
+                            android:text='@{viewModel.travelInfoResponse.trips.get(0).covid19Stats.totalCases.toString()}'
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_new_case"
+                            tools:text="84523" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_total_case_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal"
+                            android:text="@string/total_case"
+                            android:textColor="@color/blue_gray"
+                            android:textSize="8sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_viewtotal_case" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_new_death_case"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_normal"
+                            android:layout_marginLeft="@dimen/spacing_normal"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal"
+                            android:text='@{"New "+viewModel.travelInfoResponse.trips.get(0).covid19Stats.newDeaths.toString()}'
+                            android:textColor="@color/greyish_brown"
+                            android:textSize="10sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_view_new_case"
+                            app:layout_constraintStart_toStartOf="@id/guideOneThird"
+                            app:layout_constraintTop_toTopOf="@+id/text_view_new_case"
+                            tools:text="New 845" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_death_case"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_horizontal"
+                            android:text='@{viewModel.travelInfoResponse.trips.get(0).covid19Stats.totalDeaths.toString()}'
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="@id/text_view_new_death_case"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_new_death_case"
+                            tools:text="84523" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_death_case_header"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal"
+                            android:text="@string/total_death"
+                            android:textColor="@color/blue_gray"
+                            android:textSize="8sp"
+                            app:layout_constraintStart_toStartOf="@id/text_view_death_case"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_death_case" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_last_update_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:layout_marginBottom="@dimen/spacing_normal"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_horizontal"
+                            android:textColor="@color/black"
+                            android:textSize="9sp"
+                            app:formattedDate="@{viewModel.travelInfoResponse.trips.get(0).covid19Stats.date}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/text_view_total_case_header"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_total_case_header"
+                            tools:text="- Last Update: 2020-11-16" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/progressBarBlue"
+            android:visibility="@{viewModel.isDataLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/nested_scroll_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

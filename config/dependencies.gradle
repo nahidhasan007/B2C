@@ -1,0 +1,218 @@
+//ext {
+//    minSdk = 19
+//    compileSdk = 30
+//    buildTool = '30.0.3'
+//    version_code = 96
+//    version_name = "2.0.4"
+//
+//    glideVersion = "4.12.0"
+//    GLIDE = [
+//            glide              : "com.github.bumptech.glide:glide:$glideVersion",
+//            kapt: "com.github.bumptech.glide:compiler:$glideVersion"
+//    ]
+//    DATEPICKER = 'com.github.drawers:SpinnerDatePicker:2.0.1'
+//
+//    constraintLayoutVersion = '2.0.4'
+//    CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+//
+//    lottieVersion = '3.7.1'
+//    LOTTIE_LIB = "com.airbnb.android:lottie:$lottieVersion"
+//
+//    rangebarVersion = '1.1.3'
+//    RANGEBAR = "com.crystal:crystalrangeseekbar:$rangebarVersion"
+//
+//    recyclerSelectionVersion = '1.1.0'
+//    RECYCLER_VIEW_SELECTION = "androidx.recyclerview:recyclerview-selection:$recyclerSelectionVersion"
+//
+//    lifecycleVersion = '2.3.1'
+//    //LIFECYCLE_EXTENSION = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+//    LIFECYCLE_EXTENSION = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+//    LIVE_DATA = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+//
+//    pagingVersion = "2.1.2"
+//    PAGING_LIB = "androidx.paging:paging-runtime:$pagingVersion"
+//
+//    rxAndroidVersion = "3.0.0"
+//    RX_ANDROID = "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
+//
+//    rxJavaVersion = "3.0.0"
+//    RX_JAVA = "io.reactivex.rxjava3:rxjava:$rxJavaVersion"
+//
+//    MIXPANEL = "com.mixpanel.android:mixpanel-android:5.9.1"
+//
+//    // Authentication
+//    PLAY_SERVICE_AUTH = 'com.google.android.gms:play-services-auth:15.0.1'
+//    FACEBOOK_LOGIN = 'com.facebook.android:facebook-android-sdk:[8,9)'
+//    BIG_IMAGE_VIEWR = 'com.github.piasy:BigImageViewer:1.5.7'
+//    FACEBOOK_MARKETING = 'com.facebook.android:facebook-marketing:[4,5)'
+//    FACEBOOK_SHIMMER = 'com.facebook.shimmer:shimmer:0.5.0'
+//    GSON = 'com.google.code.gson:gson:2.8.7'
+//    BLURVIEW = 'com.eightbitlab:blurview:1.6.6'
+//    SECTION_HEADER_RECYCLER_VIEW =
+//            'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:3.2.0'
+//    JWT = 'com.auth0:java-jwt:3.10.3'
+//    GOOGLE_MAP = 'com.google.android.gms:play-services-maps:17.0.0'
+//
+//    multidex = 'androidx.multidex:multidex:2.0.1'
+//
+//    APP_DEPENDENCIES = [
+//            GLIDE.glide,
+//            CONSTRAINT_LAYOUT,
+//            LOTTIE_LIB,
+//            RANGEBAR,
+//            RECYCLER_VIEW_SELECTION,
+//            LIFECYCLE_EXTENSION,
+//            LIVE_DATA,
+//            PAGING_LIB,
+//            RX_ANDROID,
+//            RX_JAVA,
+//            MIXPANEL,
+//            PLAY_SERVICE_AUTH,
+//            FACEBOOK_LOGIN,
+//            FACEBOOK_SHIMMER,
+//            FACEBOOK_MARKETING,
+//            BIG_IMAGE_VIEWR,
+//            GSON,
+//            BLURVIEW,
+//            SECTION_HEADER_RECYCLER_VIEW,
+//            JWT,
+//            GOOGLE_MAP
+//    ]
+//
+//    APP_ANNOTATION_PROCESSOR = [
+//            GLIDE.annotationProcessor
+//    ]
+//
+//
+//    // For common module ........................
+//
+//    // UI
+//    appcompatVersion = '1.3.0'
+//    APPCOMPAT = "androidx.appcompat:appcompat:$appcompatVersion"
+//    materialVersion = '1.4.0'
+//    MATERIAL = "com.google.android.material:material:$materialVersion"
+//    INK_PAGE_INDICATOR = 'com.pacioianu.david:ink-page-indicator:1.3.0'
+//    CALLIGRAPHY = 'io.github.inflationx:calligraphy3:3.1.1'
+//    VIEW_PUMP =  'io.github.inflationx:viewpump:2.0.3'
+//
+//    // Date
+//    TIME_SQURE = 'com.squareup:android-times-square:1.7.10@aar'
+//    CALENDAR_VIWE = 'com.github.kizitonwose:CalendarView:0.3.2'
+//
+//    //Validation
+//    SARIPAAR = 'com.mobsandgeeks:android-saripaar:2.0.3'
+//
+//    truthVersion = '1.1.3'
+//    TRUTH = "com.google.truth:truth:$truthVersion"
+//
+//    // Retrofit
+//    retrofitVersion = '2.9.0'
+//    RETROFIT = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+//    RETROFIT_MOSHI_CONVERTER = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+//    RETROFIT_RX_ADPTER = "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
+//    LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:3.9.1"
+//
+//    // Setho
+//    STETHO = 'com.facebook.stetho:stetho:1.5.0'
+//    STETHO_OK_HTTP = 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+//
+//    // Timber
+//    TIMBER = 'com.jakewharton.timber:timber:4.7.1'
+//
+//    PERMISSION = 'com.karumi:dexter:5.0.0'
+//
+//    FIREBASE = 'com.google.firebase:firebase-core:17.0.0'
+//    CRASHLYTICS = 'com.google.firebase:firebase-crashlytics:17.2.2'
+//    FIREBASE_AUTH = 'com.google.firebase:firebase-auth:18.0.0'
+//    GOOGLEPATH = 'com.google.android.gms:play-services-auth:17.0.0'
+//    CIRCULERIMAGEVIEW = 'de.hdodenhof:circleimageview:2.2.0'
+//
+//    FIREBASE_CONFIG = 'com.google.firebase:firebase-config:18.0.0'
+//    FIREBASE_ANALYTICS = 'com.google.firebase:firebase-analytics:18.0.0'
+//    FIREBASE_CLOUD_MSG = 'com.google.firebase:firebase-messaging:20.1.0'
+//    FIREBASE_PERF = 'com.google.firebase:firebase-perf-ktx:20.0.2'
+//
+//    LEONIDS = "com.plattysoft.leonids:LeonidsLib:1.3.2"
+//
+//    // Dagger
+//    daggerVersion = '2.17'
+//    DEPENDENCY_INJECTION = [
+//            dagger: "com.google.dagger:dagger:${daggerVersion}",
+//            kapt  : "com.google.dagger:dagger-compiler:${daggerVersion}",
+//    ]
+//
+//    //room database
+//    room_version = "2.3.0"
+//    ROOM_DATABASE = [
+//            room: "androidx.room:room-runtime:$room_version",
+//            ktx: "androidx.room:room-ktx:$room_version" ,
+//            kapt: "androidx.room:room-compiler:$room_version",
+//    ]
+//
+//    // Instrumentation tests
+//    espressoVersion = '3.1.0-alpha1'
+//    ESPRESSO_CORE = "androidx.test.espresso:espresso-core:$espressoVersion"
+//    ESPRESSO_CONTRIB = "androidx.test.espresso:espresso-contrib:$espressoVersion"
+//    runnerVersion = '1.1.0-alpha1'
+//    RUNNER = "androidx.test:runner:$runnerVersion"
+//    rulesVersion = '1.1.0-alpha1'
+//    TEST_RULE = "androidx.test:rules:$rulesVersion"
+//
+//    INSTRUMENT_TESTS = [
+//            expresspCore   : ESPRESSO_CORE,
+//            expresspContrib: ESPRESSO_CONTRIB,
+//            runner         : RUNNER,
+//            RULE           : TEST_RULE
+//    ]
+//
+//    // Local unit tests
+//    junitVersion = '4.12'
+//    JUNIT = "junit:junit:${junitVersion}"
+//    mockitoVersion = "2.8.9"
+//    MOCKITO = "org.mockito:mockito-core:$mockitoVersion"
+//    hamcrestVersion = '1.3'
+//    HAMCREST = "org.hamcrest:hamcrest-library:$hamcrestVersion"
+//    UNIT_TEST = [
+//            junit   : JUNIT,
+//            mockito : MOCKITO,
+//            hamcrest: HAMCREST,
+//    ]
+//
+//    KOTLIN_LIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.32"
+//
+//    /*add all dependencies to this array*/
+//    PROJECT_DEPENDENCIES = [
+//            APPCOMPAT,
+//            MATERIAL,
+//            INK_PAGE_INDICATOR,
+//            CALLIGRAPHY,
+//            VIEW_PUMP,
+//            TIME_SQURE,
+//            CALENDAR_VIWE,
+//            SARIPAAR,
+//
+//            RETROFIT,
+//            RETROFIT_MOSHI_CONVERTER,
+//            RETROFIT_RX_ADPTER,
+//            LOGGING_INTERCEPTOR,
+//
+//            STETHO,
+//            STETHO_OK_HTTP,
+//            TIMBER,
+//            DATEPICKER,
+//            PERMISSION,
+//            KOTLIN_LIB,
+//            GOOGLEPATH,
+//            FIREBASE,
+//            FIREBASE_AUTH,
+//            FIREBASE_PERF,
+//            CRASHLYTICS,
+//            CIRCULERIMAGEVIEW,
+//
+//            FIREBASE_CONFIG,
+//            FIREBASE_ANALYTICS,
+//            FIREBASE_CLOUD_MSG,
+//            LEONIDS,
+//            multidex
+//    ]
+//}

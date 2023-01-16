@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payment_nav_graph"
+    app:startDestination="@id/paymentMethodFragment">
+
+    <fragment
+        android:id="@+id/paymentMethodFragment"
+        android:name="net.sharetrip.payment.view.payment.PaymentFragment"
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_paymentSuccessFragment"
+            app:destination="@id/paymentSuccessFragment"
+            app:popUpTo="@id/paymentMethodFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_paymentFailFragment"
+            app:destination="@id/paymentFailFragment"
+            app:popUpTo="@id/paymentMethodFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentSuccessFragment"
+        android:name="net.sharetrip.payment.view.success.PaymentSuccessFragment"
+        tools:layout="@layout/fragment_payment_success" />
+
+    <fragment
+        android:id="@+id/paymentFailFragment"
+        android:name="net.sharetrip.payment.view.fail.PaymentFailFragment"
+        tools:layout="@layout/fragment_payment_fail" />
+
+</navigation>

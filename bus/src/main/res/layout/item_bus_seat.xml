@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="net.sharetrip.bus.booking.model.Seat" />
+
+        <variable
+            name="tintValue"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/parent_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="13dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bus_seat_image_view"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:tint="@{tintValue}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_bus_seat"
+                tools:tint="@color/amber" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSeatStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:text="F"
+                android:textColor="@{tintValue}"
+                android:textSize="@dimen/font_small_tiny"
+                android:textStyle="bold"
+                android:visibility="@{model.isVisibleSeatStatus ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bus_seat_image_view"
+                tools:textColor="@color/amber" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCloseMono"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:visibility="@{model.isVisibleClose ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bus_seat_image_view"
+                app:srcCompat="@drawable/ic_close_mono_16dp"
+                app:tint="@color/grey_iron" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSeatStatusValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="san-serif"
+                android:text="@{model.status}"
+                android:textColor="@color/dark_main"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bus_seat_image_view"
+                tools:text="Available" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSeatCountValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="san-serif"
+                android:text="@{``+model.count}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSeatStatusValue"
+                tools:text="100" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

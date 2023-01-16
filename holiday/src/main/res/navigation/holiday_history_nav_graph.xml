@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/holiday_history_nav_graph"
+    app:startDestination="@id/holidayHistoryListFragment">
+
+    <fragment
+        android:id="@+id/holidayHistoryListFragment"
+        android:name="net.sharetrip.holiday.history.view.list.HolidayHistoryListFragment"
+        tools:layout="@layout/fragment_holiday_history_list" >
+        <action
+            android:id="@+id/action_holidayHistoryListFragment_to_holidayBookingDetailFragment"
+            app:destination="@id/holidayBookingDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayBookingDetailFragment"
+        android:name="net.sharetrip.holiday.history.view.detail.HolidayBookingDetailFragment"
+        tools:layout="@layout/fragment_holiday_booking_history_detail">
+        <argument
+            android:name="ARG_HOLIDAY_HISTORY_ITEM_BOOKING_CODE"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_holidayBookingDetailFragment_to_holidayInfoDetailFragment"
+            app:destination="@id/holidayInfoDetailFragment" />
+        <action
+            android:id="@+id/action_holidayBookingDetailFragment_to_holidayHistoryPricingFragment"
+            app:destination="@id/holidayHistoryPricingFragment" />
+        <action
+            android:id="@+id/action_holidayBookingDetailFragment_to_holidayContactFragment"
+            app:destination="@id/holidayContactFragment" />
+        <action
+            android:id="@+id/action_holidayBookingDetailFragment_to_holidayHistoryCancelPolicyFragment"
+            app:destination="@id/holidayHistoryCancelPolicyFragment" />
+        <action
+            android:id="@+id/action_holidayBookingDetailFragment_to_holidayInfoFragment"
+            app:destination="@id/holidayInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayInfoDetailFragment"
+        android:name="net.sharetrip.holiday.history.view.information.HolidayInfoDetailFragment"
+        tools:layout="@layout/fragment_holiday_info_detail">
+        <argument
+            android:name="HOLIDAY_INFO_DETAIL_ARG_ITEM"
+            app:argType="net.sharetrip.holiday.history.model.BookedPackageInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayHistoryPricingFragment"
+        android:name="net.sharetrip.holiday.history.view.priceInfo.HolidayHistoryPricingFragment"
+        tools:layout="@layout/fragment_holiday_pricicing_info">
+        <argument
+            android:name="ARG_HOLIDAY_TOTAL_AMOUNT"
+            app:argType="string" />
+        <argument
+            android:name="ARG_HOLIDAY_PAID_AMOUNT"
+            app:argType="string" />
+        <argument
+            android:name="ARG_HOLIDAY_CONV_AMOUNT"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayContactFragment"
+        android:name="net.sharetrip.holiday.history.view.contact.HolidayContactFragment"
+        tools:layout="@layout/fragment_holiday_contact_info" >
+        <argument
+            android:name="ARG_HOLIDAY_HISTORY_PRIMARY_CONTACT"
+            app:argType="net.sharetrip.holiday.booking.model.PrimaryContact" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayHistoryCancelPolicyFragment"
+        android:name="net.sharetrip.holiday.history.view.cancelInfo.HolidayHistoryCancelPolicyFragment"
+        tools:layout="@layout/fragment_holiday_history_cancel_policy">
+        <argument
+            android:name="ARG_CANCEL_POLICY"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayInfoFragment"
+        android:name="net.sharetrip.holiday.history.view.infoItem.HolidayInfoFragment"
+        tools:layout="@layout/holiday_info_fragment" >
+        <action
+            android:id="@+id/action_holidayInfoFragment_to_holidayInfoDetailFragment"
+            app:destination="@id/holidayInfoDetailFragment" />
+        <argument
+            android:name="ARG_HOLIDAY_HISTORY_BOOKED_ITEM"
+            app:argType="net.sharetrip.holiday.history.model.BookedPackageInfo" />
+    </fragment>
+
+</navigation>

@@ -1,0 +1,28 @@
+package net.sharetrip.visa.utils
+
+object MsgUtils {
+    const val networkErrorMsg = "Please check your connection"
+    const val unKnownErrorMsg = "Something wrong :-("
+    const val selectDateMsg = "Select Date"
+    const val exitDateWarningMsg = "Exit date should be after entry date"
+    const val selectVisaTypeMsg = "Please Select a Visa Type"
+    const val CHECK_ALL_INFORMATION = "Fill all information"
+    const val TERMS_AND_CONDITION = "Click confirm to continue visa processing."
+    const val EARN_TRIP_COIN = "I want to Earn Trip Coin Avail Discount Offer"
+    const val REDEEM_TRIP_COIN = "I want to Redeem Trip Coins"
+    const val REDEEM_COUPON = "I want to Redeem Coupon"
+    const val invalidGivenName = "Invalid Given Name"
+    const val enterGivenName = "Enter Given Name"
+    const val enterSurName= "Enter Sur Name"
+    const val enterBirthday= "Enter Birthday"
+    const val selectNationality= "Select Nationality"
+    const val enterAddress= "Enter Address"
+    const val enterForeignAddress= "Enter Destination Address"
+    const val invalidPassport = "Invalid Passport Number"
+    const val invalidPhoneNumber= "Invalid Phone Number"
+    const val enterEmailAddress= "Enter Email Address"
+    const val enterPassportNumber= "Enter Passport Number"
+    const val enterExpiryDate= "Enter Passport Expiry Date"
+    const val invalidEmail= "Invalid Email"
+    const val selectProfession= "Select Profession"
+}

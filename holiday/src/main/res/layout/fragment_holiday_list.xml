@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.holiday.booking.view.list.HolidayListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/surface"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_filter"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/filters_sheet_background"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:text='@{viewModel.tripCount}'
+            android:textColor="#99000000"
+            android:textSize="14sp"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="200 Available Hotels" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_holidays"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/spacing_normal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_filter"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_holiday" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

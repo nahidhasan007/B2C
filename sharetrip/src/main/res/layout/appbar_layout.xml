@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+                <RelativeLayout
+                    android:id="@+id/userInfoLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/icon_user"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_label"
+                        app:srcCompat="@drawable/ic_person_white_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_toRightOf="@+id/icon_user"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_vertical"
+                        android:maxLength="9"
+                        android:textColor="@color/windowBackground"
+                        android:textSize="14sp"
+                        tools:text="Jubayar" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_user_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_toRightOf="@+id/text_view_user_name"
+                        android:background="@drawable/bg_label"
+                        android:drawablePadding="@dimen/spacing_tiny"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingLeft="@dimen/spacing_tiny"
+                        android:paddingTop="@dimen/spacing_small_tiny"
+                        android:paddingRight="@dimen/spacing_tiny_large"
+                        android:paddingBottom="@dimen/spacing_small_tiny"
+                        android:text="L-12 black"
+                        android:textColor="#f7f7f7"
+                        android:textSize="10sp"
+                        app:drawableLeftCompat="@drawable/ic_star_12dp"
+                        tools:text="L-12 Black" />
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_trip_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/spacing_normal"
+                    android:drawablePadding="@dimen/spacing_small"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    app:drawableLeftCompat="@drawable/ic_tripcoin_light_24dp"
+                    tools:text="870" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

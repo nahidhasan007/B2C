@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="androidx.core.text.HtmlCompat" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.tour.history.cancellationpolicy.TourCancellationPolicyVM" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="2dp"
+            android:text="@{HtmlCompat.fromHtml(viewModel.htmlString, 0)}"
+            android:textColor="@color/black"
+            android:textSize="14sp">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

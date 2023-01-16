@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginRight="@dimen/spacing_small"
+        android:background="@color/pale_grey"
+        android:elevation="@dimen/spacing_small"
+        app:cardCornerRadius="@dimen/spacing_tiny">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_small" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_small" />
+
+            <RelativeLayout
+                android:id="@+id/image_holder_layout"
+                android:layout_width="0dp"
+                android:layout_height="224dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_trip"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:background="@color/indigo" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_lower_shadow" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/ic_upper_shadow" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_time"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawablePadding="6dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/spacing_medium"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_normal"
+                app:drawableLeftCompat="@drawable/ic_calender_light_20dp"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="10 Hours" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_trip_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_normal"
+                app:drawableLeftCompat="@drawable/ic_trip_coin_light_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_time"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintTop_toTopOf="@+id/text_view_time"
+                tools:text="2000" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_price_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:text="Price starts from (per person)"
+                android:textColor="@color/greyish_brown"
+                android:textSize="@dimen/font_small_tiny"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_description" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_wit_air_fair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:shadowColor="@color/surface"
+                android:text="With Airfare"
+                android:textColor="@color/greyish_brown"
+                android:textSize="@dimen/font_small_tiny"
+                app:layout_constraintBottom_toBottomOf="@id/text_view_price_start"
+                app:layout_constraintStart_toEndOf="@+id/text_view_price_start"
+                app:layout_constraintTop_toTopOf="@+id/text_view_price_start" />
+
+            <LinearLayout
+                android:id="@+id/liner_layout_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small_tiny"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_price_start">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_price_discounted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
+                    android:layout_marginRight="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/blue_gray"
+                    android:textSize="@dimen/font_small"
+                    tools:text="BDT 10,456" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/blue_blue"
+                    android:textSize="@dimen/font_medium"
+                    tools:text="BDT 10,456" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:background="@drawable/background_bright_orange_rounded_40dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:paddingLeft="@dimen/spacing_tiny_large"
+                android:paddingTop="@dimen/spacing_small_tiny"
+                android:paddingRight="@dimen/spacing_tiny_large"
+                android:paddingBottom="@dimen/spacing_small_tiny"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small_tiny"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/liner_layout_price"
+                app:layout_constraintStart_toEndOf="@id/liner_layout_price"
+                app:layout_constraintTop_toTopOf="@id/liner_layout_price"
+                tools:text="*15%" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_medium"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_location"
+                tools:text="Amusing and Adventure Day Long Tour at Phi Phi Island Tour by Speedboat" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_mid_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:shadowColor="@color/surface"
+                android:textColor="@color/greyish_brown"
+                android:textSize="@dimen/font_tiny"
+                app:drawableLeftCompat="@drawable/ic_place_mono_16dp"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/image_holder_layout"
+                tools:text="Bangkok, Pattaya" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

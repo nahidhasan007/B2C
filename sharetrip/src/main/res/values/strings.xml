@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ShareTrip</string>
+    <string name="app_update_msg">A new version of ShareTrip is available. Please update to version %1$s now</string>
+    <string name="free">Free</string>
+    <string name="coins">Coins</string>
+    <string name="holiday">Holiday</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

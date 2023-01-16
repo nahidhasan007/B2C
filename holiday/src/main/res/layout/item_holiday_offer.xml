@@ -1,0 +1,667 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:background="@drawable/top_round_shape">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_one_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.333" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_two_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.666" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_fifth_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_offer_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#0a7afd"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="STANDARD" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_with_airfare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/with_airfare"
+            android:textColor="#212121"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_offer_title"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_view_offer_title"
+            tools:text="With Airfare" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_field_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/time"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_one_third"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_offer_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_time_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/flexi_time"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_one_third"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_field_time" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_valid_from"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/valid_from"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_two_third"
+            app:layout_constraintStart_toStartOf="@+id/guideline_one_third"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_offer_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_valid_from"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_two_third"
+            app:layout_constraintStart_toStartOf="@+id/guideline_one_third"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_valid_from"
+            tools:text="20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_valid_till"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/valid_till"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline_two_third"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_offer_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_valid_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline_two_third"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_valid_from"
+            tools:text="20" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_hotel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_time_title"
+            tools:itemCount="4"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/item_holiday_hotel_layout"
+            tools:orientation="horizontal"
+            tools:spanCount="2">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_hotel"
+            tools:text="Price Per Adult:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_1"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_1"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_1"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:text="Price Per 2 PAX:"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_hotel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:text="@string/bdt_15_500"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_2"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_2"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_1"
+            tools:text="Price Per Adult:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_3"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_3"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_3"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_2"
+            tools:text="Price Per 2 PAX:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_4"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_4"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_4"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_3"
+            tools:text="Price Per Adult:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_5"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_5"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_5"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_4"
+            tools:text="Price Per 2 PAX:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_6"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_6"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_6"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_5"
+            tools:text="Price Per Adult:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_7"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_7"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_7"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_6"
+            tools:text="Price Per 2 PAX:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_8"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_8"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_8"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_7"
+            tools:text="Price Per Adult:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_9"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_9"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_9"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_pax_title_10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#666666"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_8"
+            tools:text="Price Per 2 PAX:" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/guideline_fifth_percent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_pax_title_10"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_per_pax_price_discount_10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="2sp"
+            android:textColor="@color/blue_gray"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/text_view_per_pax_price_10"
+            app:layout_constraintTop_toTopOf="@+id/text_view_per_pax_price_10"
+            tools:text="BDT 15,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/blue_bottom_rounded_shape_selected"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/select_offer"
+            android:textColor="@color/windowBackground"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_per_pax_price_9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

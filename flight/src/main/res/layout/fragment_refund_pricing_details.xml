@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="net.sharetrip.flight.utils.PriceBreakDownUtil" />
+
+        <import type="android.view.View" />
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <variable
+            name="pricingDetails"
+            type="net.sharetrip.flight.history.model.RefundQuotationResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_small"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
+        app:elevation="@dimen/bottom_sheet_elevation"
+        android:background="@color/light_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_horizontal_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/activity_vertical_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+        <View
+            android:id="@+id/top_background"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:background="@color/surface"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/top_horizontal_guideline" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_hint_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/details"
+            android:textColor="@color/gray_dark"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/top_background"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/top_background" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/currency_hint_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{pricingDetails.currency}"
+            android:textColor="@color/gray_dark"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_hint_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/title_hint_text_view"
+            tools:text="BDT" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_advance_income_tax_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/airline_penalty_amount"
+            android:textColor="@color/gray_dark"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/refund_applicable_amount_text_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_advance_income_tax_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{`-`+NumberFormat.getNumberInstance(Locale.US).format(pricingDetails.airlineRefundCharge)}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_advance_income_tax_header"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_view_advance_income_tax_header"
+            tools:text="-247" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_convenience_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/convenience_fee"
+            android:textColor="@color/greyish_brown_two"
+            android:textSize="@dimen/font_normal"
+            android:visibility="@{pricingDetails.stFee > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_advance_income_tax_header" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_convenience_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{`-`+NumberFormat.getNumberInstance(Locale.US).format(pricingDetails.stFee)}"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/font_normal"
+            android:visibility="@{pricingDetails.stFee > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_convenience_header"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_view_convenience_header"
+            tools:text="-1.15" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_vat_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/st_vat_on_convenience_fee"
+            android:textColor="@color/greyish_brown_two"
+            android:textSize="@dimen/font_normal"
+            android:visibility="@{pricingDetails.VATOnConvenienceFee > 0.0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_convenience_header"
+            tools:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_vat_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{`-`+NumberFormat.getNumberInstance(Locale.US).format(pricingDetails.VATOnConvenienceFee)}"
+            android:textColor="@color/gray_dark"
+            android:textSize="@dimen/font_normal"
+            android:visibility="@{pricingDetails.VATOnConvenienceFee > 0.0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_vat_header"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_view_vat_header"
+            tools:text="1.15"
+            tools:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/total_refund_charge_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/total_refund_charge"
+            android:textColor="@color/greyish_brown"
+            app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/text_view_vat_header" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/total_refund_charge_amount_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{`-`+ NumberFormat.getNumberInstance(Locale.US).format(pricingDetails.totalFee)}'
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/total_refund_charge_text_view"
+            app:layout_constraintEnd_toStartOf="@id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@id/total_refund_charge_text_view"
+            tools:text="-6000" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/refund_applicable_amount_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/refund_applicable_amount"
+            android:textColor="@color/greyish_brown"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/top_background" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price_text_view_subtotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{""+ NumberFormat.getNumberInstance(Locale.US).format(pricingDetails.purchasePrice)}'
+            android:textColor="@color/gray_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/refund_applicable_amount_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/refund_applicable_amount_text_view"
+            tools:ignore="RtlHardcoded"
+            tools:targetApi="o"
+            tools:text="80,000" />
+
+        <View
+            android:id="@+id/price_divider_view_two"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="15dp"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/total_refund_charge_text_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/total_airfare_top_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/amount_to_be_refunded"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/price_divider_view_two" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price_text_view_total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text='@{pricingDetails.currency+` `+NumberFormat.getNumberInstance(Locale.US).format(pricingDetails.totalRefundAmount)}'
+            android:textColor="@color/gray_dark"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/total_airfare_top_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/total_airfare_top_text_view"
+            tools:text="BDT 1,087,624" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/travellers_information_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/traveller_s_details"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:drawableEndCompat="@drawable/ic_navigate_next_24dp"
+            app:drawableTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/total_airfare_top_text_view" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary_main"
+            android:padding="8dp"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

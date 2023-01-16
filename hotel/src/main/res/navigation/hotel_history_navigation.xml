@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hotel_history_navigation"
+    app:startDestination="@id/hotelHistoryFragment">
+
+    <fragment
+        android:id="@+id/hotelHistoryFragment"
+        android:name="net.sharetrip.hotel.history.view.historylist.HotelHistoryListFragment"
+        tools:label="HotelHistoryFragment"
+        tools:layout="@layout/fragment_hotel_history_list">
+        <action
+            android:id="@+id/action_hotelHistoryFragment_to_hotelHistoryDetailsFragment"
+            app:destination="@id/hotelHistoryDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hotelHistoryDetailsFragment"
+        android:name="net.sharetrip.hotel.history.view.bookingdetails.BookingDetailFragment"
+        tools:label="HotelHistoryDetailsFragment"
+        tools:layout="@layout/fragment_booking_history_detail">
+
+        <argument
+            android:name="ARG_HOTEL_HISTORY_ITEM"
+            app:argType="net.sharetrip.hotel.history.model.HotelHistoryItem" />
+        <action
+            android:id="@+id/action_hotelHistoryDetailsFragment_to_priceInfoFragment"
+            app:destination="@id/priceInfoFragment" />
+        <action
+            android:id="@+id/action_hotelHistoryDetailsFragment_to_travelerListFragment"
+            app:destination="@id/travelerListFragment" />
+        <action
+            android:id="@+id/action_hotelHistoryDetailsFragment_to_historyHotelInfoFragment"
+            app:destination="@id/historyHotelInfoFragment" />
+        <action
+            android:id="@+id/action_hotelHistoryDetailsFragment_to_payment_nav_graph"
+            app:destination="@id/payment_nav_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/priceInfoFragment"
+        android:name="net.sharetrip.hotel.history.view.pricing.PricingInfoFragment"
+        tools:label="BookingRoomPriceFragment"
+        tools:layout="@layout/fragment_booking_room_price">
+
+        <argument
+            android:name="ARG_HOTEL_PRICE_INFO"
+            app:argType="net.sharetrip.hotel.history.model.HotelHistoryItem" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/travelerListFragment"
+        android:name="net.sharetrip.hotel.history.view.travelerlist.TravelerListFragment"
+        tools:label="BookingRoomPriceFragment"
+        tools:layout="@layout/fragment_travellers_room_contact">
+
+        <argument
+            android:name="ARG_TRAVELER_LIST"
+            app:argType="net.sharetrip.hotel.history.model.Guest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/historyHotelInfoFragment"
+        android:name="net.sharetrip.hotel.history.view.hotel.HotelInfoFragment"
+        tools:label="BookingRoomPriceFragment"
+        tools:layout="@layout/fragment_hotel_info">
+
+        <argument
+            android:name="ARG_HOTEL_BOOKING_HOTEL_INFO"
+            app:argType="net.sharetrip.hotel.history.model.HotelHistoryItem" />
+        <action
+            android:id="@+id/action_historyHotelInfoFragment_to_hotelHistoryRoomDetailsFragment"
+            app:destination="@id/hotelHistoryRoomDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hotelHistoryRoomDetailsFragment"
+        android:name="net.sharetrip.hotel.history.view.roomdetails.HotelHistoryRoomDetailFragment"
+        tools:label="BookingRoomPriceFragment"
+        tools:layout="@layout/fragment_hotel_history_room_detail">
+
+        <argument
+            android:name="ARG_HOTEL_HISTORY_ROOM_DETAIL"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <include app:graph = "@navigation/payment_nav_graph" />
+</navigation>

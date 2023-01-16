@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="departure"
+            type="net.sharetrip.bus.booking.model.Departure" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJourneyStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{departure.departureTime!=null ? departure.departureTime : `Not Available`}"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBusPickUpPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small_tiny"
+            android:text="@{departure.route.from.name}"
+            android:textColor="@color/gray_800"
+            android:textSize="@dimen/font_tiny"
+            app:layout_constraintStart_toStartOf="@id/tvJourneyStartTime"
+            app:layout_constraintTop_toBottomOf="@id/tvJourneyStartTime"
+            tools:ignore="RtlHardcoded"
+            tools:text="Kolabagan" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:padding="0dp"
+            android:text="---------------->"
+            android:textColor="#C4C4C4"
+            app:layout_constraintEnd_toStartOf="@+id/tvJourneyEndTime"
+            app:layout_constraintStart_toEndOf="@+id/tvJourneyStartTime"
+            app:layout_constraintTop_toTopOf="@+id/tvJourneyStartTime" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTripTime"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:padding="0dp"
+            android:text="@{departure.duration.hour+`h `+departure.duration.minute+`m`}"
+            android:textSize="@dimen/font_tiny"
+            app:layout_constraintEnd_toEndOf="@+id/arrow"
+            app:layout_constraintStart_toStartOf="@+id/arrow"
+            app:layout_constraintTop_toBottomOf="@+id/arrow"
+            tools:text="5h 55m" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJourneyEndTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{departure.arrivalTime!=null ? departure.arrivalTime : `Not Available`}"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlHardcoded"
+            tools:layout_editor_absoluteY="84dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBusDestinationPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small_tiny"
+            android:text="@{departure.route.to.name}"
+            android:textColor="@color/gray_800"
+            android:textSize="@dimen/font_tiny"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvJourneyEndTime"
+            tools:ignore="RtlHardcoded"
+            tools:text="Dampara" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

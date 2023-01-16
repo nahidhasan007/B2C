@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="net.sharetrip.bus.booking.view.busList.filter.BusListFilterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_2"
+        android:clickable="true"
+        android:focusable="true"
+        tools:context=".ui.bus.booking.view.busList.filter.BusListFilterFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/available_buses_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="11dp"
+            android:fontFamily="san-serif"
+            android:text="@{model.numberOfBusses+` Available Buses`}"
+            android:textColor="@color/dark_main"
+            android:textSize="14sp"
+            tools:text="@string/available_buses_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price_include_vat_tax_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/price_include_vat_tax"
+            android:textColor="@color/dark_light_1"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/available_buses_text_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/reset_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-condensed"
+            android:onClick="@{()->model.onResetClicked()}"
+            android:text="@string/reset_filter_text_view"
+            android:textColor="@color/dark_main"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/filter_price_range"
+            layout="@layout/bus_list_filter_selection_part"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bus_list_filter_layout_style"
+            android:onClick="@{()->model.onPriceRangeClicked()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price_include_vat_tax_text_view" />
+
+        <include
+            android:id="@+id/filter_class"
+            layout="@layout/bus_list_filter_selection_part"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{()->model.onClassClicked()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_price_range" />
+
+        <include
+            android:id="@+id/filter_schedule"
+            layout="@layout/bus_list_filter_selection_part"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{()->model.onScheduleClicked()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_class" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_filter_search"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:onClick="@{()->model.onClickApplyFilter()}"
+            android:text="@string/apply"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,388 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.sharetrip.ui.visa.booking.view.home.VisaHomeFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.visa.booking.view.homeextended.VisaHomeExtendedViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/surface">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/surface">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/surface"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cons_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/flight_sheet_background"
+                    android:paddingBottom="@dimen/spacing_large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/begin_horizontal_guideline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/begin_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/end_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/layout_destination_city"
+                        app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/layout_destination_city"
+                        app:srcCompat="@drawable/ic_location_on_white_24dp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_destination_city"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:background="@drawable/touch_effect"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="@{()->viewModel.onDestinationFieldClicked()}"
+                        android:padding="@dimen/spacing_small"
+                        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                        app:layout_constraintStart_toEndOf="@+id/image_view_location"
+                        app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_level_destination"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/visa_destination_country"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_small"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/text_view_destination"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:text="@{viewModel.countryName}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/font_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_level_destination"
+                            tools:text="Singapore" />
+
+                        <View
+                            android:id="@+id/destination_indicator"
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:background="#5bb4ff"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_view_destination" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                        app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_destination_city"
+                        tools:visibility="visible">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/entry_date_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:background="@drawable/touch_effect"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="@{()-> viewModel.onClickEntryDateRange()}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/entry_date_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:tint="@android:color/white"
+                                app:layout_constraintBottom_toBottomOf="@+id/entry_date_text_view"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/entry_date_hint_text_view"
+                                app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/entry_date_hint_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_normal"
+                                android:layout_marginLeft="@dimen/spacing_normal"
+                                android:text="@string/visa_date_of_entry"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_small"
+                                app:layout_constraintStart_toEndOf="@+id/entry_date_image_view"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/entry_date_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:text="@{viewModel.dateOfEntry}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/font_medium"
+                                app:layout_constraintStart_toStartOf="@id/entry_date_hint_text_view"
+                                app:layout_constraintTop_toBottomOf="@+id/entry_date_hint_text_view"
+                                tools:text="13 Oct 20" />
+
+                            <View
+                                android:id="@+id/date_indicator"
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="@dimen/spacing_medium"
+                                android:background="#5bb4ff"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/entry_date_text_view"
+                                app:layout_constraintTop_toBottomOf="@+id/entry_date_text_view" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/exit_date_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:background="@drawable/touch_effect"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="@{()-> viewModel.onClickExitDateRequest()}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/entry_date_layout">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/exit_date_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:tint="@android:color/white"
+                                app:layout_constraintBottom_toBottomOf="@+id/date_text_view"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/date_hint_text_view"
+                                app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/date_hint_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_normal"
+                                android:layout_marginLeft="@dimen/spacing_normal"
+                                android:text="@string/visa_date_of_exit"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_small"
+                                app:layout_constraintStart_toEndOf="@id/exit_date_image_view"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/date_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:text="@{viewModel.dateOfExit}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/font_medium"
+                                app:layout_constraintStart_toStartOf="@id/date_hint_text_view"
+                                app:layout_constraintTop_toBottomOf="@+id/date_hint_text_view"
+                                tools:text="13 Oct 21" />
+
+                            <View
+                                android:id="@+id/exit_date_indicator"
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="@dimen/spacing_medium"
+                                android:background="#5bb4ff"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/date_text_view"
+                                app:layout_constraintTop_toBottomOf="@+id/date_text_view" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/travelers_and_class_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:background="@drawable/touch_effect"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:onClick="@{()-> viewModel.onTravellerCountClicked()}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/exit_date_layout">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/travelers_and_class_image_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintBottom_toBottomOf="@+id/travelers_and_class_count_text_view"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/travelers_and_class_hint_text_view"
+                                app:srcCompat="@drawable/ic_travelers_class_24dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/travelers_and_class_hint_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_normal"
+                                android:layout_marginLeft="@dimen/spacing_normal"
+                                android:text="@string/visa_travelers"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_small"
+                                app:layout_constraintStart_toEndOf="@id/travelers_and_class_image_view"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/travelers_and_class_count_text_view"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:text="@{viewModel.travellersCount}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/font_medium"
+                                app:layout_constraintStart_toStartOf="@id/travelers_and_class_hint_text_view"
+                                app:layout_constraintTop_toBottomOf="@+id/travelers_and_class_hint_text_view"
+                                tools:text="3 Traveler(s)" />
+
+                            <View
+                                android:id="@+id/travelers_and_class_indicator"
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="@dimen/spacing_medium"
+                                android:background="#5bb4ff"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/travelers_and_class_count_text_view"
+                                app:layout_constraintTop_toBottomOf="@+id/travelers_and_class_count_text_view" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_visa_apply"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:fontFamily="sans-serif"
+                            android:onClick="@{()->viewModel.onClickedSearch()}"
+                            android:text="@string/visa_apply"
+                            android:textColor="@color/clear_blue"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:backgroundTint="@android:color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/travelers_and_class_layout" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/visa_notice_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_header">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/top_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:background="@drawable/full_round_orange"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="@dimen/spacing_normal"
+                    android:paddingLeft="@dimen/spacing_normal"
+                    android:paddingTop="@dimen/spacing_small"
+                    android:paddingBottom="@dimen/spacing_small"
+                    android:text="@string/visa_selection_header"
+                    android:textColor="@color/orange"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/second_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:background="@drawable/full_round_orange"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="@dimen/spacing_normal"
+                    android:paddingLeft="@dimen/spacing_normal"
+                    android:paddingTop="@dimen/spacing_small"
+                    android:paddingBottom="@dimen/spacing_small"
+                    android:text="@string/visa_notice_pass_validation"
+                    android:textColor="@color/orange"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/top_header" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

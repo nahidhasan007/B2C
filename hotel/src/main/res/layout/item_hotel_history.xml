@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="net.sharetrip.shared.utils.DateUtil" />
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <variable
+            name="item"
+            type="net.sharetrip.hotel.history.model.HotelHistoryItem" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        app:cardCornerRadius="@dimen/spacing_tiny">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_small" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_small" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_horizontal_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="@dimen/spacing_small" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_horizontal_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/spacing_tiny_large" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_hotel_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{item.hotel.name}"
+                android:textColor="@color/black"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="@dimen/font_normal"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="@+id/text_view_booking_header"
+                app:layout_constraintTop_toTopOf="@+id/begin_horizontal_guideline"
+                app:layout_constraintEnd_toStartOf="@id/text_view_currency_sym"
+                tools:text="Radioson Blue Water Garden…  "/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_currency_sym"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:text="@string/bdt"
+                android:textColor="@color/blue_blue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintRight_toLeftOf="@+id/text_view_currency"
+                app:layout_constraintTop_toBottomOf="@+id/begin_horizontal_guideline" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_small"
+                android:fontFamily="sans-serif"
+                android:text="@{NumberFormat.getNumberInstance(Locale.US).format(item.afterDiscountPrice)}"
+                android:textColor="@color/blue_blue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintLeft_toRightOf="@+id/text_view_currency_sym"
+                app:layout_constraintTop_toBottomOf="@+id/begin_horizontal_guideline"
+                tools:text="23,916" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_booking_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:fontFamily="sans-serif"
+                android:text="@string/booking_id"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_hotel_name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_booking_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small_tiny"
+                android:fontFamily="sans-serif"
+                android:text="@{item.voucherId}"
+                android:textColor="@color/greyish_brown"
+                android:textSize="@dimen/font_small"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/text_view_booking_header"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_hotel_name"
+                tools:text=" ST862149990" />
+
+            <View
+                android:id="@+id/horizontal_line_one"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@drawable/dotted_line"
+                android:layerType="software"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_booking_id" />
+
+            <View
+                android:id="@+id/content_first_divider_view"
+                android:layout_width="@dimen/spacing_small_tiny"
+                android:layout_height="0dp"
+                android:background="@drawable/dot_vertical_line"
+                android:layerType="software"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/horizontal_line_two"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintHorizontal_bias="0.33333"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+            <View
+                android:id="@+id/content_second_divider_view"
+                android:layout_width="@dimen/spacing_small_tiny"
+                android:layout_height="0dp"
+                android:background="@drawable/dot_vertical_line"
+                android:layerType="software"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/horizontal_line_two"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintHorizontal_bias="0.66666"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+            <View
+                android:id="@+id/horizontal_line_two"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/dotted_line"
+                android:layerType="software"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_check_in_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_check_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:text="@string/check_in"
+                android:textColor="@color/blue_gray"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_check_in_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_small_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{DateUtil.getNumberOfDay(item.checkin)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/title_check_in"
+                tools:text="12" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_check_in_month_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{DateUtil.getMonthYear(item.checkin)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_check_in_date"
+                app:layout_constraintStart_toEndOf="@+id/text_view_check_in_date"
+                app:layout_constraintTop_toTopOf="@+id/text_view_check_in_date"
+                tools:text="Sep 18" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_check_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:text="@string/check_out"
+                android:textColor="@color/blue_gray"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintStart_toStartOf="@+id/content_first_divider_view"
+                app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_check_out_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="@dimen/spacing_small_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{DateUtil.getNumberOfDay(item.checkout)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/content_first_divider_view"
+                app:layout_constraintTop_toBottomOf="@+id/title_check_in"
+                tools:text="24" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_check_out_month_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="sans-serif-medium"
+                tools:text="Sep 18"
+                android:text="@{DateUtil.getMonthYear(item.checkout)}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                app:layout_constraintBottom_toTopOf="@+id/horizontal_line_two"
+                app:layout_constraintStart_toEndOf="@+id/text_view_check_out_date"
+                app:layout_constraintTop_toTopOf="@+id/text_view_check_out_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_rooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/greyish_brown"
+                android:textSize="@dimen/font_small"
+                android:text='@{"" + item.totalNights + " Night(s), " + item.bookedRooms.size + " Room(s)"}'
+                app:layout_constraintStart_toStartOf="@+id/content_second_divider_view"
+                app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one"
+                tools:text="2 Night(s), 2 Room(s)" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_total_guest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:text="@string/value_4_adt_3_chd"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                app:layout_constraintStart_toStartOf="@+id/content_second_divider_view"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_rooms" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="21dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/status_colon"
+                android:textColor="@color/greyish_brown"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/horizontal_line_two" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_status"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="18dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{item.status}"
+                android:textColor="@color/mid_green"
+                android:textSize="@dimen/font_medium"
+                app:layout_constraintStart_toEndOf="@+id/title_status"
+                app:layout_constraintTop_toBottomOf="@+id/horizontal_line_two"
+                tools:text="PAID" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_small_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_medium"
+                android:text="@{NumberFormat.getNumberInstance(Locale.US).format(item.tripCoin)}"
+                app:drawableLeftCompat="@drawable/ic_tripcoin_color_24dp"
+                app:layout_constraintRight_toLeftOf="@+id/end_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/horizontal_line_two"
+                tools:text="1245" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_small_tiny"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@drawable/dot_vertical_line"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_status" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

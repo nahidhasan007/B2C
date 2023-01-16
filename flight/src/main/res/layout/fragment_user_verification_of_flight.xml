@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.flight.booking.view.verification.InfoVerificationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/spacing_small"
+            app:layout_constraintBottom_toTopOf="@+id/btn_continue"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/user_information_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/user_detail_verification_adapter_of_flight" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/contact_info_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_information_list"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/contact_information"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_information_list"
+                    tools:text="Contact Information" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/edit_info_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_information_list"
+                    android:onClick="@{viewModel::onClickUpdate}"
+                    android:padding="12dp"
+                    android:text="@string/edit_string"
+                    android:textColor="@color/clear_blue"
+                    app:layout_constraintBottom_toBottomOf="@+id/contact_info_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/contact_info_text"
+                    tools:text="EDIT" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/contact_info_text">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:srcCompat="@drawable/ic_phone_black_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_toRightOf="@+id/img_phone"
+                        android:text="Phone Number"
+                        tools:text="Phone Number" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edit_contact_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_contact"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_toRightOf="@+id/img_phone"
+                        android:inputType="phone"
+                        android:maxLength="15"
+                        android:text="@={viewModel.phoneNumber}"
+                        android:textColor="@color/black"
+                        android:visibility="@{viewModel.enableDataUpdate ? View.VISIBLE : View.GONE}"
+                        tools:text="01716464646" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_contact_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_contact"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/img_phone"
+                        android:text="@={viewModel.phoneNumber}"
+                        android:textColor="@color/black"
+                        android:visibility="@{viewModel.enableDataUpdate ? View.GONE : View.VISIBLE}"
+                        tools:text="01716464646" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_for_phone_number">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:srcCompat="@drawable/ic_mail_black_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_toRightOf="@+id/img_email"
+                        android:text="@string/email_address"
+                        tools:text="Email Address" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edit_email_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_email"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_toRightOf="@+id/img_email"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.emailId}"
+                        android:textColor="@color/black"
+                        android:visibility="@{viewModel.enableDataUpdate ? View.VISIBLE : View.GONE}"
+                        tools:text="wahid@sharetrip.net" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_email_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_email"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toRightOf="@+id/img_email"
+                        android:text="@={viewModel.emailId}"
+                        android:textColor="@color/black"
+                        android:visibility="@{viewModel.enableDataUpdate ? View.GONE : View.VISIBLE}"
+                        tools:text="tech@sharetrip.net" />
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/check_confirm"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{viewModel::onClickCheckBox}"
+                    android:translationX="-4dp"
+                    app:buttonTint="@color/clear_blue"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_for_email" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_confirmation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/i_ve_confirm_that_the_documents_and_the_information_provided_are_correct_and_can_be_used_for_the_flight_booking_process"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/check_confirm"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_for_email"
+                    tools:text="I’ve confirm that the documents and the information provided are correct and can be used for the flight booking process." />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_continue"
+            style="@style/IndigoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="@{viewModel.isButtonActive()}"
+            android:onClick="@{() -> viewModel.onClickContinueButton()}"
+            android:text="@string/_continue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="CONTINUE" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

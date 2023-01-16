@@ -1,0 +1,142 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="net.sharetrip.profile.view.referearn.ReferEarnViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/refer_and_earn_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:focusable="true"
+        tools:context="net.sharetrip.profile.view.referearn.ReferEarnFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/refer_and_earn_coin_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_invite_friends_260dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface_color"
+            android:minHeight="200dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/referral_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:text="@{viewModel.referralCoin}"
+                    android:textColor="@color/black_100"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    tools:text="Invite More Friends and Get 50 Trip Coins" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/invite_text_sub_text_show"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black_100"
+                    android:gravity="center_horizontal"
+                    android:text="@string/invite_text_friend"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/referral_text_view"
+                    tools:text="When your friend uses the referral and register you’ll get the Trip Coins. Invite more friends &amp; earn more Trip Coins." />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_refer_code"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginRight="@dimen/spacing_normal"
+                    android:background="@color/surface_color"
+                    app:errorEnabled="false"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/invite_text_sub_text_show">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/text_field_refer_code"
+                        style="?attr/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:completionThreshold="1"
+                        android:cursorVisible="false"
+                        app:drawableRightCompat="@drawable/ic_content_copy_black_24dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/your_invite_code"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:text="@{viewModel.code}"
+                        tools:ignore="RtlHardcoded" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/invite_friend"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginRight="48dp"
+                    android:text="@string/invite_friend"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/input_layout_refer_code"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

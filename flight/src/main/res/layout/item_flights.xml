@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/spacing_normal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/flightDeal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/flight_deal_blue_background"
+                android:drawablePadding="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:paddingStart="8dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="6dp"
+                android:text="@string/preferred_airlines"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:drawableStartCompat="@drawable/ic_deals_special_mono"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/flight_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_View_discounted_price"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flightDeal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/price_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textColor="#1882ff"
+                android:textSize="@dimen/font_medium"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/text_View_discounted_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flight_container"
+                tools:ignore="RtlHardcoded"
+                tools:layout_editor_absoluteY="20dp"
+                tools:text="BDT 25,698" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_View_discounted_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small_tiny"
+                android:textColor="#235fd8"
+                android:textSize="@dimen/font_medium"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/price_text_View"
+                tools:ignore="RtlHardcoded"
+                tools:text="BDT 23,059" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/discount_text_view"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textColor="#ffffff"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/text_View_discounted_price"
+                app:layout_constraintEnd_toStartOf="@id/text_View_discounted_price"
+                app:layout_constraintTop_toTopOf="@id/text_View_discounted_price"
+                tools:text="*10%" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/trip_coin_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_small"
+                android:textStyle="normal"
+                app:drawableLeftCompat="@drawable/ic_tripcoin_color_20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/flight_container"
+                app:layout_constraintTop_toTopOf="@+id/text_View_discounted_price"
+                tools:text="4531" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textview_refundable_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="4dp"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_small"
+                android:ellipsize="end"
+                android:textStyle="normal"
+                app:drawableLeftCompat="@drawable/ic_refundable_color"
+                app:layout_constraintStart_toEndOf="@id/trip_coin_text_view"
+                app:layout_constraintTop_toTopOf="@+id/trip_coin_text_view"
+                tools:text="Refundable" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

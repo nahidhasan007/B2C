@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/visa_history_navigation"
+    app:startDestination="@id/visaHistoryList">
+
+    <fragment
+        android:id="@+id/visaHistoryList"
+        android:name="net.sharetrip.visa.history.view.list.VisaHistoryListFragment"
+        tools:layout="@layout/fragment_visa_history_list">
+        <action
+            android:id="@+id/action_visaHistoryList_to_visaHistoryDetailsFragment"
+            app:destination="@id/visaHistoryDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/visaHistoryDetailsFragment"
+        android:name="net.sharetrip.visa.history.view.detail.VisaHistoryDetailsFragment"
+        tools:layout="@layout/fragment_visa_history_details">
+        <argument
+            android:name="ARG_VISA_BOOKING_CODE"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_visaHistoryDetailsFragment_to_visaHistoryCancellationFragment"
+            app:destination="@id/visaHistoryCancellationFragment" />
+        <action
+            android:id="@+id/action_visaHistoryDetailsFragment_to_visaHistoryPriceDetailsFragment"
+            app:destination="@id/visaHistoryPriceDetailsFragment" />
+        <action
+            android:id="@+id/action_visaHistoryDetailsFragment_to_visaHistoryContactFragment"
+            app:destination="@id/visaHistoryContactFragment" />
+        <action
+            android:id="@+id/action_visaHistoryDetailsFragment_to_visaHistoryTravellerDetailsFragment"
+            app:destination="@id/visaHistoryTravellerDetailsFragment" />
+        <action
+            android:id="@+id/navigate_to_payment"
+            app:destination="@id/payment_nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/visaHistoryCancellationFragment"
+        android:name="net.sharetrip.visa.history.view.cancellation.VisaHistoryCancellationFragment"
+        tools:layout="@layout/fragment_visa_history_cancel_policy">
+        <argument
+            android:name="VISA_HISTORY_CANCELLATION"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/visaHistoryPriceDetailsFragment"
+        android:name="net.sharetrip.visa.history.view.price_detail.VisaHistoryPriceDetailsFragment"
+        tools:layout="@layout/fragment_visa_history_price_details">
+        <argument
+            android:name="VISA_PRODUCT_SPNAPSHOT"
+            app:argType="net.sharetrip.visa.history.model.VisaProductSnapshot" />
+        <argument
+            android:name="VISA_TRAVELLER_COUNT"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/visaHistoryContactFragment"
+        android:name="net.sharetrip.visa.history.view.contact.VisaHistoryContactFragment"
+        tools:layout="@layout/fragment_visa_history_contact">
+        <argument
+            android:name="VISA_HISTORY_CONTACT"
+            app:argType="net.sharetrip.visa.history.model.PrimaryContactItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/visaHistoryTravellerDetailsFragment"
+        android:name="net.sharetrip.visa.history.view.traveller.VisaHistoryTravellerDetailsFragment"
+        tools:layout="@layout/fragment_visa_history_traveller_details" >
+        <argument
+            android:name="VISA_HISTORY_TRAVELLERS"
+            app:argType="android.os.Parcelable" />
+    </fragment>
+
+    <include app:graph = "@navigation/payment_nav_graph" />
+
+</navigation>

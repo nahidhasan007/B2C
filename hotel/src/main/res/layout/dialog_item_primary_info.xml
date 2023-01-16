@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="primaryContact"
+            type="net.sharetrip.hotel.booking.model.PrimaryContact" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_constrain_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_horizontal_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/activity_vertical_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dialogClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/dialogTitle"
+            app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@id/dialogTitle"
+            app:srcCompat="@drawable/ic_close_mono_24dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dialogTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/contact_information"
+            android:textColor="@color/greyish_brown"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/dialogClose"
+            app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dialogApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="10dp"
+            android:text="@string/apply"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/dialogTitle"
+            app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@id/dialogTitle" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/person_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/gray_800"
+            app:layout_constraintBottom_toBottomOf="@+id/input_layout_title"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/input_layout_title"
+            app:srcCompat="@drawable/ic_person_white_24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_title"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            app:boxBackgroundColor="@color/white"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toStartOf="@+id/input_layout_given_name"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight=".5"
+            app:layout_constraintStart_toEndOf="@+id/person_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/dialogTitle">
+
+            <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                android:id="@+id/text_field_title"
+                style="?attr/editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:hint="@string/title"
+                android:imeOptions="actionNext"
+                android:text="@={primaryContact.userTitle}"
+                android:textSize="16sp"
+                app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                tools:ignore="RtlHardcoded" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_given_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            app:boxBackgroundColor="@color/white"
+            app:errorEnabled="true"
+            app:helperText="@string/required"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/input_layout_title"
+            app:layout_constraintTop_toBottomOf="@+id/dialogTitle"
+            tools:ignore="RtlHardcoded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_field_given_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/given_name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:lines="1"
+                android:maxLines="1"
+                android:text="@={primaryContact.givenName}"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_sur_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/white"
+            app:helperText="@string/required"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@+id/input_layout_title"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_title"
+            tools:ignore="RtlHardcoded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sur_name_text_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/sur_name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:text="@={primaryContact.surName}"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/mobile_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/gray_800"
+            app:layout_constraintBottom_toBottomOf="@+id/input_layout_phone_number"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/input_layout_phone_number"
+            app:srcCompat="@drawable/ic_phone_black_24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_phone_number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            app:boxBackgroundColor="@color/white"
+            app:errorEnabled="true"
+            app:helperText="@string/required"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintStart_toEndOf="@+id/mobile_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_sur_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_field_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:text="@={primaryContact.phoneNumber}"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/nationality_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/gray_800"
+            app:layout_constraintBottom_toBottomOf="@+id/input_layout_nationality"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/input_layout_nationality"
+            app:srcCompat="@drawable/ic_assistant_photo_black_24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_nationality"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            app:boxBackgroundColor="@color/white"
+            app:errorEnabled="true"
+            app:helperText="@string/required"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintStart_toEndOf="@+id/mail_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_phone_number">
+
+            <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                android:id="@+id/text_field_nationality"
+                style="?attr/editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="1"
+                android:hint="@string/nationality"
+                android:imeOptions="actionNext"
+                android:text="@={primaryContact.nationality}"
+                android:textSize="16sp"
+                app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                tools:ignore="RtlHardcoded" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/mail_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/gray_800"
+            app:layout_constraintBottom_toBottomOf="@+id/input_layout_email"
+            app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+            app:layout_constraintTop_toTopOf="@+id/input_layout_email"
+            app:srcCompat="@drawable/ic_email_white_24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            app:boxBackgroundColor="@color/white"
+            app:errorEnabled="true"
+            app:helperText="@string/required"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+            app:layout_constraintStart_toEndOf="@+id/mail_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/input_layout_nationality">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_field_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:text="@={primaryContact.email}"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

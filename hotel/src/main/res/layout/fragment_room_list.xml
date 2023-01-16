@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.hotel.booking.view.roomlist.RoomListViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/surface_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_vertical"
+                android:visibility="@{viewModel.dataLoading ? View.VISIBLE : View.GONE}"
+                tools:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/parent_layout_first_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:visibility="@{viewModel.showingFirstRoomData ? View.VISIBLE : View.GONE}">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_room_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="10"
+                    tools:listitem="@layout/item_room_bundle_layout" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/shadow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_sheet_corner_radius"
+            android:background="@drawable/shape_gradient_top_shadow"
+            android:visibility="gone"
+            app:layout_anchor="@id/bottom_sheet" />
+
+        <include
+            android:id="@+id/bottom_sheet"
+            layout="@layout/bottom_sheet_hotel"
+            android:visibility="gone"
+            bind:viewModel="@{viewModel}" />
+
+        <RelativeLayout
+            android:visibility="@{viewModel.isDataEmpty() ? View.VISIBLE : View.GONE}"
+            android:id="@+id/hotel_error_container"
+            tools:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_error"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_marginTop="@dimen/spacing_greater_tiny"
+                app:srcCompat="@drawable/ic_error_hotel"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_label_sorry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/icon_error"
+                android:layout_marginTop="@dimen/spacing_huge"
+                android:textSize="34sp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/black_87"
+                android:gravity="center_horizontal"
+                tools:text="Sorry!"
+                android:text="@string/sorry" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:layout_below="@+id/text_label_sorry"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="#434343"
+                android:gravity="center_horizontal"
+                tools:text="No available room found. Please retry." />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_retry"
+                style="@style/IndigoButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_message"
+                android:layout_margin="@dimen/spacing_large"
+                android:text="@string/retry"
+                android:onClick="@{() -> viewModel.onButtonRetry()}"/>
+
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

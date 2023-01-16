@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="passengerDetails"
+            type="net.sharetrip.bus.history.model.PassengerDetails" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/corresponding_icon_image_view"
+            imageDrawableId="@{passengerDetails.image}"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="9dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_male_mono"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="san-serif"
+            android:gravity="top"
+            android:text="@{passengerDetails.title}"
+            android:textColor="@color/dark_variant"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/corresponding_icon_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/f_name"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/value_of_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:gravity="top"
+            android:text="@{passengerDetails.value}"
+            android:textColor="@color/dark_main"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintStart_toEndOf="@+id/corresponding_icon_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/name_text_view"
+            tools:text="@string/f_name_value"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="net.sharetrip.bus.booking.model.BoardingPoints" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_parent"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/white">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/select_deselect_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:src="@{model.isSelected ? @drawable/ic_baseline_radio_button_checked_24 : @drawable/ic_baseline_radio_button_unchecked_24}"
+            app:layout_constraintBottom_toBottomOf="@+id/referral"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/referral"
+            tools:src="@drawable/ic_baseline_radio_button_checked_24" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/referral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:fontFamily="sans-serif-medium"
+            android:text="@{model.counterName}"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/select_deselect_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kolabagan counter" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/expiring_trip_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:layout_marginBottom="8dp"
+            android:text="@{model.reportingTime}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/referral"
+            app:layout_constraintTop_toBottomOf="@+id/referral"
+            tools:text="7:50pm" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

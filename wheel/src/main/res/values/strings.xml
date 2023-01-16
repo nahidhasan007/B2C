@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="spin_body">Please log in or sign up on the app to play and win free Tickets and more.</string>
+    <string name="spin_title">Spin To Win</string>
+    <string name="leader_board">Leader Board</string>
+    <string name="rewards">Rewards</string>
+    <string name="for_tc50">For TC50</string>
+    <string name="spin">Spin</string>
+    <string name="looks_like_your_name_is_missing">Looks like your name \nis missing</string>
+    <string name="this_will_show_up_on_the_leader_board">This will show up on the leader board.</string>
+    <string name="home">Home</string>
+    <string name="come_back_later_to_earn_more">Come back later to earn more</string>
+    <string name="sorry">Sorry</string>
+    <string name="to_win">to Win</string>
+    <string name="spin_to_win">Spin To Win</string>
+
+</resources>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <variable
+            name="hotelInfo"
+            type="net.sharetrip.hotel.booking.model.HotelInfo" />
+
+        <variable
+            name="roomCount"
+            type="Integer" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_tiny"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/windowBackground"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/hotel_thumb_image_view"
+                android:layout_width="@dimen/hotel_item_image_width"
+                android:layout_height="@dimen/hotel_item_image_height"
+                android:layout_marginLeft="@dimen/spacing_small_tiny"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@drawable/ic_placeholder" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_hotel_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="6sp"
+                android:maxLines="2"
+                android:text="@{hotelInfo.name}"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Radioson Blue Water Garden Singapore Cit" />
+
+            <LinearLayout
+                android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:visibility='@{hotelInfo.starRating.equals("0") ? View.GONE : View.VISIBLE}'
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_hotel_title"
+                tools:visibility="gone">
+
+                <include layout="@layout/star_layout" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_guest_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_green_text_view"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:paddingStart="4dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="2dp"
+                android:text="@{hotelInfo.rating}"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility='@{hotelInfo.rating.equals("0") ? View.GONE : View.VISIBLE}'
+                app:drawableLeftCompat="@drawable/ic_thumb_up_12dp"
+                app:layout_constraintStart_toEndOf="@+id/rating_bar"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_hotel_title"
+                tools:text="1.1"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/dummy"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:visibility='@{hotelInfo.starRating.equals("0") &amp;&amp; hotelInfo.rating.equals("0")  ? View.GONE : View.VISIBLE}'
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_hotel_title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_hotel_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="4sp"
+                android:maxLines="2"
+                android:text="@{hotelInfo.contactList.get(0).address}"
+                android:textColor="#4c4c4c"
+                android:textSize="10sp"
+                app:drawableLeftCompat="@drawable/ic_location_on_indigo_14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/dummy"
+                tools:text="Chinatown, Singapore" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_start_with"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="9dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/starts_from"
+                android:textColor="@color/greyish_brown"
+                android:textSize="8sp"
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_hotel_location" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="2sp"
+                app:strikeThrough="@{true}"
+                android:text='@{ "BDT " + NumberFormat.getNumberInstance(Locale.US).format(Math.ceil((double)hotelInfo.lowestRate/roomCount))}'
+                android:textColor="@color/blue_gray"
+                android:visibility="@{hotelInfo.discount == 0 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/text_start_with"
+                tools:text="BDT 93,916" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_level_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/night"
+                android:textColor="@color/gray_800"
+                app:strikeThrough="@{true}"
+                android:textSize="8sp"
+                android:visibility="@{hotelInfo.discount == 0 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/text_view_price"
+                app:layout_constraintStart_toEndOf="@+id/text_view_price"
+                app:layout_constraintTop_toTopOf="@id/text_view_price" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_discounted_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:text='@{ "BDT " + NumberFormat.getNumberInstance(Locale.US).format(Math.ceil((double)hotelInfo.lowestRateAfterDiscount/roomCount))}'
+                android:textColor="#235fd8"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_price"
+                tools:text="BDT 93,916" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_label_night"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/night"
+                android:textColor="@color/gray_800"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_discounted_price"
+                app:layout_constraintStart_toEndOf="@+id/text_view_discounted_price"
+                app:layout_constraintTop_toTopOf="@+id/text_view_discounted_price" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_tiny"
+                android:layout_marginLeft="2dp"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text='@{NumberFormat.getNumberInstance(Locale.US).format(hotelInfo.discount) + "% OFF"}'
+                android:textColor="@color/bright_orange"
+                android:textSize="@dimen/font_small"
+                android:textStyle="bold"
+                android:visibility="@{hotelInfo.discount == 0 ? View.GONE : View.VISIBLE}"
+                app:drawableLeftCompat="@drawable/ic_discount_mono"
+                app:drawableTint="@color/bright_orange"
+                app:layout_constraintBottom_toBottomOf="@id/text_view_discounted_price"
+                app:layout_constraintStart_toEndOf="@+id/text_label_night"
+                app:layout_constraintTop_toTopOf="@+id/text_view_discounted_price"
+                tools:text="10% OFF" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_label_price_and_vat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/price_inclusive_of_vat_amp_tax"
+                android:textColor="@color/black_100"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_discounted_price" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_trip_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="8sp"
+                android:text="@{NumberFormat.getNumberInstance(Locale.US).format(hotelInfo.points.earning)}"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:drawableLeftCompat="@drawable/ic_tripcoin_color_20dp"
+                app:layout_constraintStart_toEndOf="@+id/hotel_thumb_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/text_label_price_and_vat"
+                tools:text="1236" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_share_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="8sp"
+                android:text="@{NumberFormat.getNumberInstance(Locale.US).format(hotelInfo.points.shared)}"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:drawableLeftCompat="@drawable/ic_tripcoin_share_color_20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_view_trip_coin"
+                app:layout_constraintStart_toEndOf="@+id/text_view_trip_coin"
+                app:layout_constraintTop_toTopOf="@+id/text_view_trip_coin"
+                tools:text="50" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

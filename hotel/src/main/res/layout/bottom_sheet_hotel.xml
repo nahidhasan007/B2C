@@ -1,0 +1,421 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.hotel.booking.view.roomlist.RoomListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_sheet_hotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_background"
+        android:clickable="true"
+        android:focusable="true"
+        app:behavior_peekHeight="72dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+        <View
+            android:layout_width="@dimen/spacing_huge_greater"
+            android:layout_height="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:background="@color/black_54"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_book_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:enabled="false"
+            android:text="@string/pay_now"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@string/total_amount"
+            android:textColor="#434343"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toTopOf="@+id/btn_book_now" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_total_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:drawableLeftCompat="@drawable/ic_bdt_mono"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_total"
+            tools:text="00,000" />
+
+        <View
+            android:id="@+id/line_one"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@color/black_38"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/btn_book_now" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:text="@string/price_details"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/line_two"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_one" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:text="@string/bdt"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/line_two"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_one" />
+
+        <View
+            android:id="@+id/line_two"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_huge"
+            android:background="@color/black_38"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_one" />
+
+        <RelativeLayout
+            android:id="@+id/layout_first_room"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny_large"
+            android:layout_marginBottom="@dimen/spacing_tiny_large"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_two">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_first_room_guest_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text='@{"Room 1: " + viewModel.summary.firstRoomAdult + " Adult, " + viewModel.summary.firstRoomChild + " child"}'
+                android:textColor="@color/black_87"
+                android:textSize="12sp"
+                tools:text="Room 1: 2 Adt, 0 Chd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_first_room_night_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_first_room_guest_count"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:fontFamily="sans-serif"
+                android:text='@{viewModel.summary.totalNight + " nights"}'
+                android:textColor="@color/gray_800"
+                android:textSize="12sp"
+                tools:text="2 nights" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_first_room_total_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_first_room_guest_count"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewModel.summary.firstRoomPayable()}"
+                android:textColor="@color/gray_800"
+                android:textSize="12sp"
+                tools:text="21,274.00" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_second_room"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny_large"
+            android:layout_marginBottom="@dimen/spacing_tiny_large"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.summary.secondRoomAdult > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/layout_first_room">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_second_room_guest_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text='@{"Room 2: " + viewModel.summary.secondRoomAdult + " Adult, " + viewModel.summary.secondRoomChild + " child"}'
+                android:textColor="@color/black_87"
+                android:textSize="12sp"
+                tools:text="Room 2: 2 Adt, 0 Chd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_second_room_night_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_second_room_guest_count"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:fontFamily="sans-serif"
+                android:text='@{viewModel.summary.totalNight + " nights"}'
+                android:textColor="@color/gray_800"
+                android:textSize="12sp"
+                tools:text="2 nights" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_second_room_total_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_second_room_guest_count"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewModel.summary.secondRoomPayable}"
+                android:textColor="@color/gray_800"
+                android:textSize="12sp"
+                tools:text="21,274.00" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_third_room"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny_large"
+            android:layout_marginBottom="@dimen/spacing_tiny_large"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.summary.thirdRoomAdult > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/layout_second_room">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_third_room_guest_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text='@{"Room 3: " + viewModel.summary.thirdRoomAdult + " Adult, " + viewModel.summary.thirdRoomChild + " child"}'
+                android:textColor="@color/black_87"
+                android:textSize="12sp"
+                tools:text="Room 3: 2 Adt, 0 Chd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_third_room_night_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_third_room_guest_count"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:fontFamily="sans-serif"
+                android:text='@{viewModel.summary.totalNight + " nights"}'
+                android:textColor="@color/gray_800"
+                android:textSize="12sp"
+                tools:text="2 nights" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_third_room_total_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_third_room_guest_count"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewModel.summary.thirdRoomPayable}"
+                android:textColor="@color/gray_800"
+                android:textSize="12sp"
+                tools:text="21,274.00" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_fourth_room"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny_large"
+            android:layout_marginBottom="@dimen/spacing_tiny_large"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.summary.fourthRoomAdult > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/layout_third_room">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fourth_room_guest_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text='@{"Room 4: " + viewModel.summary.fourthRoomAdult + " Adult, " + viewModel.summary.fourthRoomChild + " child"}'
+                android:textColor="@color/black_87"
+                android:textSize="12sp"
+                tools:text="Room 4: 2 Adt, 0 Chd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fourth_room_night_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_fourth_room_guest_count"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:fontFamily="sans-serif"
+                android:text='@{viewModel.summary.totalNight + " nights"}'
+                android:textColor="@color/gray_800"
+                android:textSize="12sp"
+                tools:text="2 nights" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_fourth_room_total_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_fourth_room_guest_count"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/spacing_tiny_large"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewModel.summary.fourthRoomPayable}"
+                android:textColor="@color/gray_800"
+                android:textSize="12sp"
+                tools:text="21,274.00" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line_three"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@color/black_38"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/layout_fourth_room" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_total_due_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif"
+            android:text="@string/total_amount_before_discount"
+            android:textColor="#434343"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_three" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_total_due_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_label_total_due_property"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_label_total_due_property"
+            tools:text="218,820.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:fontFamily="sans-serif"
+            android:text="@string/discount_amount"
+            android:textColor="#434343"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_total_due_property" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_discount_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_label_discount"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_label_discount"
+            tools:text="-0"/>
+
+        <View
+            android:id="@+id/line_four"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_huge_greater"
+            android:background="@color/black_38"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_three" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_total_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:fontFamily="sans-serif"
+            android:text="@string/final_price"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_four" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_total_payable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/text_label_total_payment"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_label_total_payment"
+            tools:text="BDT 00,000" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

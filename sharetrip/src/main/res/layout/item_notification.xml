@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="notification"
+            type="net.sharetrip.shared.model.UserNotification" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_view"
+            android:layout_width="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:layout_height="wrap_content" >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/notificationIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_medium2"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_img_deals" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/notificationTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_medium2"
+                android:layout_marginTop="@dimen/spacing_medium2"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{notification.title}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/notificationIcon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Book Hotels world wide 20% off, Book Hotels world wide 20% off" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/notificationBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:text="@{notification.description}"
+                android:textColor="#666666"
+                android:textSize="12sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="@id/notificationTitle"
+                app:layout_constraintEnd_toEndOf="@id/notificationTitle"
+                app:layout_constraintTop_toBottomOf="@id/notificationTitle"
+                tools:text="You’ve earned 850 TripCoin. Keep booking. You’ve earned 850 TripCoin. Keep booking, You’ve earned 850 TripCoin. Keep booking" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/notificationDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:paddingBottom="@dimen/spacing_medium2"
+                android:fontFamily="sans-serif"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/notificationBody"
+                app:layout_constraintTop_toBottomOf="@id/notificationBody"
+                tools:text="7 Nov 18" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

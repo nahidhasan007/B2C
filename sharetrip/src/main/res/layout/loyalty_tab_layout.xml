@@ -1,0 +1,275 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.view.profile.loyalty.LoyaltyViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pale_grey"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutUserType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_paly_gray"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:id="@+id/textViewSilver"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:background="@{viewModel.isSilverSelected() ? @drawable/background_silver_rounded : null}"
+                    android:onClick="@{viewModel::onClickSilver}"
+                    android:tag='@{viewModel.isSilverSelected()?"selected":"not selected"}'
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/textViewGold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@drawable/background_silver_rounded">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:text="@string/silver"
+                        android:textAllCaps="true"
+                        android:textColor="@{viewModel.isSilverSelected() ? @color/textSelected : @color/greyish_brown}"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:textColor="#1882ff" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/textViewGold"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:background="@{viewModel.isGoldSelected() ? @drawable/background_gold_rounded : null}"
+                    android:onClick="@{viewModel::onClickGold}"
+                    android:tag='@{viewModel.isGoldSelected()?"selected":"not selected"}'
+                    app:layout_constraintLeft_toRightOf="@+id/textViewSilver"
+                    app:layout_constraintRight_toLeftOf="@+id/textViewPlatinum"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:background="@drawable/background_gold_rounded">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="5sp"
+                        android:text="@string/gold"
+                        android:textAllCaps="true"
+                        android:textColor="@{viewModel.isGoldSelected() ? @color/textSelected : @color/greyish_brown}"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:textColor="#1882ff" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/textViewPlatinum"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:background="@{viewModel.isPlatinumSelected() ? @drawable/background_platinum_rounded : null}"
+                    android:onClick="@{viewModel::onClickPlatinum}"
+                    android:tag='@{viewModel.isPlatinumSelected()?"selected":"not selected"}'
+                    app:layout_constraintLeft_toRightOf="@+id/textViewGold"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:background="@drawable/background_platinum_rounded">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="5sp"
+                        android:text="@string/platinum"
+                        android:textAllCaps="true"
+                        android:textColor="@{viewModel.isPlatinumSelected() ? @color/textSelected : @color/greyish_brown}"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        tools:textColor="#1882ff" />
+                </RelativeLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewDetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_small"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.descriptionText}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@id/layoutUserType"
+                tools:text="Users with 15,001-30,000 Trip Coins are Gold Users.
+                Earn more than 30,000 Trip Coins to be a Platinum User." />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/freeVisaIcon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:layout_constraintBottom_toBottomOf="@id/textViewFreeVisaPerson"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@id/textViewFreeVisa"
+                app:srcCompat="@drawable/ic_visa_32dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewFreeVisa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginLeft="14dp"
+                android:text="Free Visa Processing Fee"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/freeVisaIcon"
+                app:layout_constraintTop_toBottomOf="@id/textViewDetails" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewFreeVisaPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="4sp"
+                android:text="@{viewModel.visaText}"
+                android:textColor="@color/greyish_brown"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/textViewFreeVisa"
+                app:layout_constraintTop_toBottomOf="@id/textViewFreeVisa"
+                tools:text="5 times(only service charge)" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tripCoinIcon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:layout_constraintBottom_toBottomOf="@id/textViewTripCoinFree"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@id/textViewTripCoin"
+                app:srcCompat="@drawable/ic_tripcoin_color_40dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewTripCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="6sp"
+                android:text="@{viewModel.tripCoinText}"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/tripCoinIcon"
+                app:layout_constraintTop_toBottomOf="@id/textViewFreeVisaPerson"
+                tools:text="300 Trip coin" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewTripCoinFree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif"
+                android:text="Free"
+                android:textColor="@color/greyish_brown"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@id/tripCoinIcon"
+                app:layout_constraintTop_toBottomOf="@id/textViewTripCoin" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/voucherIcon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:visibility="@{viewModel.isCouponEnabled ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/textViewVoucherDetails"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@id/textViewVoucherPrice"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_coupon_32dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewVoucherPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewModel.couponText}"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="@{viewModel.isCouponEnabled ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toEndOf="@id/voucherIcon"
+                app:layout_constraintTop_toBottomOf="@id/textViewTripCoinFree"
+                tools:text="BDT 5,000" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewVoucherDetails"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/greyish_brown"
+                android:textSize="12sp"
+                android:visibility="@{viewModel.isCouponEnabled ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toEndOf="@id/voucherIcon"
+                app:layout_constraintTop_toBottomOf="@id/textViewVoucherPrice"
+                tools:text="Worth One Time Cash Voucher*" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

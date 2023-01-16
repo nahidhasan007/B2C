@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="roomDetails"
+            type="net.sharetrip.hotel.booking.model.RoomDetails" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/windowBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+            <net.sharetrip.shared.view.widgets.LockableViewPager
+                android:id="@+id/viewPagerImage"
+                android:layout_width="match_parent"
+                android:layout_height="192dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lvp_swipeable="true" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewImageCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                app:drawableLeftCompat="@drawable/ic_image_16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/viewPagerImage"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                tools:text=" 4/16" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:text="@{roomDetails.name}"
+                android:textColor="#212121"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/viewPagerImage"
+                tools:text="Junior Suite Queen. Junior Suite Queen. Junior Suite Queen" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/amenitiesTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="normal"
+                android:textColor="#000000"
+                android:lineSpacingExtra="8sp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@id/text_view_name"
+                android:text="@string/room_amenities" />
+
+            <LinearLayout
+                android:id="@+id/amenitiesLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/amenitiesTag"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

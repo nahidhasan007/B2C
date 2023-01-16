@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/windowBackground">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_departure_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/black_87"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Departure Details" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/address_line_1_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/gray_800"
+            app:layout_constraintBottom_toBottomOf="@+id/address_line_1_text_input_layout"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toTopOf="@+id/address_line_1_text_input_layout"
+            app:srcCompat="@drawable/ic_location_on_white_24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/address_line_1_text_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            app:boxBackgroundColor="@color/white"
+            app:errorEnabled="true"
+            app:helperTextEnabled="true"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toEndOf="@+id/address_line_1_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_departure_details">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/address_line_1_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pick up location or hotel name"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/black_87"
+                android:imeOptions="actionNext"
+                android:inputType="textPostalAddress"
+                tools:ignore="RtlHardcoded" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/mail_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/gray_800"
+            app:layout_constraintBottom_toBottomOf="@+id/email_text_input_layout"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toTopOf="@+id/email_text_input_layout"
+            app:srcCompat="@drawable/ic_mail_black_24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_text_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toEndOf="@+id/mail_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/address_line_1_text_input_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_additional_requirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Additional requirement(i.e Room#)"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/black_87"
+                tools:ignore="RtlHardcoded" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/check_box_agree"
+            style="@style/Widget.MaterialComponents.CompoundButton.CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:text="I have read and accept the terms and conditions"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout"
+            app:useMaterialThemeColors="false" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

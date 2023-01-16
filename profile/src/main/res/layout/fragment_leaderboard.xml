@@ -1,0 +1,118 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.profile.view.leaderboard.LeaderBoardViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_three"
+        tools:context="net.sharetrip.profile.view.leaderboard.LeaderBoardFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/purchase_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_special_reward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.16"
+                android:text="@string/winner_reward_board"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/font_small"
+                android:visibility="@{viewModel.rewardLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_special_reward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_mid_normal"
+                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.rewardLoading ? View.GONE : View.VISIBLE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_special_reward"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_reward_winner_new" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_trip_coin_reward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal_large"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:letterSpacing="0.16"
+                android:text="@string/trip_coins_reward"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/font_small"
+                android:visibility="@{viewModel.tripCoinLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/list_special_reward" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_trip_coin_reward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_huge"
+                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.tripCoinLoading ? View.GONE : View.VISIBLE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_trip_coin_reward"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_trip_coin_winner" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/progressBarBlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isDataLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

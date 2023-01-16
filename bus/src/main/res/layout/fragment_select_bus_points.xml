@@ -1,0 +1,405 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.sharetrip.ui.visa.booking.view.home.VisaHomeFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="net.sharetrip.bus.booking.view.locationpoints.SelectLocationPointsViewModel" />
+
+        <variable
+            name="data"
+            type="net.sharetrip.bus.booking.model.GuestPopUpData" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:focusable="true">
+
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/topBlurView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:outlineProvider="bounds"
+            android:visibility="@{model.isLoggedIn ? View.GONE :View.VISIBLE}"
+            app:blurOverlayColor="@color/colorOverlay"
+            tools:targetApi="lollipop">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/top_icon"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    app:imageDrawableId="@{data.icon}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.3"
+                    app:srcCompat="@drawable/ic_bus_44x44" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_horizontal"
+                    android:text="@{data.title}"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/top_icon"
+                    tools:text="@string/common_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/layoutBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:text="@{data.detail}"
+                    android:textColor="#434343"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    tools:text="Please log in or sign up on the app to access the booking history" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/layoutLoginBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:onClick="@{() -> data.listener.onClickLogin()}"
+                    android:text="@string/login"
+                    app:layout_constraintTop_toBottomOf="@id/layoutBody" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </eightbitlab.com.blurview.BlurView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_large"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:padding="@dimen/spacing_small_tiny"
+                app:cardCornerRadius="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="#EFEFF4"
+                app:strokeWidth="3dp">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{model.isLoggedIn ? View.VISIBLE :View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabIndicator="@drawable/tab_selector"
+                    app:tabIndicatorColor="@color/colorPrimary"
+                    app:tabIndicatorGravity="center"
+                    app:tabIndicatorHeight="40dp"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextColor="@color/black"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{model.isLoggedIn ? View.VISIBLE :View.GONE}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintTop_toBottomOf="@id/cardview"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_sheet_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingBottom="@dimen/spacing_small"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="@dimen/bottom_sheet_peek_height_90"
+            app:elevation="@dimen/bottom_sheet_elevation"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_horizontal_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/activity_vertical_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+            <View
+                android:id="@+id/sheet_header_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_tiny"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bottom_sheet_header_shadow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/slide_view"
+                android:layout_width="64dp"
+                android:layout_height="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@drawable/slide_background"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@id/sheet_header_shadow" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/labelTotalBusFare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_huge"
+                android:text="@string/total_payable"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_tiny"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTotalBusFare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@{`BDT `+model.departureInfo.totalPayable}"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@id/labelTotalBusFare"
+                tools:text="BDT 3050" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/labelSelectedSeats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="@string/selected_seats"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_tiny"
+                app:layout_constraintStart_toEndOf="@+id/labelTotalBusFare"
+                app:layout_constraintTop_toTopOf="@id/labelTotalBusFare" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSelectedSeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@{model.departureInfo.selectedSeatsInString}"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/labelSelectedSeats"
+                app:layout_constraintTop_toBottomOf="@id/labelTotalBusFare"
+                tools:text="A1, B1, C1, D4" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/book_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->model.onClickNext()}"
+                android:text="@string/next"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@+id/labelSelectedSeats" />
+
+            <View
+                android:id="@+id/lineOne"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:background="@color/pale_grey"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/book_button" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/labelPricingDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/pricing_details"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintStart_toStartOf="@+id/labelTotalBusFare"
+                app:layout_constraintTop_toBottomOf="@id/lineOne" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/labelBDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/BDT"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@id/lineOne" />
+
+            <View
+                android:id="@+id/lineTwo"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:background="@color/pale_grey"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/labelBDT" />
+
+            <LinearLayout
+                android:id="@+id/layoutBookingPlan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/lineTwo" />
+
+            <View
+                android:id="@+id/lineThree"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@color/pale_grey"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/layoutBookingPlan" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_discount_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/discount"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@id/lineThree" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/discount_value_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{``+model.departureInfo.discount}"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintBottom_toBottomOf="@+id/label_discount_textView"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@+id/label_discount_textView"
+                tools:text="50" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/labelServiceCharge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/service_charge"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@id/label_discount_textView" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvServiceCharge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{``+model.departureInfo.serviceCharge}"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintBottom_toBottomOf="@+id/labelServiceCharge"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@+id/labelServiceCharge"
+                tools:text="50" />
+
+            <View
+                android:id="@+id/lineFour"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@color/pale_grey"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tvServiceCharge" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/labelFinalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/final_price"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@id/lineFour" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFinalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@{`BDT `+model.departureInfo.totalPayable}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_small"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@id/lineFour"
+                tools:text="BDT 2000" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

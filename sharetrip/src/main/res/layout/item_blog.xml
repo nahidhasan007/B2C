@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_normal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewBlog"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/blog_post_height"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_placeholder" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/black_overlay_gradient" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBlogTopTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textColor="@color/pale_grey"
+                app:layout_constraintBottom_toTopOf="@+id/tvBlogBigTitle"
+                app:layout_constraintEnd_toEndOf="@+id/tvBlogBigTitle"
+                app:layout_constraintStart_toStartOf="@id/tvBlogBigTitle"
+                tools:text="Travel Inspiration" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBlogBigTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_tiny"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewBlog"
+                app:layout_constraintEnd_toEndOf="@id/imageViewBlog"
+                app:layout_constraintStart_toStartOf="@id/imageViewBlog"
+                tools:text="This Photographer is Selling Prints of Her Wildlife Photos to \n in the Masai Mara…" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

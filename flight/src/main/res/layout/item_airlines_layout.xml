@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.R.integer"/>
+        
+        <variable
+            name="data"
+            type="net.sharetrip.flight.booking.model.filter.Airline" />
+
+        <variable
+            name="selectedCode"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/airlineIcon"
+            loadImageWithGlide='@{"https://tbbd-flight.s3.ap-southeast-1.amazonaws.com/airlines-logo/"+data.code+".png"}'
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_rate_logo" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/airLineCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="6sp"
+            android:text='@{data.code}'
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@id/airlineIcon"
+            app:layout_constraintTop_toTopOf="@id/airlineIcon"
+            tools:text="ea" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/airLineCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4sp"
+            android:paddingBottom="4dp"
+            android:text='@{""+data.records+" Flights"}'
+            android:textColor="@color/greyish_brown"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@id/airLineCode"
+            app:layout_constraintTop_toBottomOf="@id/airLineCode"
+            tools:text="1 Flights" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/selfBorder"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/blue_rounded_shape"
+            android:visibility="@{selectedCode.equals(data.code) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:background="#e5e5ea"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/airLineCount"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

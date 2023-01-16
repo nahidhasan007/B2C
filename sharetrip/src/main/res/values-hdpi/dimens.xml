@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="blog_post_height">171dp</dimen>
+
+    <dimen name="blog_slider_height">171dp</dimen>
+</resources>

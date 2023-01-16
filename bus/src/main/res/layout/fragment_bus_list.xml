@@ -1,0 +1,277 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.sharetrip.visa.booking.view.home.VisaHomeFragment">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="net.sharetrip.bus.booking.model.SortingType" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.bus.booking.view.busList.BusListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EFEFF4"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_layout_filter_constrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_filter_constrain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_round_shape_white"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/spacing_small"
+                android:visibility="@{viewModel.isDataLoading ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_filter_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.numberOfBusses + ` Available Buses`}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/text_view_filter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="200 Available Bus" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_filter_subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/price_inclusive_of_vat_tax"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+                    android:textColor="@color/black_87"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toStartOf="@+id/text_view_filter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_filter_title" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintSort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:visibility="@{viewModel.isShowSort() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_filter_subtitle">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_fastest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:background="@{viewModel.sortingObserver == SortingType.FASTEST ? @drawable/blue_rounded_shape_selected : @drawable/gender_non_selector}"
+                        android:gravity="center"
+                        android:onClick="@{viewModel::onSortingBtnClick}"
+                        android:paddingStart="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/fastest"
+                        android:textColor="@{viewModel.sortingObserver == SortingType.FASTEST ? @color/white : @color/blue_gray}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_earliest"
+                        app:layout_constraintEnd_toStartOf="@+id/text_view_earliest"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:textAllCaps="true" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_earliest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_tiny"
+                        android:background="@{viewModel.sortingObserver == SortingType.EARLIEST ? @drawable/blue_rounded_shape_selected : @drawable/gender_non_selector}"
+                        android:gravity="center"
+                        android:onClick="@{viewModel::onSortingBtnClick}"
+                        android:paddingStart="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/earliest"
+                        android:textColor="@{viewModel.sortingObserver == SortingType.EARLIEST ? @color/white : @color/blue_gray}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_cheapest"
+                        app:layout_constraintEnd_toStartOf="@+id/text_view_cheapest"
+                        app:layout_constraintStart_toEndOf="@+id/text_view_fastest"
+                        app:textAllCaps="true" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_cheapest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@{viewModel.sortingObserver == SortingType.CHEAPEST ? @drawable/blue_rounded_shape_selected : @drawable/gender_non_selector}"
+                        android:gravity="center"
+                        android:onClick="@{viewModel::onSortingBtnClick}"
+                        android:paddingStart="10dp"
+                        android:paddingTop="6dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="6dp"
+                        android:text="@string/cheapest"
+                        android:textColor="@{viewModel.sortingObserver == SortingType.CHEAPEST ? @color/white : @color/blue_gray}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/text_view_earliest"
+                        app:textAllCaps="true"
+                        tools:background="@drawable/gender_non_selector" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:onClick="@{viewModel::onSortingBtnClick}"
+                    android:text="@string/sort"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black_87"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:drawableLeftCompat="@drawable/ic_filter_light_24dp"
+                    app:drawableTint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/text_view_filter_subtitle"
+                    app:layout_constraintEnd_toStartOf="@id/text_view_filter"
+                    app:layout_constraintTop_toTopOf="@id/text_view_filter_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:onClick="@{()->viewModel.openFilter()}"
+                    android:text="@string/filter"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:drawableLeftCompat="@drawable/ic_filter_light_24dp"
+                    app:drawableTint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/text_view_filter_subtitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_view_filter_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_bus_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:visibility="@{viewModel.isNoDataFound ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_layout_filter_constrain">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_company_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/spacing_tiny"
+                android:visibility="@{viewModel.isDataLoading ? View.GONE : View.VISIBLE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_bus_providers" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/view_shadow_one"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_small"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_layout_filter_constrain"
+            app:srcCompat="@drawable/ic_upper_shadow" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/view_shadow_two"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_bus_recycler"
+            app:srcCompat="@drawable/ic_upper_shadow" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_bus_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/bottom_sheet_plus_peek_height"
+            android:visibility="@{viewModel.isDataLoading ? View.GONE : View.VISIBLE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_bus_recycler"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_bus" />
+
+        <TextView
+            android:id="@+id/not_found_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_data_found"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_variant"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:visibility="@{viewModel.isNoDataFound ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/include_shimmer"
+            layout="@layout/shimmer_flight_list_base"
+            android:visibility="@{viewModel.isDataLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_layout_filter_constrain" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

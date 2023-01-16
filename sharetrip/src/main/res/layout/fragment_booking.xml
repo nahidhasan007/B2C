@@ -1,0 +1,232 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.view.booking.BookingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/surface"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingBottom="@dimen/spacing_normal">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:title="@string/booking" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_trip_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:drawablePadding="@dimen/spacing_small"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:text="@{viewModel.formattedPoints}"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    app:drawableLeftCompat="@drawable/ic_tripcoin_light_24dp"
+                    tools:text="@string/_870" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/flights_button"
+            style="@style/WhiteButtonWithAnimation"
+            android:layout_width="0dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/booking_view_button_style"
+            app:drawableTint="@color/colorPrimary"
+            android:onClick="@{()->viewModel.openFlight()}"
+            android:padding="16dp"
+            android:text="@string/flights"
+            android:textAllCaps="false"
+            tools:visibility="visible"
+            android:visibility="@{viewModel.isLogin() ? View.VISIBLE : View.GONE}"
+            app:drawableTopCompat="@drawable/ic_flight_56dp"
+            app:layout_constraintEnd_toStartOf="@+id/hotels_button"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/buses_button"-->
+<!--            style="@style/WhiteButtonWithAnimation"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="96dp"-->
+<!--            android:layout_marginTop="@dimen/spacing_small"-->
+<!--            android:layout_marginRight="@dimen/spacing_tiny"-->
+<!--            android:background="@drawable/booking_view_button_style"-->
+<!--            app:drawableTint="@color/colorPrimary"-->
+<!--            android:onClick="@{()->viewModel.openBus()}"-->
+<!--            android:padding="16dp"-->
+<!--            android:text="@string/bus"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:visibility="visible"-->
+<!--            app:drawableTopCompat="@drawable/ic_bus_44x44"-->
+<!--            android:elevation="1dp"-->
+<!--            android:shadowRadius="1"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/bundle_button"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/begin_guideline"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/flights_button" />-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/hotels_button"
+            style="@style/WhiteButtonWithAnimation"
+            android:layout_width="0dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/booking_view_button_style"
+            app:drawableTint="@color/colorPrimary"
+            android:onClick="@{()->viewModel.openHotel()}"
+            android:padding="16dp"
+            android:text="@string/hotels"
+            android:textAllCaps="false"
+            android:visibility="@{viewModel.isLogin() ? View.VISIBLE : View.GONE}"
+            app:drawableTopCompat="@drawable/ic_hotel_56dp"
+            app:layout_constraintBottom_toBottomOf="@+id/flights_button"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toEndOf="@+id/flights_button"
+            app:layout_constraintTop_toTopOf="@+id/flights_button" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bundle_button"
+            style="@style/WhiteButtonWithAnimation"
+            android:layout_width="0dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/booking_view_button_style"
+            app:drawableTint="@color/colorPrimary"
+            android:onClick="@{()->viewModel.openHoliday()}"
+            android:padding="16dp"
+            android:text="@string/holiday"
+            android:textAllCaps="false"
+            android:visibility="@{viewModel.isLogin() ? View.VISIBLE : View.GONE}"
+            app:drawableTopCompat="@drawable/ic_bundle_56dp"
+            app:layout_constraintEnd_toStartOf="@+id/visa_button"
+            app:layout_constraintStart_toEndOf="@+id/IndigoButton"
+            app:layout_constraintTop_toBottomOf="@+id/flights_button" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/visa_button"
+            style="@style/WhiteButtonWithAnimation"
+            android:layout_width="0dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/booking_view_button_style"
+            app:drawableTint="@color/colorPrimary"
+            android:onClick="@{()->viewModel.openVisa()}"
+            android:padding="16dp"
+            android:text="@string/visa"
+            android:textAllCaps="false"
+            android:visibility="@{viewModel.isLogin() ? View.VISIBLE : View.GONE}"
+            app:drawableTopCompat="@drawable/ic_visa_head"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintStart_toEndOf="@+id/bundle_button"
+            app:layout_constraintTop_toBottomOf="@+id/flights_button" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/transport_button"
+            style="@style/WhiteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_tiny"
+            android:layout_marginRight="@dimen/spacing_tiny"
+            app:drawableTint="@color/colorPrimary"
+            android:onClick="@{()->viewModel.openTransfer()}"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/transfer"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            app:drawableTopCompat="@drawable/ic_trasport_56dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bundle_button"
+            app:layout_constraintEnd_toStartOf="@+id/IndigoButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/bundle_button"
+            app:layout_constraintTop_toTopOf="@+id/bundle_button" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/IndigoButton"
+            style="@style/WhiteButtonWithAnimation"
+            android:layout_width="0dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/booking_view_button_style"
+            app:drawableTint="@color/colorPrimary"
+            android:onClick="@{()->viewModel.openTour()}"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/tours"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            app:drawableTopCompat="@drawable/ic_tours_56dp"
+            app:layout_constraintEnd_toStartOf="@+id/bundle_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/flights_button" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+        <include
+            android:id="@+id/guestLayout"
+            layout="@layout/guest_user_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:visibility="@{viewModel.isLogin() ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toStartOf="@id/begin_guideline"
+            tools:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

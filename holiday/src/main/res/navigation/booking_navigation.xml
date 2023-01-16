@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/booking_navigation"
+    android:label="@string/reserve"
+    app:startDestination="@id/holidayFragment">
+
+    <fragment
+        android:id="@+id/holidayFragment"
+        android:name="net.sharetrip.holiday.booking.view.main.HolidayMainFragment"
+        android:label="@string/holiday"
+        tools:label="HolidayFragment"
+        tools:layout="@layout/fragment_holiday_main">
+        <action
+            android:id="@+id/action_holidayFragment_to_holidayListFragment"
+            app:destination="@id/holidayListFragment" />
+        <action
+            android:id="@+id/action_holidayFragment_to_holidayDetailFragment"
+            app:destination="@id/holidayDetailFragment" />
+        <action
+            android:id="@+id/action_holidayFragment_to_holidayDateCalenderFragment"
+            app:destination="@id/holidayDateCalenderFragment" />
+        <action
+            android:id="@+id/action_holidayFragment_to_holidayCitySearchFragment"
+            app:destination="@id/holidayCitySearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayListFragment"
+        android:name="net.sharetrip.holiday.booking.view.list.HolidayListFragment"
+        android:label="@string/holiday_list"
+        tools:layout="@layout/fragment_holiday_list">
+        <action
+            android:id="@+id/action_holidayListFragment_to_holidayDetailFragment"
+            app:destination="@id/holidayDetailFragment" />
+        <argument
+            android:name="ARG_HOLIDAY_CITY_CODE"
+            app:argType="string" />
+        <argument
+            android:name="ARG_HOLIDAY_CITY_NAME"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayDetailFragment"
+        android:name="net.sharetrip.holiday.booking.view.detail.HolidayDetailFragment"
+        android:label="@string/holiday"
+        tools:layout="@layout/fragment_holiday_detail">
+        <argument
+            android:name="ARG_HOLIDAY_PRODUCT_CODE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_holidayDetailFragment_to_highLightFragment"
+            app:destination="@id/highLightFragment" />
+        <action
+            android:id="@+id/action_holidayDetailFragment_to_holidayReserveFragment"
+            app:destination="@id/holidayReserveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/highLightFragment"
+        android:name="net.sharetrip.holiday.booking.view.highlight.HighLightFragment"
+        android:label="HighLightFragment"
+        tools:layout="@layout/fragment_high_light">
+        <argument
+            android:name="ARG_HOLIDAY_HIGHLIGHT_TITLE"
+            app:argType="android.os.Bundle" />
+        <argument
+            android:name="ARG_HOLIDAY_HIGHLIGHT_DETAIL"
+            app:argType="android.os.Bundle" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayReserveFragment"
+        android:name="net.sharetrip.holiday.booking.view.reserve.HolidayReserveFragment"
+        android:label="@string/reserve"
+        tools:layout="@layout/fragment_holiday_reservation">
+        <action
+            android:id="@+id/action_holidayReserveFragment_to_holidayDateCalenderFragment"
+            app:destination="@id/holidayDateCalenderFragment" />
+        <argument
+            android:name="ARG_HOLIDAY_PARAM_MODEL"
+            app:argType="android.os.Bundle" />
+        <argument
+            android:name="ARG_HOLIDAY_OFFER_MODEL"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_holidayReserveFragment_to_holidayBookingFragment"
+            app:destination="@id/holidayBookingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayDateCalenderFragment"
+        android:name="net.sharetrip.holiday.booking.view.calender.HolidayDateCalenderFragment"
+        android:label="@string/select_date"
+        tools:layout="@layout/fragment_single_calendar">
+        <argument
+            android:name="ARG_CALENDER_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayBookingFragment"
+        android:name="net.sharetrip.holiday.booking.view.booking.HolidayBookingFragment"
+        android:label="@string/reserve"
+        tools:layout="@layout/fragment_holiday_booking">
+        <argument
+            android:name="ARG_HOLIDAY_PARAM_MODEL"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_holidayBookingFragment_to_clientContactFragment"
+            app:destination="@id/clientContactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientContactFragment"
+        android:name="net.sharetrip.holiday.booking.view.contact.ClientContactFragment"
+        android:label="ClientContactFragment"
+        tools:layout="@layout/fragment_client_contact">
+        <argument
+            android:name="ARG_HOLIDAY_PARAM_MODEL"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_clientContactFragment_to_holidaySummaryFragment"
+            app:destination="@id/holidaySummaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidaySummaryFragment"
+        android:name="net.sharetrip.holiday.booking.view.summary.HolidaySummaryFragment"
+        android:label="@string/booking_summary"
+        tools:layout="@layout/fragment_holiday_summary">
+        <argument
+            android:name="ARG_HOLIDAY_PARAM_MODEL"
+            app:argType="net.sharetrip.holiday.booking.model.HolidayParam" />
+        <argument
+            android:name="ARG_HOLIDAY_CONTACT_MODEL"
+            app:argType="net.sharetrip.holiday.booking.model.PrimaryContact" />
+        <argument
+            android:name="ARG_HOLIDAY_SUMMARY_MODEL"
+            app:argType="net.sharetrip.holiday.booking.model.HolidaySummary" />
+        <action
+            android:id="@+id/action_holidaySummaryFragment_to_payment_nav_graph"
+            app:destination="@id/payment_nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/holidayCitySearchFragment"
+        android:name="net.sharetrip.holiday.booking.view.search.HolidayCitySearchFragment"
+        android:label="HolidayCitySearchFragment"
+        tools:layout="@layout/fragment_holiday_city_search">
+        <argument
+            android:name="ARG_HOLIDAY_CITY_POSITION"
+            app:argType="integer" />
+    </fragment>
+    <include app:graph="@navigation/payment_nav_graph" />
+
+</navigation>

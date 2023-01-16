@@ -1,0 +1,222 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/spacing_small"
+        android:background="@color/white">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/spacing_tiny"
+            app:cardElevation="@dimen/spacing_normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/spacing_small" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/spacing_small" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_horizontal_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/spacing_small" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_horizontal_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_end="@dimen/spacing_small" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_visa_country"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:scaleType="fitXY"
+                    android:background="@color/colorPrimaryAlpha"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_placeholder" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_country_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_visa_country"
+                    tools:text="Malaysia" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_visa_req"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="8sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_country_name"
+                    tools:text="Visa Required" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_visa_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:drawableLeftCompat="@drawable/ic_currency_mono"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visa_req"
+                    app:textAllCaps="true"
+                    tools:text="inr" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_time_zone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_visa_req"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:drawableLeftCompat="@drawable/ic_time_mono"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_visa_currency"
+                    app:layout_constraintStart_toEndOf="@id/tv_visa_currency"
+                    app:layout_constraintTop_toTopOf="@+id/tv_visa_currency"
+                    tools:text="GMT +5:30" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_visa_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_small_tiny"
+                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/bright_orange"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    app:drawableLeftCompat="@drawable/ic_discount_mono"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_earn_coin"
+                    app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/tv_earn_coin"
+                    tools:text="15% OFF" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_old_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingRight="@dimen/spacing_tiny"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_visa_price"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visa_currency"
+                    tools:text="BDT 8,553" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_visa_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/blue_blue"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/tv_old_price"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visa_currency"
+                    tools:text="BDT 6,843" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:fontFamily="sans-serif"
+                    android:text="/person"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="8sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_visa_price"
+                    app:layout_constraintStart_toEndOf="@+id/tv_visa_price"
+                    app:layout_constraintTop_toTopOf="@+id/tv_visa_price" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="8sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_visa_price"
+                    app:layout_constraintStart_toEndOf="@+id/tv_visa_price"
+                    app:layout_constraintTop_toTopOf="@+id/tv_visa_price"
+                    tools:text="/person" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_earn_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:drawablePadding="@dimen/spacing_small_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:drawableStartCompat="@drawable/ic_trip_coin_yellow_20dp"
+                    app:layout_constraintBottom_toTopOf="@id/end_horizontal_guideline"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visa_price"
+                    tools:text="800" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

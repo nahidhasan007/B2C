@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_available_data_found_please_retry">No available data found please retry</string>
+    <string name="confirmed">CONFIRMED</string>
+    <string name="seat_selection_limit">Not more than four seats can be selected.</string>
+    <string name="select_boarding"><![CDATA[Select Boarding & Dropping Point]]></string>
+    <string name="person_already_exist">Person already exists</string>
+    <string name="passenger_info">Passenger Information</string>
+    <string name="verify_info">Verify Information</string>
+    <string name="booking_summary">Booking Summary</string>
+    <string name="bus_booking_history">Bus Booking History</string>
+    <string name="pricing_detail">Pricing Details</string>
+    <string name="tk_0">0</string>
+    <string name="price_details">Pricing Details</string>
+    <string name="policy">Policy</string>
+    <string name="passenger_details">Passenger Details</string>
+    <string name="booking_details">Booking Details</string>
+</resources>

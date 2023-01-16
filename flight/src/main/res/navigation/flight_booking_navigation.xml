@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flight_booking_navigation"
+    app:startDestination="@id/flightHomeFragment">
+
+    <fragment
+        android:id="@+id/flightHomeFragment"
+        android:name="net.sharetrip.flight.booking.view.flighthome.FragmentFlightHome"
+        tools:label="FlightHomeFragment"
+        tools:layout="@layout/flight_home">
+        <action
+            android:id="@+id/action_home_to_flight_search"
+            app:destination="@id/flightSearchFragment" />
+        <action
+            android:id="@+id/action_home_to_single_date_calender"
+            app:destination="@+id/singleDateCalendarFragment" />
+        <action
+            android:id="@+id/action_home_to_range_date_calender"
+            app:destination="@+id/rangeDateCalendarFragment" />
+        <action
+            android:id="@+id/action_home_to_travellerNumber"
+            app:destination="@id/travellerNumberFragment" />
+        <action
+            android:id="@+id/action.go_to_flight_list"
+            app:destination="@id/flightListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightSearchFragment"
+        android:name="net.sharetrip.flight.booking.view.searchairport.SearchAirportFragment"
+        tools:label="FlightSearchFragment"
+        tools:layout="@layout/fragment_search_airport">
+        <argument
+            android:name="ARG_FLIGHT_SEARCH_TITLE_TEXT"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/travellerNumberFragment"
+        android:name="net.sharetrip.flight.booking.view.travellers.TravellerNumberFragment"
+        tools:label="TravellerNumberFragment"
+        tools:layout="@layout/fragment_traveller_number">
+        <argument
+            android:name="ARG_TRAVELLERS_INFO"
+            app:argType="net.sharetrip.flight.booking.model.TravellersInfo" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/singleDateCalendarFragment"
+        android:name="net.sharetrip.flight.booking.view.calender.SingleDateCalendarFragment"
+        tools:label="SingleDateCalendarFragment"
+        tools:layout="@layout/fragment_single_calendar">
+        <argument
+            android:name="ARG_CALENDER_DATA"
+            app:argType="net.sharetrip.shared.model.CalenderData" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightListFragment"
+        android:name="net.sharetrip.flight.booking.view.flightlist.FlightListFragment"
+        tools:label="FlightListFragment"
+        tools:layout="@layout/fragment_flight_list">
+        <argument
+            android:name="ARG_FLIGHT_LIST_DATA"
+            app:argType="net.sharetrip.flight.booking.model.FlightSearch" />
+        <action
+            android:id="@+id/action_flightList_to_flightFilter"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_flightList_to_flightDetails"
+            app:destination="@id/flightDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/rangeDateCalendarFragment"
+        android:name="net.sharetrip.flight.booking.view.calender.RangeDateCalendarFragment"
+        tools:label="RangeDateCalendarFragment"
+        tools:layout="@layout/fragment_range_calendar">
+        <argument
+            android:name="ARG_CALENDER_DATA"
+            app:argType="net.sharetrip.shared.model.CalenderData" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightDetailsFragment"
+        android:name="net.sharetrip.flight.booking.view.flightdetails.FlightDetailsFragment"
+        tools:label="FlightDetailsFragment"
+        tools:layout="@layout/fragment_flight_details">
+        <argument
+            android:name="ARG_SELECTED_FLIGHT"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_flightDetails_to_rules"
+            app:destination="@id/flightRulesFragment" />
+        <action
+            android:id="@+id/action_flightDetails_to_segment"
+            app:destination="@id/fragmentSegmentLayout" />
+        <action
+            android:id="@+id/action_flightDetails_to_travelerDetailsFragment"
+            app:destination="@id/travelerDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightRulesFragment"
+        android:name="net.sharetrip.flight.booking.view.farerules.RulesFragment"
+        tools:label="FlightRulesFragment"
+        tools:layout="@layout/fragment_rules_flight">
+        <argument
+            android:name="ARG_FLIGHT_LIST_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSegmentLayout"
+        android:name="net.sharetrip.flight.booking.view.segment.FragmentSegment"
+        tools:label="FragmentSegment"
+        tools:layout="@layout/fragment_segment_layout">
+        <argument
+            android:name="ARG_FLIGHT_LIST_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="net.sharetrip.flight.booking.view.filter.FlightFilterFragment"
+        tools:label="FlightFilterFragment"
+        tools:layout="@layout/fragment_flight_filter">
+        <argument
+            android:name="ARG_FLIGHT_LIST_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/travelerDetailsFragment"
+        android:name="net.sharetrip.flight.booking.view.travellerdetails.TravelerDetailsFragment"
+        tools:label="TravelerDetailsFragment"
+        tools:layout="@layout/fragment_traveler_details_of_flight">
+        <action
+            android:id="@+id/action_travelerAdd_to_passenger"
+            app:destination="@id/passengerFragment" />
+        <action
+            android:id="@+id/action_travelerAdd_to_infoVerification"
+            app:destination="@id/infoVerification" />
+        <argument
+            android:name="ARG_FLIGHT_DETAILS_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/passengerFragment"
+        android:name="net.sharetrip.flight.booking.view.passenger.PassengerFragment"
+        tools:label="PassengerFragment"
+        tools:layout="@layout/fragment_flight_passenger_details">
+        <action
+            android:id="@+id/action_passenger_to_nationality"
+            app:destination="@id/nationalityFragment" />
+        <action
+            android:id="@+id/action_passenger_to_imagePreview"
+            app:destination="@id/imagePreviewFragment" />
+        <argument
+            android:name="ARG_FLIGHT_DETAILS_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nationalityFragment"
+        android:name="net.sharetrip.flight.booking.view.nationality.NationalityFragment"
+        tools:label="NationalityFragment"
+        tools:layout="@layout/fragment_nationality_code_flight" />
+
+    <fragment
+        android:id="@+id/imagePreviewFragment"
+        android:name="net.sharetrip.flight.booking.view.imagepreview.ImagePreviewFragment"
+        tools:label="ImagePreviewFragment"
+        tools:layout="@layout/fragment_image_preview_in_flight">
+        <argument
+            android:name="ARG_IMAGE_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/infoVerification"
+        android:name="net.sharetrip.flight.booking.view.verification.InfoVerificationFragment"
+        tools:label="InfoVerification"
+        tools:layout="@layout/fragment_user_verification_of_flight">
+        <action
+            android:id="@+id/action_infoVerification_to_imagePreview"
+            app:destination="@id/imagePreviewFragment" />
+        <action
+            android:id="@+id/action_infoVerification_to_bookingSummary"
+            app:destination="@id/flightBookingSummary" />
+        <argument
+            android:name="ARG_ALL_TRAVELLER"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightBookingSummary"
+        android:name="net.sharetrip.flight.booking.view.flightbookingsummary.FlightSummaryFragment"
+        tools:label="FlightBookingSummary"
+        tools:layout="@layout/fragment_of_flight_summary">
+        <argument
+            android:name="ARG_FLIGHT_DATA"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_bookingSummary_to_payment"
+            app:destination="@id/payment_nav_graph" />
+        <action
+            android:id="@+id/action_flightBookingSummary_to_flightHomeFragment"
+            app:popUpTo="@id/flightHomeFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/flightHomeFragment" />
+    </fragment>
+
+    <include app:graph="@navigation/payment_nav_graph" />
+
+</navigation>

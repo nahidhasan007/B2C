@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_two"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_covid_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fafafa"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView_close"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_close_black_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:lineSpacingExtra="6sp"
+                        android:text="@string/covid_info_title"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="20sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="@id/imageView_close"
+                        app:layout_constraintStart_toEndOf="@id/imageView_close"
+                        app:layout_constraintTop_toTopOf="@id/imageView_close" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_covid_charge_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/very_light_blue"
+                    app:layout_constraintTop_toBottomOf="@id/layout_covid_title"
+                    tools:layout_editor_absoluteX="-81dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_covid_charge_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_mid_normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Covid-19 Test Charge:"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="@dimen/font_medium"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_covid_regular_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="BDT 5900"
+                        android:textColor="@color/steel"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_view_covid_charge_header"
+                        app:layout_constraintEnd_toStartOf="@+id/text_view_covid_discount_price"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/text_view_covid_charge_header"
+                        app:layout_constraintTop_toTopOf="@+id/text_view_covid_charge_header" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_covid_discount_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="BDT 0"
+                        android:textColor="@color/bright_orange"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_view_covid_regular_price"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/text_view_covid_regular_price"
+                        app:layout_constraintTop_toTopOf="@+id/text_view_covid_regular_price" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_mandatory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_normal"
+                    android:lineSpacingExtra="5sp"
+                    android:text="@string/rt_pcr_test_is_mandatory_for_all_international_travels_from_govt_approved_labs"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_covid_charge_header" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_covid_addon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_mandatory"
+                    tools:itemCount="5"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:listitem="@layout/item_covid_add_ons_flight" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_test_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginBottom="@dimen/spacing_normal"
+                    android:clipToPadding="false"
+                    android:paddingBottom="@dimen/spacing_huge_greater"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_covid_addon"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_covid_service_flight" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_filter_apply"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/button_blue_bg_selector"
+            android:gravity="center"
+            android:text="@string/apply"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

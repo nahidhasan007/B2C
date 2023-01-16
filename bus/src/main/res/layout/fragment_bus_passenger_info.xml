@@ -1,0 +1,442 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.sharetrip.ui.visa.booking.view.home.VisaHomeFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="net.sharetrip.bus.booking.view.passengerInfo.BusPassengerInfoViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/container_nested_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="whit"
+        android:clickable="true"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_constrain_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_horizontal_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="@dimen/activity_vertical_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/center_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_quick_pick"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/quickPick_input_layout"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@+id/quickPick_input_layout"
+                app:srcCompat="@drawable/ic_people_light_20dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/quickPick_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintHorizontal_weight="0.6"
+                app:layout_constraintStart_toEndOf="@+id/image_view_quick_pick"
+                app:layout_constraintTop_toBottomOf="@+id/begin_horizontal_guideline"
+                tools:ignore="RtlHardcoded">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/quickPick_auto_complete_text_view"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:hint="Select from Passenger quick pick"
+                    android:imeOptions="actionNext"
+                    android:maxLines="1"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded,SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/person_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/given_name_text_input_layout"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@+id/given_name_text_input_layout"
+                app:srcCompat="@drawable/ic_person_white_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/given_name_text_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:errorEnabled="true"
+                app:helperText="@string/required"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/person_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/quickPick_input_layout"
+                tools:ignore="RtlHardcoded">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/given_name_text_input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/given_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:onTextChanged="@{model.onTextChangedForFirstName}"
+                    android:text="@={model.givenName}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sur_name_text_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:errorEnabled="true"
+                app:helperText="@string/required"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="@+id/given_name_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@+id/given_name_text_input_layout"
+                tools:ignore="RtlHardcoded">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/sur_name_text_input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/sur_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:onTextChanged="@{model.onTextChangedForLastName}"
+                    android:text="@={model.surName}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/genderHints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="Select Your Gender"
+                android:textColor="#8e8e93"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/sur_name_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@+id/sur_name_text_input_layout" />
+
+            <LinearLayout
+                android:id="@+id/layout_male_selector"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@id/sur_name_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/genderHints">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gender_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="8dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="@drawable/rbtn_textcolor_selector">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_male_mono" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Male"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gender_non_selector"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="8dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_female_mono" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Female"
+                        android:textColor="#4c4c4c"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_female_selector"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@id/sur_name_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/genderHints">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@{model.isMaleSelected ? @drawable/gender_selector : @drawable/gender_non_selector}"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->model.onClickMale()}"
+                    android:orientation="horizontal"
+                    android:paddingStart="8dp"
+                    android:textColor="@drawable/rbtn_textcolor_selector">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@{model.isMaleSelected ? @color/blue_selected : @color/black}"
+                        app:srcCompat="@drawable/ic_male_mono" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="5sp"
+                        android:text="Male"
+                        android:textColor="@{model.isMaleSelected ? @color/blue_selected : @color/black}"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@{model.isMaleSelected ? @drawable/gender_non_selector : @drawable/gender_selector}"
+                    android:button="@null"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->model.onClickFemale()}"
+                    android:orientation="horizontal"
+                    android:paddingStart="8dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@{model.isMaleSelected ? @color/black : @color/blue_selected}"
+                        app:srcCompat="@drawable/ic_female_mono" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Female"
+                        android:textColor="@{model.isMaleSelected ? @color/black : @color/blue_selected}"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_input_phone_number"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@+id/layout_input_phone_number"
+                app:srcCompat="@drawable/ic_phone_black_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_input_phone_number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:errorEnabled="true"
+                app:helperText="@string/required"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@+id/layout_male_selector"
+                app:layout_constraintTop_toBottomOf="@+id/layout_male_selector">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_text_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:onTextChanged="@{model.onTextChangedForMobileNumber}"
+                    android:text="@={model.mobileNumber}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/layout_input_email"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@+id/layout_input_email"
+                app:srcCompat="@drawable/ic_mail_black_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_input_email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:errorEnabled="false"
+                app:helperText="@string/required"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@+id/layout_input_phone_number"
+                app:layout_constraintTop_toBottomOf="@+id/layout_input_phone_number">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_text_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:onTextChanged="@{model.onTextChangedForEmail}"
+                    android:text="@={model.email}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/appCompatCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:onClick="@{()->model.onCheckBoxClicked()}"
+                android:text="@string/add_this_person_to"
+                android:textSize="14sp"
+                android:translationX="-6dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/materialButton"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/layout_input_email"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:text="@string/favorite_passenger_list"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatCheckBox"
+                app:layout_constraintStart_toEndOf="@+id/appCompatCheckBox"
+                app:layout_constraintTop_toTopOf="@+id/appCompatCheckBox" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                style="Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height_normal"
+                android:background="@color/clear_blue"
+                android:onClick="@{()->model.onNextClicked()}"
+                android:text="@string/next"
+                android:textAllCaps="true"
+                android:textColor="@{model.isNextEnabled ? @color/white : @color/black}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

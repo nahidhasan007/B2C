@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.hotel.history.view.roomdetails.HotelHistoryRoomDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/windowBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+            <net.sharetrip.shared.view.widgets.LockableViewPager
+                android:id="@+id/viewPagerImage"
+                android:layout_width="match_parent"
+                android:layout_height="192dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lvp_swipeable="true" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewImageCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/font_normal"
+                app:drawableLeftCompat="@drawable/ic_image_16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/viewPagerImage"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                tools:text=" 4/16" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:text="@{viewModel.roomInfo.name}"
+                android:textColor="@color/black_mat"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/viewPagerImage"
+                tools:text="Junior Suite Queen. Junior Suite Queen. Junior Suite Queen" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_cancellation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_tiny"
+                app:drawableTint="#2e7d31"
+                android:fontFamily="sans-serif"
+                android:text='@{"Free cancellation before"+ viewModel.freeCancelDate}'
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                android:textStyle="normal"
+                android:visibility="@{ viewModel.refundable ? View.VISIBLE : View.GONE}"
+                app:drawableLeftCompat="@drawable/ic_done_light_16dp"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_name"
+                tools:text="Free cancellation before March 10*" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_traveller_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawablePadding="@dimen/spacing_small"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:lineSpacingExtra="8sp"
+                android:text="@{viewModel.travellerCount}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_small"
+                android:textStyle="normal"
+                app:drawableStartCompat="@drawable/ic_people_orange_20dp"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_cancellation"
+                tools:text="4 Adt 3 Chd" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_label_earn_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:drawablePadding="6dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{ String.valueOf(viewModel.points.earning) }"
+                android:textColor="@color/black_100"
+                android:textSize="12sp" android:layout_marginLeft="@dimen/spacing_small"
+                android:textStyle="normal"
+                app:drawableLeftCompat="@drawable/ic_tripcoin_color_20dp"
+                app:layout_constraintStart_toEndOf="@+id/tv_traveller_count"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_cancellation"
+                tools:text="Earn 2000" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_start_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="6sp"
+                android:text='@{"BDT "+NumberFormat.getNumberInstance(Locale.US).format(viewModel.roomInfo.price)}'
+                android:textColor="#235fd8"
+                android:textSize="@dimen/font_medium"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_label_earn_coin"
+                tools:text="BDT 93,916" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

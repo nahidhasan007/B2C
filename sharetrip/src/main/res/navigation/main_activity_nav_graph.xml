@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_nav_graph"
+    app:startDestination="@id/action_home">
+
+    <fragment
+        android:id="@+id/on_boarding_dest"
+        android:name="net.sharetrip.view.onbording.OnBoardingFragment"
+        android:label="LaunchingFragment"
+        tools:layout="@layout/fragment_on_boarding">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/action_home"
+        android:name="net.sharetrip.view.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_on_boarding_dest"
+            app:destination="@id/on_boarding_dest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/action_booking"
+        android:name="net.sharetrip.view.booking.BookingFragment"
+        tools:layout="@layout/fragment_booking" />
+
+    <fragment
+        android:id="@+id/action_notification"
+        android:name="net.sharetrip.view.notification.NotificationFragment"
+        tools:layout="@layout/fragment_notification" />
+
+    <fragment
+        android:id="@+id/action_blog"
+        android:name="net.sharetrip.view.blog.dashboard.BlogDashboardFragment"
+        tools:layout="@layout/fragment_blog_dashboard">
+        <action
+            android:id="@+id/action_action_blog_to_blogCategoryFragment"
+            app:destination="@id/blogCategory" />
+        <action
+            android:id="@+id/action_action_blog_to_searchBlogFragment"
+            app:destination="@id/searchBlogFragment" />
+        <action
+            android:id="@+id/action_action_blog_to_blogDetailsFragment"
+            app:destination="@id/blogDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blogCategory"
+        android:name="net.sharetrip.view.blog.category.BlogCategoryFragment"
+        tools:layout="@layout/fragment_blog_category">
+        <action
+            android:id="@+id/action_blogCategory_to_searchBlogFragment"
+            app:destination="@id/searchBlogFragment"
+            app:popUpTo="@id/blogCategory"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchBlogFragment"
+        android:name="net.sharetrip.view.blog.search.SearchBlogFragment"
+        tools:layout="@layout/fragment_blog_search">
+        <action
+            android:id="@+id/action_searchBlogFragment_to_blogCategory"
+            app:destination="@id/blogCategory"
+            app:popUpTo="@id/searchBlogFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_searchBlogFragment_to_blogDetailsFragment"
+            app:destination="@id/blogDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blogDetailsFragment"
+        android:name="net.sharetrip.view.blog.details.BlogDetailsFragment"
+        tools:layout="@layout/fragment_blog_details">
+        <action
+            android:id="@+id/action_blogDetailsFragment_self"
+            app:destination="@id/blogDetailsFragment"
+            app:popUpTo="@id/blogDetailsFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_blogDetailsFragment_to_searchBlogFragment"
+            app:destination="@id/searchBlogFragment"
+            app:popUpTo="@id/blogDetailsFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/action_profile"
+        android:name="net.sharetrip.view.profile2.dashboard2.ProfileDashboardFragment2"
+        tools:layout="@layout/fragment_profile_dashboard2"/>
+
+</navigation>

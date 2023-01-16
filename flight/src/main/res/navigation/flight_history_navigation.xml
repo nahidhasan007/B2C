@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flight_history_navigation"
+    app:startDestination="@id/flightHistoryFragment">
+
+    <fragment
+        android:id="@+id/flightHistoryFragment"
+        android:name="net.sharetrip.flight.history.view.list.FlightHistoryListFragment"
+        tools:label="FlightHistoryFragment"
+        tools:layout="@layout/fragment_of_flight_history_list">
+        <action
+            android:id="@+id/action_flight_history_to_booking_details"
+            app:destination="@id/flightBookingDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightBookingDetails"
+        android:name="net.sharetrip.flight.history.view.bookingdetails.FlightBookingDetailsFragment"
+        tools:label="FlightBookingDetailsFragment"
+        tools:layout="@layout/fragment_flight_history_details">
+        <argument
+            android:name="ARG_FLIGHT_HISTORY_RESPONSE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_booking_details_to_flight_details"
+            app:destination="@id/flightHistoryDetails" />
+        <action
+            android:id="@+id/action_booking_details_to_pricing_info"
+            app:destination="@id/pricingInfo" />
+        <action
+            android:id="@+id/action_booking_details_to_travellers_info"
+            app:destination="@id/travellersInfo" />
+        <action
+            android:id="@+id/action_booking_details_to_rule"
+            app:destination="@id/ruleFragment" />
+        <action
+            android:id="@+id/action_flightBookingDetails_to_payment_nav_graph"
+            app:destination="@id/payment_nav_graph" />
+        <action
+            android:id="@+id/action_flightBookingDetails_to_selectPassengerFragment"
+            app:destination="@id/selectPassengerFragment" />
+        <action
+            android:id="@+id/action_flightBookingDetails_to_confirmationFragment"
+            app:destination="@id/confirmationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightHistoryDetails"
+        android:name="net.sharetrip.flight.history.view.flightdetails.FlightDetailsHistoryFragment"
+        tools:label="FlightHistoryFragment"
+        tools:layout="@layout/fragment_booking_flight_history">
+        <argument
+            android:name="ARG_FLIGHT_HISTORY_RESPONSE"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/travellersInfo"
+        android:name="net.sharetrip.flight.history.view.travelerList.TravellerListFragment"
+        tools:label="TravellersInfo"
+        tools:layout="@layout/fragment_traveller_list_of_flight_history">
+        <argument
+            android:name="ARG_FLIGHT_HISTORY_RESPONSE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_traveller_info_to_image_preview"
+            app:destination="@id/imagePreviewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imagePreviewFragment"
+        android:name="net.sharetrip.flight.history.view.imagepreview.ImagePreviewFragment"
+        tools:label="ImagePreviewFragment"
+        tools:layout="@layout/fragment_image_preview_in_flight">
+        <argument
+            android:name="ARG_IMAGE_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pricingInfo"
+        android:name="net.sharetrip.flight.history.view.priceinfo.PriceInformationFragment"
+        tools:label="PricingInfo"
+        tools:layout="@layout/fragment_price_information">
+        <argument
+            android:name="EXTRA_PRICE_BREAK_DOWN"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ruleFragment"
+        android:name="net.sharetrip.flight.history.view.rule.FlightRuleFragment"
+        tools:label="RuleFragment"
+        tools:layout="@layout/fragment_flight_rule">
+        <argument
+            android:name="ARG_RULES_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/selectPassengerFragment"
+        android:name="net.sharetrip.flight.history.view.refundselectpassenger.SelectPassengerFragment"
+        tools:label="selectPassengerFragment"
+        tools:layout="@layout/fragment_flight_refund_void_passenger_selection">
+        <argument
+            android:name="ARG_HISTORY_DATA"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_selectPassengerFragment_to_pricingDetailsFragment"
+            app:destination="@id/pricingDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pricingDetailsFragment"
+        android:name="net.sharetrip.flight.history.view.voidorrefund.RefundDetailsFragment"
+        tools:label="pricingDetailsFragment"
+        tools:layout="@layout/fragment_refund_pricing_details">
+        <argument
+            android:name="ARG_REFUND_VOID_DATA"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_pricingDetailsFragment_to_confirmationFragment"
+            app:destination="@id/confirmationFragment" />
+        <action
+            android:id="@+id/action_pricingDetailsFragment_to_refundTravellerDetailsFragment"
+            app:destination="@id/refundTravellerDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/refundTravellerDetailsFragment"
+        android:name="net.sharetrip.flight.history.view.voidorrefund.TravellersDetailsFragment"
+        tools:layout="@layout/fragment_flight_refund_void_travellers_details">
+        <argument
+            android:name="ARG_SELECTED_PASSENGERS"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmationFragment"
+        android:name="net.sharetrip.flight.history.view.voidorrefundconfirmation.ConfirmationFragment"
+        tools:label="ConfirmationFragment"
+        tools:layout="@layout/fragment_refund_or_void_confirmation">
+        <argument
+            android:name="ARG_REFUND_VOID_DATA"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_confirmationFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="net.sharetrip.flight.history.view.voidorrefundconfirmation.VoidOrRefundSuccessFragment"
+        tools:label="SuccessFragment"
+        tools:layout="@layout/fragment_refund_or_void_success">
+        <argument
+            android:name="ARG_REFUND_VOID_DATA"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_successFragment_to_flightBookingDetails"
+            app:popUpTo="@id/selectPassengerFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_successFragment_to_flightBookingDetails_after_void"
+            app:popUpTo="@id/confirmationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <include app:graph="@navigation/payment_nav_graph" />
+
+</navigation>

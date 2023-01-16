@@ -1,0 +1,41 @@
+image: atlassian/default-image:2
+
+clone:
+  depth: full
+  
+pipelines:
+  branches:
+    develop:
+      - step:
+          name: "Copy Source code to AWS CodeCommit"
+          script:
+            - ls -lah
+            - git branch -a
+            - git log
+            - echo $CodeCommitKey > ~/.ssh/codecommit_rsa.tmp
+            - base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/codecommit_rsa
+            - chmod 400 ~/.ssh/codecommit_rsa
+            - echo $CodeCommitConfig > ~/.ssh/config.tmp
+            - base64 -d  ~/.ssh/config.tmp > ~/.ssh/config
+            - set +e
+            - ssh -o StrictHostKeyChecking=no $CodeCommitHost
+            - set -e
+            - git remote add codecommit $CodeCommitDomain/sharetrip-android-app
+            - git push -v codecommit $BITBUCKET_BRANCH                
+    master:          
+      - step:
+          name: "Copy Source code to AWS CodeCommit"
+          script:
+            - ls -lah
+            - git branch -a
+            - git log
+            - echo $CodeCommitKey > ~/.ssh/codecommit_rsa.tmp
+            - base64 -d ~/.ssh/codecommit_rsa.tmp > ~/.ssh/codecommit_rsa
+            - chmod 400 ~/.ssh/codecommit_rsa
+            - echo $CodeCommitConfig > ~/.ssh/config.tmp
+            - base64 -d  ~/.ssh/config.tmp > ~/.ssh/config
+            - set +e
+            - ssh -o StrictHostKeyChecking=no $CodeCommitHost
+            - set -e
+            - git remote add codecommit $CodeCommitDomain/sharetrip-android-app
+            - git push -v codecommit $BITBUCKET_BRANCH

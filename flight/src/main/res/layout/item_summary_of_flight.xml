@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="net.sharetrip.shared.utils.DateFormatChangerKt" />
+        <import type="android.view.View" />
+        <import type="net.sharetrip.shared.utils.Strings" />
+        <variable
+            name="flight"
+            type="net.sharetrip.flight.booking.model.flightresponse.flights.flight.Flight" />
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/windowBackground">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_horizontal_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="8dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_horizontal_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="@dimen/activity_vertical_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="8dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_vertical_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="8dp" />
+
+            <View
+                android:id="@+id/divider_top"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/line_divider_size"
+                android:background="@color/gray"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@+id/begin_horizontal_guideline" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/flight_Logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_product_logo"
+                app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                app:layout_constraintTop_toTopOf="@id/departure_time_text_View"
+                app:layout_constraintBottom_toBottomOf="@id/airline_name_text_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/departure_time_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@{flight.departureDateTime.time}"
+                android:layout_marginLeft="@dimen/spacing_small"
+                app:layout_constraintStart_toEndOf="@id/flight_Logo"
+                app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded"
+                tools:text="19:40" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/airline_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginTop="4dp"
+                android:text="@{flight.airlines.shortName}"
+                app:layout_constraintStart_toEndOf="@id/flight_Logo"
+                app:layout_constraintTop_toBottomOf="@id/departure_time_text_View"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_tiny"
+                tools:ignore="RtlHardcoded"
+                tools:text="Malindo Air" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/departure_airline_code_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="@{flight.originName.code}"
+                android:layout_marginLeft="@dimen/spacing_small"
+                app:layout_constraintStart_toEndOf="@id/departure_time_text_View"
+                app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_normal"
+                tools:ignore="RtlHardcoded"
+                tools:text="DAC" />
+
+            <RelativeLayout
+                android:id="@+id/stop_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/departure_airline_code_text_View"
+                android:layout_alignBottom="@+id/departure_airline_code_text_View"
+                android:layout_marginLeft="@dimen/spacing_small"
+                app:layout_constraintStart_toEndOf="@id/departure_airline_code_text_View"
+                app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline"
+                android:gravity="center"
+                tools:ignore="RtlHardcoded">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/arrow_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="@dimen/spacing_small_tiny"
+                    android:rotation="90"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_flight_16dp" />
+
+                <net.sharetrip.shared.view.widgets.CircularTextView
+                    android:id="@+id/stop_text_View"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_small"
+                    android:visibility="gone"
+                    app:cv_fillColor="@color/colorPrimaryVariant"
+                    tools:text="2" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/arrival_time_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/stop_container"
+                android:layout_alignBottom="@+id/stop_container"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:text="@{flight.arrivalDateTime.time}"
+                app:layout_constraintStart_toEndOf="@id/stop_container"
+                app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline"
+                android:gravity="center"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/font_normal"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded"
+                tools:text="15:25" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/extra_day_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/arrival_time_text_View"
+                android:layout_alignBottom="@+id/arrival_time_text_View"
+                app:layout_constraintStart_toEndOf="@id/arrival_time_text_View"
+                app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline"
+                android:text='@{"+"+flight.dayCount}'
+                android:visibility='@{(Strings.isBlank(flight.dayCount) || flight.dayCount.equals("0")) ? View.INVISIBLE : View.VISIBLE}'
+                android:gravity="top|left"
+                android:textColor="@color/amber"
+                android:textSize="@dimen/font_small"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded"
+                tools:text="+1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/arrival_airline_code_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/extra_day_text_View"
+                android:layout_alignBottom="@+id/extra_day_text_View"
+                android:text="@{flight.destinationName.code}"
+                android:layout_marginLeft="@dimen/spacing_small"
+                app:layout_constraintStart_toEndOf="@id/extra_day_text_View"
+                app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/font_normal"
+                tools:ignore="RtlHardcoded"
+                tools:text="DAC" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/flight_stop_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/spacing_small"
+                app:layout_constraintTop_toTopOf="@id/begin_horizontal_guideline"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                android:text='@{(flight.stop &lt;=0) ? "NonStop" : ""+flight.stop+" Stop(s)"}'
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_small"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded"
+                tools:text="Nonstop" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/duration_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@{flight.duration}"
+                android:drawablePadding="@dimen/spacing_tiny"
+                app:layout_constraintTop_toBottomOf="@id/flight_stop_count"
+                app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                app:layout_constraintBottom_toBottomOf="@id/end_horizontal_guideline"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_tiny"
+                tools:ignore="RtlHardcoded"
+                tools:text="29h 45m" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

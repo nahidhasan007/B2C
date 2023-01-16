@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bus_booking_navigation"
+    app:startDestination="@id/busHomeFragment">
+    <fragment
+        android:id="@+id/busHomeFragment"
+        android:name="net.sharetrip.bus.booking.view.home.BusHomeFragment"
+        tools:layout="@layout/fragment_bus_home">
+        <action
+            android:id="@+id/action_busHomeFragment_to_busSearchFragment"
+            app:destination="@id/busSearchFragment" />
+        <action
+            android:id="@+id/action_busHomeFragment_to_busListFragment"
+            app:destination="@id/busListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busSearchFragment"
+        android:name="net.sharetrip.bus.booking.view.search.BusSearchFragment"
+        tools:layout="@layout/fragment_bus_search"/>
+    <fragment
+        android:id="@+id/busListFragment"
+        android:name="net.sharetrip.bus.booking.view.busList.BusListFragment"
+        tools:layout="@layout/fragment_bus_list">
+        <action
+            android:id="@+id/action_busListFragment_to_busListFilterFragment"
+            app:destination="@id/busListFilterFragment" />
+        <argument
+            android:name="ARG_DEPARTURE_DATE"
+            app:argType="string" />
+        <argument
+            android:name="ARG_DESTINATION_CITY"
+            app:argType="string" />
+        <argument
+            android:name="ARG_ORIGIN_CITY"
+            app:argType="string" />
+        <argument
+            android:name="ARG_DESTINATION_NAME"
+            app:argType="string" />
+        <argument
+            android:name="ARG_ORIGIN_NAME"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_busListFragment_to_busSeatSelectionFragment"
+            app:destination="@id/busSeatSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/busListFilterFragment"
+        android:name="net.sharetrip.bus.booking.view.busList.filter.BusListFilterFragment"
+        tools:layout="@layout/fragment_bus_list_filter">
+        <argument
+            android:name="ARG_BUS_FILTER_DATA"
+            app:argType="net.sharetrip.bus.booking.model.FilterData" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busSeatSelectionFragment"
+        android:name="net.sharetrip.bus.booking.view.seatselection.BusSeatSelectionFragment"
+        android:label="Select Your Seats"
+        tools:layout="@layout/fragment_bus_seat_selection">
+        <argument
+            android:name="ARG_BUS_SELECTION_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_busSeatSelectionFragment_to_boardingPointsFragment"
+            app:destination="@id/boardingPointsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/boardingPointsFragment"
+        android:name="net.sharetrip.bus.booking.view.locationpoints.SelectLocationFragment"
+        android:label="@string/select_boarding"
+        tools:layout="@layout/fragment_bus_boarding_points">
+        <argument
+            android:name="ARG_BUS_LOCATION_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_boardingPointsFragment_to_busPassengerInfoFragment"
+            app:destination="@id/busPassengerInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busPassengerInfoFragment"
+        android:name="net.sharetrip.bus.booking.view.passengerInfo.BusPassengerInfoFragment"
+        android:label="@string/passenger_info"
+        tools:layout="@layout/fragment_bus_passenger_info">
+        <argument
+            android:name="ARG_BUS_PASSENGER_INFO_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_busPassengerInfoFragment_to_busPassengerVerifyInformationFragment"
+            app:destination="@id/busPassengerVerifyInformationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busPassengerVerifyInformationFragment"
+        android:name="net.sharetrip.bus.booking.view.verifyInfo.BusPassengerVerifyInformationFragment"
+        android:label="@string/verify_info"
+        tools:layout="@layout/fragment_bus_passenger_varify_information">
+        <argument
+            android:name="ARG_BUS_PASSENGER_VERIFY_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_busPassengerVerifyInformationFragment_to_busBookingSummaryFragment"
+            app:destination="@id/busBookingSummaryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busBookingSummaryFragment"
+        android:name="net.sharetrip.bus.booking.view.summary.BusBookingSummaryFragment"
+        android:label="@string/booking_summary"
+        tools:layout="@layout/fragment_bus_booking_summary">
+        <argument
+            android:name="ARG_BUS_SUMMARY_BUNDLE"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+</navigation>

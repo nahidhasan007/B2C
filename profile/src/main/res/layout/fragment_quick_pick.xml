@@ -1,0 +1,64 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable name="viewModel" type="net.sharetrip.profile.view.quickpick.QuickPickViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/purchase_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/surface"
+        tools:context=".view.leaderboard.LeaderBoardFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_add_person"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:paddingLeft="120dp"
+            android:background="@color/colorPrimaryVariant"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_vertical"
+            android:text="Add Traveler"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:drawablePadding="@dimen/spacing_normal"
+            app:drawableLeftCompat="@drawable/ic_add_person_light_24dp"
+            android:onClick="@{() -> viewModel.onClickAddPerson()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="@{viewModel.isDataLoading ? View.GONE : View.VISIBLE}"
+            android:id="@+id/list_quick_pick_passenger"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+
+            android:paddingBottom="12dp"
+            android:background="@color/surface"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_add_person" />
+
+        <ProgressBar
+            android:visibility="@{viewModel.isDataLoading ? View.VISIBLE : View.GONE}"
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

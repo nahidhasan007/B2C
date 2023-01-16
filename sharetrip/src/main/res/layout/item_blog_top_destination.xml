@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_tiny"
+        android:layout_marginRight="@dimen/spacing_tiny"
+        android:background="@color/pale_grey"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_city"
+            android:layout_width="@dimen/city_thumbnail_weight"
+            android:layout_height="@dimen/city_thumbnail_height"
+            android:background="@drawable/rounded_image"
+            android:scaleType="centerCrop" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_city_name"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:paddingLeft="@dimen/spacing_tiny"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingRight="@dimen/spacing_tiny"
+            android:paddingBottom="@dimen/spacing_small"
+            android:singleLine="true"
+            android:text="Sydney"
+            android:textColor="#212121"
+            android:textSize="@dimen/font_normal" />
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.view.blog.details.BlogDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+                    app:title="@string/blog_details" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_trip_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:drawablePadding="@dimen/spacing_small"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    app:drawableLeftCompat="@drawable/ic_tripcoin_light_24dp"
+                    android:text="@{viewModel.formattedPoints}"
+                    tools:text="@string/_870" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/pale_grey"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/pale_grey"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.isDataLoading() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageViewBlog"
+                        android:layout_width="0dp"
+                        android:layout_height="192dp"
+                        android:scaleType="centerCrop"
+                        app:image="@{viewModel.blogPost.featuredImage}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@drawable/ic_placeholder" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDetailsTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_marginEnd="@dimen/spacing_normal"
+                        android:layout_marginRight="@dimen/spacing_normal"
+                        android:layout_marginBottom="@dimen/spacing_normal"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{viewModel.blogPost.title}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_medium_large"
+                        app:layout_constraintEnd_toEndOf="@id/imageViewBlog"
+                        app:layout_constraintStart_toStartOf="@id/imageViewBlog"
+                        app:layout_constraintTop_toBottomOf="@+id/imageViewBlog"
+                        tools:text="This Photographer is Selling Prints of Her Wildlife Photos to in the Masai Mara" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBlogAuthorName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:layout_marginBottom="@dimen/spacing_normal"
+                        android:drawablePadding="@dimen/spacing_tiny"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text='@{"By "+viewModel.blogPost.authorName}'
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_tiny"
+                        app:drawableLeftCompat="@drawable/ic_fav_logo"
+                        app:layout_constraintStart_toStartOf="@id/tvDetailsTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDetailsTitle"
+                        tools:text="By ShareTrip" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDescription"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_marginEnd="@dimen/spacing_normal"
+                        android:layout_marginRight="@dimen/spacing_normal"
+                        android:layout_marginBottom="@dimen/spacing_normal"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif"
+                        android:maxLines="2"
+                        android:text="@{viewModel.blogPost.subTitle}"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="@id/imageViewBlog"
+                        app:layout_constraintStart_toStartOf="@id/imageViewBlog"
+                        app:layout_constraintTop_toBottomOf="@+id/tvBlogAuthorName"
+                        tools:text="Dhaka is the capital city of Bangladesh, in southern Asia. Set beside the Buriganga River..." />
+
+                    <WebView
+                        android:id="@+id/webView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:background="@color/pale_grey"
+                        app:layout_constraintEnd_toEndOf="@+id/tvDescription"
+                        app:layout_constraintStart_toStartOf="@id/tvDescription"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintSharePost"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:background="@drawable/background_white_rounded"
+                        android:onClick="@{() -> viewModel.onClickShareBlog()}"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="@id/webView"
+                        app:layout_constraintStart_toStartOf="@id/webView"
+                        app:layout_constraintTop_toBottomOf="@+id/webView">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvShare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_normal_large"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/share_post_on"
+                            android:textAllCaps="true"
+                            android:textColor="@color/clear_blue"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivShareContent"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_small"
+                            app:layout_constraintBottom_toBottomOf="@id/tvShare"
+                            app:layout_constraintStart_toEndOf="@id/tvShare"
+                            app:layout_constraintTop_toTopOf="@id/tvShare"
+                            app:srcCompat="@drawable/ic_share_mono" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <HorizontalScrollView
+                        android:id="@+id/layout_tag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:scrollbars="none"
+                        app:layout_constraintEnd_toEndOf="@id/constraintSharePost"
+                        app:layout_constraintStart_toStartOf="@id/tvBlogAuthorName"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintSharePost">
+
+                        <LinearLayout
+                            android:id="@+id/linearTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:orientation="horizontal" />
+
+                    </HorizontalScrollView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvYouMightLike"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:fontFamily="sans-serif-medium"
+                        android:paddingTop="@dimen/spacing_normal"
+                        android:paddingBottom="@dimen/spacing_normal"
+                        android:text="@string/you_might_like"
+                        android:textColor="@color/black_87"
+                        android:textSize="@dimen/font_medium_large"
+                        app:layout_constraintEnd_toEndOf="@id/constraintSharePost"
+                        app:layout_constraintStart_toStartOf="@id/constraintSharePost"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_tag" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerYouMightLike"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/spacing_greater"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="@id/tvYouMightLike"
+                        app:layout_constraintStart_toStartOf="@+id/tvYouMightLike"
+                        app:layout_constraintTop_toBottomOf="@+id/tvYouMightLike"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/item_blog_trending_topics" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ProgressBar
+                    style="@style/progressBarBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.isDataLoading() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.3555" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

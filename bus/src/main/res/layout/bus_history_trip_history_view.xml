@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="net.sharetrip.shared.utils.DateUtil" />
+
+        <import type="java.text.NumberFormat"/>
+
+        <import type="java.util.Locale"/>
+
+        <variable
+            name="status"
+            type="String" />
+
+        <variable
+            name="statusColor"
+            type="Integer" />
+
+        <variable
+            name="model"
+            type="net.sharetrip.bus.history.model.HistoryDetails"  />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/round_trip_history_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bus_history_top_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bus_history_view_innerstart_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/from_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:text="@{(model.route.split(`-`))[0]}"
+                android:textColor="@color/dark_main"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/round_trip_imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/dhaka" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/round_trip_imageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_arrow_oneway"
+                app:layout_constraintEnd_toStartOf="@+id/to_text_view"
+                app:layout_constraintStart_toEndOf="@+id/from_text_view"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/to_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:text="@{(model.route.split(`-`))[1]}"
+                android:textColor="@color/dark_main"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/round_trip_imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/chottogram" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/total_amount_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="5sp"
+                android:text="@{model.currency+` `+NumberFormat.getNumberInstance(Locale.US).format(model.gatewayAmount)}"
+                android:textAlignment="textEnd"
+                android:textColor="@color/bus_history_bdt"
+                android:textSize="16sp"
+                android:translationY="-2.62sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/total_amount_3050" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBookingIdTitle"
+                android:layout_width="0dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/booking_id"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/from_text_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/booking_id_text_view"
+                android:layout_width="0dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.03"
+                android:text="@{model.bookingId}"
+                android:textColor="@color/dark_main"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/tvBookingIdTitle"
+                app:layout_constraintTop_toBottomOf="@+id/to_text_view"
+                tools:text="@string/booking_id_value" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bus_history_view_mid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bus_history_top_view">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/onward_bus_Service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@string/bus_service_Hanif_Enterprize"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOnwards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@string/onwards"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/boarding_title_onwards_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/boarding"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvOnwards" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/departure_title_onwards_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/departure"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/onward_bus_Service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/time_and_date_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@string/departure_time_date"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/departure_title_onwards_text_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/boarding_counter_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@string/boarding_counter_name"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boarding_title_onwards_text_view"
+                app:layout_constraintWidth_max="200dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bus_history_view_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/bus_history_view_inner_end_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bus_history_view_mid">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/return_bus_Service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.busOperator}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/bus_service_Hanif_Enterprize" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bus_history_return_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/onwards" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/boarding_title_return_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/boarding"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bus_history_return_text_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/departure_title_return_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/departure"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/return_bus_Service" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/time_and_date_of_return_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.boardingTime+`, `+DateUtil.parseDisplayDateFormatFromApiDateFormat(model.journeyDate)}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/departure_title_return_text_view"
+                tools:text="@string/departure_time_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/boarding_counter_for_return_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.boardingPoint}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boarding_title_return_text_view"
+                app:layout_constraintWidth_max="200dp"
+                tools:text="@string/boarding_counter_name" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tripCoin_Image_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/trip_coin_amount_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/boarding_counter_for_return_text_view"
+                app:srcCompat="@drawable/ic_tripcoin" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/trip_coin_amount_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="18dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.tripCoin+``}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:fontFamily="sans-serif-medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boarding_counter_for_return_text_view"
+                tools:text="@string/tripcoin_value" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/status_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/status2"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time_and_date_of_return_text_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.04"
+                android:text="@{status}"
+                android:textColor="@{statusColor}"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/status_title_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/time_and_date_of_return_text_view"
+                tools:text="@string/confirmed"
+                tools:textColor="@color/success_main" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

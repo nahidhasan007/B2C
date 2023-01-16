@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="data"
+            type="net.sharetrip.tracker.view.cirium.model.StatusDetails" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pale_grey"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewFlightStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:background="@color/white"
+            app:cardCornerRadius="@dimen/spacing_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_flight_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/top_guideline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/bottom_guideline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_flight"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:tint="@color/blue_blue"
+                    app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/top_guideline"
+                    app:srcCompat="@drawable/ic_flight_56dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_departure_arrival_airport_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="8sp"
+                    android:textColor="@color/blue_blue"
+                    android:textSize="24sp"
+                    android:text="@{data.airPathCode}"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_flight"
+                    app:layout_constraintStart_toEndOf="@+id/icon_flight"
+                    app:layout_constraintTop_toTopOf="@+id/icon_flight"
+                    tools:text="DAC - DEL" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_airline_logo"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:scaleType="fitXY"
+                    app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/icon_flight"
+                    app:srcCompat="@drawable/ic_flight_blue" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_airline_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:fontFamily="sans-serif"
+                    android:text="@{data.airlineName}"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_airline_logo"
+                    app:layout_constraintStart_toEndOf="@+id/icon_airline_logo"
+                    app:layout_constraintTop_toTopOf="@+id/icon_airline_logo"
+                    tools:text="Turkish Airlines" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_flight_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_medium2"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.airlineNumber}"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/text_view_airline_name"
+                    app:layout_constraintStart_toEndOf="@+id/text_view_airline_name"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_airline_name"
+                    tools:text="TL 713" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_departure"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:tint="@color/blue_blue"
+                    app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/icon_airline_logo"
+                    app:srcCompat="@drawable/ic_flight_takeoff_white_20dp"
+                    app:tint="@color/greyish_brown" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_departure_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    android:text="@{data.departureDate}"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_departure"
+                    app:layout_constraintStart_toEndOf="@+id/icon_departure"
+                    app:layout_constraintTop_toTopOf="@+id/icon_departure"
+                    tools:text="23:40 Dec 13, 2019" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_departure_terminal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/terminal"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/text_view_departure_time"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_departure_time" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_departure_terminal_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.departureTerminal}"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_departure_terminal"
+                    app:layout_constraintStart_toEndOf="@+id/label_departure_terminal"
+                    app:layout_constraintTop_toTopOf="@+id/label_departure_terminal"
+                    tools:text="3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_departure_gate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/gate"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_view_departure_terminal_number"
+                    app:layout_constraintStart_toEndOf="@+id/text_view_departure_terminal_number"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_departure_terminal_number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_departure_gate_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.departureGate}"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_departure_gate"
+                    app:layout_constraintStart_toEndOf="@+id/label_departure_gate"
+                    app:layout_constraintTop_toTopOf="@+id/label_departure_gate"
+                    tools:text="3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_departure_airport_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.departureAirport}"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintStart_toStartOf="@+id/label_departure_terminal"
+                    app:layout_constraintTop_toBottomOf="@+id/label_departure_terminal"
+                    tools:text="Hazrat Shahjalal International Airport" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_departure_delay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/delay"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/text_view_departure_airport_name"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_departure_airport_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_departure_delay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.departureDelay}"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintStart_toEndOf="@+id/label_departure_delay"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_departure_airport_name"
+                    tools:text="25 min" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_arrival"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="@dimen/spacing_medium2"
+                    android:tint="@color/blue_blue"
+                    app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/label_departure_delay"
+                    app:srcCompat="@drawable/ic_flight_land_white_20dp"
+                    app:tint="@color/greyish_brown" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_arrival_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:fontFamily="sans-serif"
+                    android:text="@{data.arrivalDate}"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_arrival"
+                    app:layout_constraintStart_toEndOf="@+id/icon_arrival"
+                    app:layout_constraintTop_toTopOf="@+id/icon_arrival"
+                    tools:text="23:40 Dec 13, 2019" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_arrival_terminal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/terminal"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/text_view_arrival_time"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_arrival_time" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_arrival_terminal_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.arrivalTerminal}"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_arrival_terminal"
+                    app:layout_constraintStart_toEndOf="@+id/label_arrival_terminal"
+                    app:layout_constraintTop_toTopOf="@+id/label_arrival_terminal"
+                    tools:text="4" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_arrival_gate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/gate"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_view_arrival_terminal_number"
+                    app:layout_constraintStart_toEndOf="@+id/text_view_arrival_terminal_number"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_arrival_terminal_number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_arrival_gate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.arrivalGate}"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_arrival_gate"
+                    app:layout_constraintStart_toEndOf="@+id/label_arrival_gate"
+                    app:layout_constraintTop_toTopOf="@+id/label_arrival_gate"
+                    tools:text="Not Found" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_arrival_airport_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.arrivalAirport}"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintStart_toStartOf="@+id/label_arrival_terminal"
+                    app:layout_constraintTop_toBottomOf="@+id/label_arrival_terminal"
+                    tools:text="Hazrat Shahjalal International Airport" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_arrival_delay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/delay"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/text_view_arrival_airport_name"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_arrival_airport_name"
+                    tools:text="Delay: " />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_arrival_delay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{data.arrivalDelay}"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_arrival_delay"
+                    app:layout_constraintStart_toEndOf="@+id/label_arrival_delay"
+                    app:layout_constraintTop_toTopOf="@+id/label_arrival_delay"
+                    tools:text="On Time" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_flight_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/status_colon"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/bottom_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/icon_status"
+                    app:layout_constraintTop_toTopOf="@+id/icon_status"
+                    tools:text="Status: " />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_flight_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:fontFamily="sans-serif"
+                    android:text="@{data.status}"
+                    android:textAllCaps="true"
+                    android:textColor="@color/greyish_brown"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_flight_status"
+                    app:layout_constraintStart_toEndOf="@+id/label_flight_status"
+                    app:layout_constraintTop_toTopOf="@+id/label_flight_status"
+                    tools:text="active" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_status"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:layout_constraintBottom_toTopOf="@id/bottom_guideline"
+                    app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/label_arrival_delay"
+                    app:srcCompat="@drawable/ic_done_indigo_24dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <fragment
+            android:id="@+id/fragmentMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/spacing_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewFlightStatus"
+            tools:context=".profile.view.tracking.view.details.FlightTrackingDetailsFragment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

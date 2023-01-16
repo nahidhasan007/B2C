@@ -1,0 +1,855 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.visa.booking.view.travellerInfo.VisaTravellerInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#efeff4">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.dataLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/container_nested_layout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/container_nested_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/visa_selection_bg"
+            android:clickable="true"
+            android:fillViewport="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="@{viewModel.dataLoading ? View.GONE : View.VISIBLE}"
+            tools:context=".visa.booking.view.traveller_info.VisaTravellerInfoFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_constrain_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_horizontal_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/activity_vertical_margin" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/center_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_applicationForm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/application_form"
+                    android:textColor="@color/black_60"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/begin_horizontal_guideline" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_quick_pick"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isQuickPickEnable() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/quickPick_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/quickPick_input_layout"
+                    app:srcCompat="@drawable/ic_people_light_20dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/quickPick_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:visibility="@{viewModel.isQuickPickEnable() ? View.VISIBLE : View.GONE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintHorizontal_weight="0.6"
+                    app:layout_constraintStart_toEndOf="@+id/image_view_quick_pick"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_applicationForm"
+                    tools:ignore="RtlHardcoded">
+
+                    <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                        android:id="@+id/quickPick_auto_complete_text_view"
+                        style="?attr/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:completionThreshold="1"
+                        android:hint="@string/visa_traveller_info_hint"
+                        android:imeOptions="actionNext"
+                        android:maxLines="1"
+                        app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                        tools:ignore="RtlHardcoded" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/person_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/gray_800"
+                    app:layout_constraintBottom_toBottomOf="@+id/given_name_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/given_name_text_input_layout"
+                    app:srcCompat="@drawable/ic_person_white_24dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/given_name_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@+id/person_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/quickPick_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/given_name_text_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/given_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:onTextChanged="@{viewModel::onTextChangedForFirstName}"
+                        android:text="@={viewModel.givenName}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sur_name_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="@+id/given_name_text_input_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/given_name_text_input_layout"
+                    tools:ignore="RtlHardcoded">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/sur_name_text_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sur_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:onTextChanged="@{viewModel::onTextChangedForLastName}"
+                        android:text="@={viewModel.surName}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_gender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                    app:layout_constraintStart_toStartOf="@id/sur_name_text_input_layout"
+                    app:layout_constraintTop_toBottomOf="@id/sur_name_text_input_layout">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/genderHints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="26dp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="4sp"
+                        android:text="Select Your Gender"
+                        android:textColor="#8e8e93"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_male_selector"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility='@{viewModel.isMaleSelected() ? View.VISIBLE : View.INVISIBLE}'
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/genderHints">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gender_selector"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="8dp"
+                            android:paddingLeft="8dp"
+                            android:textColor="@drawable/rbtn_textcolor_selector">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/ic_male_mono" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginLeft="4dp"
+                                android:fontFamily="sans-serif"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="5sp"
+                                android:text="Male"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gender_non_selector"
+                            android:gravity="center_vertical"
+                            android:onClick="@{()->viewModel.onClickFemale()}"
+                            android:orientation="horizontal"
+                            android:paddingStart="8dp"
+                            android:paddingLeft="8dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/ic_female_mono" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginLeft="4dp"
+                                android:fontFamily="sans-serif"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="5sp"
+                                android:text="Female"
+                                android:textColor="#4c4c4c"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_female_selector"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility='@{!viewModel.isMaleSelected() ? View.VISIBLE : View.INVISIBLE}'
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/genderHints">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gender_non_selector"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center_vertical"
+                            android:onClick="@{()-> viewModel.onClickMale()}"
+                            android:orientation="horizontal"
+                            android:paddingStart="8dp"
+                            android:paddingLeft="8dp"
+                            android:textColor="@drawable/rbtn_textcolor_selector">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:tint="@color/black"
+                                app:srcCompat="@drawable/ic_male_mono" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginLeft="4dp"
+                                android:fontFamily="sans-serif"
+                                android:lineSpacingExtra="5sp"
+                                android:text="Male"
+                                android:textColor="#4c4c4c"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gender_selector"
+                            android:button="@null"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="8dp"
+                            android:paddingLeft="8dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:tint="#1882ff"
+                                app:srcCompat="@drawable/ic_female_mono" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginLeft="4dp"
+                                android:fontFamily="sans-serif"
+                                android:letterSpacing="0.01"
+                                android:lineSpacingExtra="5sp"
+                                android:text="Female"
+                                android:textColor="#000000"
+                                android:textSize="16sp"
+                                android:textStyle="normal" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/birth_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/birth_day_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/birth_day_text_input_layout"
+                    app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/birth_day_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/birth_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_gender">
+
+                    <net.sharetrip.shared.view.widgets.DatePickerTextInputEditText
+                        android:id="@+id/birth_day_text_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/birth_day"
+                        android:imeOptions="actionNext"
+                        android:inputType="date"
+                        android:maxLines="1"
+                        android:onTextChanged="@{viewModel.onTextChangedForBirthday}"
+                        android:text="@={viewModel.birthDate}"
+                        app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/nationality_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/nationality_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/nationality_text_input_layout"
+                    app:srcCompat="@drawable/ic_assistant_photo_black_24dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nationality_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/nationality_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/birth_day_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nationality_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:hint="@string/nationality"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
+                        android:onTextChanged="@{viewModel.onTextChangedForNationality}"
+                        android:onClick="@{() -> viewModel.onClickNationality()}"
+                        android:text="@={viewModel.nationality}"
+                        tools:ignore="RtlHardcoded" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/passport_number_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/passport_number_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/passport_number_text_input_layout"
+                    app:srcCompat="@drawable/ic_passport_black_24dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passport_number_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/passport_number_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/nationality_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passport_number_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/passport_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="9"
+                        android:onTextChanged="@{viewModel.onTextChangedForPassportNumber}"
+                        android:text="@={viewModel.passportNumber}"
+                        tools:ignore="RtlHardcoded" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/passport_expire_date_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/passport_expire_date_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/passport_expire_date_text_input_layout"
+                    app:srcCompat="@drawable/ic_expired_date_24dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passport_expire_date_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/passport_expire_date_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/passport_number_text_input_layout">
+
+                    <net.sharetrip.shared.view.widgets.DatePickerTextInputEditText
+                        android:id="@+id/passport_expire_date_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/passport_expire_date"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:onTextChanged="@{viewModel.onTextChangedForPassportExpireDate}"
+                        android:text="@={viewModel.passportExpiryDate}"
+                        app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                        tools:ignore="RtlHardcoded" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profession_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/profession_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/profession_text_input_layout"
+                    app:srcCompat="@drawable/ic_profession_mono" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/profession_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:visibility='@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}'
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintHorizontal_weight="0.6"
+                    app:layout_constraintStart_toEndOf="@+id/profession_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/passport_expire_date_text_input_layout"
+                    tools:ignore="RtlHardcoded">
+
+                    <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                        android:id="@+id/profession_auto_complete_text_view"
+                        style="?attr/editTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:completionThreshold="1"
+                        android:hint="@string/visa_traveller_profession_hint"
+                        android:imeOptions="actionNext"
+                        android:maxLines="1"
+                        android:onTextChanged="@{viewModel.onTextChangedForProfession}"
+                        app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                        tools:ignore="RtlHardcoded" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/current_address_image_view"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/current_address_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/current_address_text_input_layout"
+                    app:srcCompat="@drawable/address_gray_24" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/detination_address_image_view2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/destination_address_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/destination_address_text_input_layout"
+                    app:srcCompat="@drawable/address_gray_24" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/current_address_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/passport_expire_date_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/profession_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/current_address_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/current_address"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:onTextChanged="@{viewModel.onTextChangedForCurrentAddress}"
+                        android:text="@={viewModel.currentAddress}"
+                        tools:text="Banani Dhaka Bangladesh" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/detination_address_image_view"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/destination_address_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/destination_address_text_input_layout"
+                    app:srcCompat="@drawable/address_gray_24" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/destination_address_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.GONE : View.VISIBLE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/detination_address_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/current_address_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/destination_address_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/destination_address"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:onTextChanged="@{viewModel.onTextChangedForDestinationAddress}"
+                        android:text="@={viewModel.foreignAddress}"
+                        tools:text="KL Malaysia" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/phone_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/gray_800"
+                    app:layout_constraintBottom_toBottomOf="@+id/phone_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/phone_text_input_layout"
+                    app:srcCompat="@drawable/ic_phone_black_24dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phone_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/phone_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/destination_address_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone_address_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/phone_number"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:onTextChanged="@{viewModel.onTextChangedForPhoneNumber}"
+                        android:text="@={viewModel.phone}"
+                        tools:text="01723623393" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/email_address_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/gray_800"
+                    app:layout_constraintBottom_toBottomOf="@+id/email_address_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/email_address_text_input_layout"
+                    app:srcCompat="@drawable/ic_email_white_24dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/email_address_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/email_address_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email_address_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/email_address"
+                        android:imeOptions="actionDone"
+                        android:inputType="textEmailAddress"
+                        android:onTextChanged="@{viewModel.onTextChangedForEmail}"
+                        android:text="@={viewModel.email}"
+                        tools:text="user@gmail.com" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/contact_address_image_view"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/contact_address_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/contact_address_text_input_layout"
+                    app:srcCompat="@drawable/address_gray_24" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/contact_address_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.VISIBLE : View.GONE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/required"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/contact_address_image_view"
+                    app:layout_constraintTop_toBottomOf="@+id/email_address_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/contact_address_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/contact_address"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:onTextChanged="@{viewModel.onTextChangedForContactAddress}"
+                        android:text="@={viewModel.contactAddress}"
+                        tools:text="Banani Dhaka Bangladesh" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/special_notes_imageview"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:tint="@color/gray_800"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/special_notes_text_input_layout"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/special_notes_text_input_layout"
+                    app:srcCompat="@drawable/special_notes_24_" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/special_notes_text_input_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:visibility="@{viewModel.isStickerVisa() ? View.VISIBLE : View.GONE}"
+                    app:boxBackgroundColor="@color/visa_selection_bg"
+                    app:errorEnabled="true"
+                    app:helperText="@string/optional"
+                    app:helperTextEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintStart_toEndOf="@+id/special_notes_imageview"
+                    app:layout_constraintTop_toBottomOf="@+id/contact_address_text_input_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/special_notes_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/special_notes"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:text="@={viewModel.specialNotes}"
+                        tools:text="Special Notes" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

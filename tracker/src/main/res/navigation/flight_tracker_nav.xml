@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flight_tracker_nav"
+    app:startDestination="@id/flightTrackingSearchFragment">
+
+    <fragment
+        android:id="@+id/flightStatusDetailsFragment"
+        android:name="net.sharetrip.tracker.view.cirium.view.details.FlightStatusDetailsFragment"
+        tools:layout="@layout/fragment_flight_status_details">
+        <argument
+            android:name="ARG_FLIGHT_TRACKING_DATA"
+            app:argType="net.sharetrip.tracker.view.cirium.model.FlightTrackingDataHolder" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightTrackingSearchFragment"
+        android:name="net.sharetrip.tracker.view.cirium.view.search.FlightTrackingSearchFragment"
+        tools:layout="@layout/fragment_flight_tracking_search">
+        <action
+            android:id="@+id/action_flightTrackingSearchFragment_to_flightStatusDetailsFragment"
+            app:destination="@id/flightStatusDetailsFragment" />
+        <action
+            android:id="@+id/action_flightTrackingSearchFragment_to_flightStatusListFragment"
+            app:destination="@id/flightStatusListFragment" />
+        <action
+            android:id="@+id/action_flightTrackingSearchFragment_to_trackerCalenderFragment"
+            app:destination="@id/trackerCalenderFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/flightStatusListFragment"
+        android:name="net.sharetrip.tracker.view.cirium.view.list.FlightStatusListFragment"
+        tools:layout="@layout/fragment_flight_status_list">
+        <action
+            android:id="@+id/action_flightStatusListFragment_to_flightStatusDetailsFragment"
+            app:destination="@id/flightStatusDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/travelAdviceSearchFragment"
+        android:name="net.sharetrip.tracker.view.search.TravelAdviceSearchFragment"
+        tools:layout="@layout/fragment_travel_advice_search">
+        <action
+            android:id="@+id/action_travelAdviceSearchFragment_to_countryCurrencyFragment2"
+            app:destination="@id/countryCurrencyFragment2"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/trackerCalenderFragment"
+        android:name="net.sharetrip.tracker.view.cirium.view.calender.TrackerCalenderFragment"
+        tools:layout="@layout/fragment_single_calendar">
+        <argument
+            android:name="ARG_CALENDER_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/countryCurrencyFragment2"
+        android:name="net.sharetrip.profile.view.list.CountryCurrencyFragment"
+        tools:layout="@layout/fragment_country_currency" >
+        <argument
+            android:name="ARG_COUNTRY_CURRENCY"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

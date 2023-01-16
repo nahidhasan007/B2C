@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="visa">Visa</string>
+    <string name="destination_country">Destination Country</string>
+    <string name="travellers">Travellers</string>
+    <string name="traveller_s">Traveller(s)</string>
+    <string name="done">DONE</string>
+    <string name="validity">Validity:</string>
+    <string name="ninety_days">90 Days</string>
+    <string name="max_stay">Max Stay:</string>
+    <string name="price">Price</string>
+    <string name="person">/person</string>
+    <string name="seven_months_valid_passport_with_old_passport">7 Months Valid Passport with Old Passport if have.</string>
+    <string name="select_visa_type">Select Visa Type</string>
+    <string name="no_internet">No Internet</string>
+    <string name="important_notes">Important Notes</string>
+    <string name="frequently_asked_questions">Frequently Asked Questions</string>
+    <string name="traveller_s_information">Traveller(s) Information</string>
+    <string name="application_form">Application Form</string>
+    <string name="required">*Required</string>
+    <string name="give_a_valid_email">Give a valid email</string>
+    <string name="only_use_letter">Only use letter</string>
+    <string name="booking_history">Booking History</string>
+    <string name="booking_details">Booking Details</string>
+    <string name="contact_info">Contact Info</string>
+    <string name="edit">Edit</string>
+    <string name="upload">Upload</string>
+    <string name="choose_a_file">Choose a file</string>
+    <string name="permission_denied">You have denied the permission</string>
+    <string name="wrong_format">Wrong formatted document</string>
+    <string name="upload_all_photo">Please upload all photo</string>
+    <string name="photo_not_uploaded">Photo Not Uploaded!</string>
+    <string name="successfully_uploaded">Successfully Uploaded.</string>
+    <string name="confirm_text">Confirm</string>
+    <string name="we_hope_message">We hope that you have entered all the information as per the traveller’s passport. Providing incorrect information could lead to visa rejection by embassy.</string>
+    <string name="discount">Discount</string>
+</resources>

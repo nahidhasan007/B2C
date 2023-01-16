@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <variable
+            name="tripCoin"
+            type="net.sharetrip.profile.model.TripCoinWinner" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/expiring_trip_coins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        app:cardCornerRadius="@dimen/spacing_tiny"
+        app:layout_constraintEnd_toEndOf="@+id/end_vertical_guideline"
+        app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_trip_coin_rewards"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_tripcoin_color_24dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_rewards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:text="@{tripCoin.type}"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/image_view_trip_coin_rewards"
+                app:layout_constraintStart_toEndOf="@+id/image_view_trip_coin_rewards"
+                app:layout_constraintTop_toTopOf="@id/image_view_trip_coin_rewards"
+                tools:text="Spin to win" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/expiringPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:text="@{NumberFormat.getNumberInstance(Locale.US).format(tripCoin.value)}"
+                android:textColor="@color/black_87"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="870" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

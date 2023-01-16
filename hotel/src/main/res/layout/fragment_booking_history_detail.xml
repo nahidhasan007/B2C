@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="java.text.NumberFormat" />
+        <import type="java.util.Locale" />
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.hotel.history.view.bookingdetails.BookingDetailViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/surface"
+                android:clickable="true"
+                android:focusable="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_detail_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/windowBackground"
+                    android:paddingBottom="@dimen/spacing_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/begin_vertical_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/end_vertical_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/begin_horizontal_guideline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/one_third_guideline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent=".33" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/two_third_guideline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_end="139dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_hotel_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:layout_marginRight="@dimen/spacing_small"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="2sp"
+                        android:text="@{viewModel.hotelInfo.hotel.name}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/text_view_currency"
+                        app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                        app:layout_constraintTop_toTopOf="@+id/begin_horizontal_guideline"
+                        tools:text="Radioson Blue Water Garden…  " />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_currency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:fontFamily="sans-serif"
+                        android:text='@{viewModel.hotelInfo.currency + " " + NumberFormat.getNumberInstance(Locale.US).format(viewModel.hotelInfo.totalPrice - viewModel.hotelInfo.discountValue)}'
+                        android:textColor="@color/blue_blue"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/begin_horizontal_guideline"
+                        tools:text="BDT 23,916" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_booking_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/booking_id_colon"
+                        android:textColor="@color/gray_800"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_hotel_name" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_booking_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_small_tiny"
+                        android:fontFamily="sans-serif"
+                        android:text="@{viewModel.hotelInfo.getVoucherId()}"
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/text_view_booking_header"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_hotel_name"
+                        tools:text="ST123456789" />
+
+                    <View
+                        android:id="@+id/horizontal_line_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:background="@drawable/dotted_line"
+                        android:layerType="software"
+                        android:visibility="invisible"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_booking_id" />
+
+                    <View
+                        android:id="@+id/horizontal_line_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@drawable/dotted_line"
+                        android:layerType="software"
+                        android:visibility="invisible"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_check_in_date" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_check_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/check_in"
+                        android:textColor="#99000000"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_check_in_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small_tiny"
+                        android:fontFamily="sans-serif"
+                        android:text="@{viewModel.hotelInfo.getCheckingDate()}"
+                        android:textColor="@color/black_87"
+                        android:textSize="@dimen/font_normal"
+                        app:layout_constraintRight_toLeftOf="@+id/text_view_check_in_month_year"
+                        app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/title_check_in"
+                        tools:text="12" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_check_in_month_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{viewModel.hotelInfo.getCheckingMonthAndYear()}"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_view_check_in_date"
+                        app:layout_constraintStart_toEndOf="@+id/text_view_check_in_date"
+                        app:layout_constraintTop_toTopOf="@+id/text_view_check_in_date"
+                        tools:text="Sep 18" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_check_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/check_out"
+                        android:textColor="#99000000"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="@+id/one_third_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one"
+                        tools:text="Check-out" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_check_out_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small_tiny"
+                        android:fontFamily="sans-serif-medium"
+                        android:lineSpacingExtra="4sp"
+                        android:text="@{viewModel.hotelInfo.getCheckoutDate()}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        app:layout_constraintStart_toStartOf="@+id/one_third_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/title_check_out"
+                        tools:text="18" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_check_out_month_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{viewModel.hotelInfo.getCheckoutMonthAndYear()}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toTopOf="@+id/horizontal_line_two"
+                        app:layout_constraintStart_toEndOf="@+id/text_view_check_out_date"
+                        app:layout_constraintTop_toTopOf="@+id/text_view_check_out_date"
+                        tools:text="Sep 18" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_rooms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text='@{viewModel.hotelInfo.getTotalNights() + " Night(s), " + viewModel.hotelInfo.getBookedRooms().size() + " Room(s)"}'
+                        android:textColor="@color/greyish_brown"
+                        android:textSize="@dimen/font_small"
+                        app:layout_constraintStart_toStartOf="@+id/two_third_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one"
+                        tools:text="2 Night(s), 2 Room(s)" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_total_guest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small_tiny"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{viewModel.totalPerson}"
+                        android:textColor="@color/black_87"
+                        android:textSize="@dimen/font_normal"
+                        app:layout_constraintStart_toStartOf="@+id/two_third_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_rooms"
+                        tools:text="4 Adt 3 Chd" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:fontFamily="sans-serif"
+                        android:padding="3dp"
+                        android:text="@string/payment_colon"
+                        android:textColor="#99000000"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_two" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_payment_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="@dimen/spacing_small_tiny"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:fontFamily="sans-serif"
+                        android:text="@{viewModel.hotelInfo.getPaymentStatus()}"
+                        android:textColor="#43a046"
+                        android:textSize="@dimen/font_medium"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/title_status"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_two"
+                        tools:text="PAID" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title_status_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:fontFamily="sans-serif"
+                        android:padding="3dp"
+                        android:text="@string/booking_colon"
+                        android:textColor="#99000000"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toEndOf="@+id/text_view_payment_status"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_two" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_status_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="@dimen/spacing_small_tiny"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:fontFamily="sans-serif"
+                        android:text="@{viewModel.hotelInfo.getStatus()}"
+                        android:textColor="#43a046"
+                        android:textSize="@dimen/font_medium"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/title_status_booking"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_two"
+                        tools:text="WAITING" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/free_cancellation_hint_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:background="@color/egg_shell"
+                        android:fontFamily="sans-serif"
+                        android:padding="@dimen/spacing_small"
+                        android:text="@{viewModel.freeCancellationDate}"
+                        android:textColor="@color/amber"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="normal"
+                        android:visibility='@{viewModel.isCancelableButtonShow()?View.VISIBLE:View.GONE}'
+                        app:drawableStartCompat="@drawable/ic_info_mono"
+                        app:layout_constraintEnd_toEndOf="@+id/end_vertical_guideline"
+                        app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/title_status" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_view_coin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:drawablePadding="@dimen/spacing_tiny"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:text="@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.hotelInfo.tripCoin)}"
+                        android:textColor="@color/black_87"
+                        android:textSize="@dimen/font_medium"
+                        android:textStyle="bold"
+                        app:drawableLeftCompat="@drawable/ic_tripcoin_color_24dp"
+                        app:layout_constraintRight_toLeftOf="@+id/end_vertical_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_line_two"
+                        tools:text="1245" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/retry_booking"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/font_normal"
+                        android:fontFamily="sans-serif"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:onClick="@{() -> viewModel.onClickedRetryPayment()}"
+                        android:padding="@dimen/spacing_normal"
+                        android:text="@string/retry_booking"
+                        android:textStyle="bold"
+                        android:visibility='@{viewModel.isRetryButtonShow() ? View.VISIBLE:View.GONE}'
+                        app:cornerRadius="0dp"
+                        app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                        app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/free_cancellation_hint_text_view" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_resend_vouchar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginRight="@dimen/spacing_normal"
+                        android:fontFamily="sans-serif"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:onClick="@{() -> viewModel.onClickedResendVoucher()}"
+                        android:padding="@dimen/spacing_normal"
+                        android:text="@string/resend_voucher"
+                        android:textStyle="bold"
+                        android:visibility='@{viewModel.isResendVoucherButtonShow() ? View.VISIBLE:View.GONE}'
+                        app:cornerRadius="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/retry_booking" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/cancel_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginRight="@dimen/spacing_normal"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:onClick="@{() -> viewModel.showCancelAlert()}"
+                        android:padding="@dimen/spacing_normal"
+                        android:text="@string/cancel_booking"
+                        android:textColor="@color/blue"
+                        android:textStyle="bold"
+                        android:visibility='@{viewModel.isCancelableButtonShow() ?View.VISIBLE:View.GONE}'
+                        app:cornerRadius="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/button_resend_vouchar" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.dataLoading ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_detail_info" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_detail_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/details_information"
+                    android:textColor="#99000000"
+                    android:textSize="@dimen/font_normal"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toTopOf="@+id/hotel_information_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_detail_info" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/hotel_information_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:background="@color/windowBackground"
+                    android:text="@string/hotel_information"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:onClick="@{() -> viewModel.onClickHotelInformation()}"
+                    android:paddingLeft="@dimen/spacing_normal"
+                    android:paddingRight="@dimen/spacing_normal"
+                    app:drawableTint="@color/blue"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/font_medium"
+                    android:textStyle="normal"
+                    app:drawableRightCompat="@drawable/ic_navigate_next_24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_detail_info"
+                    tools:text="Hotel Information" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/travellers_information_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_small_tiny"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:background="@color/windowBackground"
+                    app:drawableTint="@color/blue"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:onClick="@{() -> viewModel.onClickTravellersInformation()}"
+                    android:paddingLeft="@dimen/spacing_normal"
+                    android:paddingRight="@dimen/spacing_normal"
+                    android:text="@string/travellers_information"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/font_medium"
+                    android:textStyle="normal"
+                    app:drawableRightCompat="@drawable/ic_navigate_next_24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/hotel_information_button" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/pricing_information_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_small_tiny"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:background="@color/windowBackground"
+                    app:drawableTint="@color/blue"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:onClick="@{() -> viewModel.onClickPriceInfo()}"
+                    android:paddingLeft="@dimen/spacing_normal"
+                    android:paddingRight="@dimen/spacing_normal"
+                    android:text="@string/pricing_information"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/font_medium"
+                    app:drawableRightCompat="@drawable/ic_navigate_next_24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/travellers_information_button" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/support_center_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="@dimen/spacing_small_tiny"
+                    android:background="@color/windowBackground"
+                    app:drawableTint="@color/black"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/spacing_normal"
+                    android:paddingRight="@dimen/spacing_normal"
+                    android:text="@string/support_center"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/font_medium"
+                    android:textStyle="normal"
+                    android:visibility="gone"
+                    app:drawableRightCompat="@drawable/ic_navigate_next_24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/pricing_information_button" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/cancellation_policy_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="@dimen/spacing_small_tiny"
+                    android:background="@color/windowBackground"
+                    app:drawableTint="@color/black"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/spacing_normal"
+                    android:paddingRight="@dimen/spacing_normal"
+                    android:text="@string/cancellation_policy"
+                    android:textColor="@color/black_87"
+                    android:textSize="@dimen/font_medium"
+                    android:visibility="gone"
+                    app:drawableRightCompat="@drawable/ic_navigate_next_24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/support_center_button" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

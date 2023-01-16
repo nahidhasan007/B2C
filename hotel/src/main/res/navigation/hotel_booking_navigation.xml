@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/booking_navigation"
+    app:startDestination="@id/hotelFragment">
+
+    <fragment
+        android:id="@+id/hotelFragment"
+        android:name="net.sharetrip.hotel.booking.view.main.HotelBookingMainFragment"
+        tools:label="HotelBookingFragment"
+        tools:layout="@layout/fragment_hotel_booking_main">
+        <action
+            android:id="@+id/action_hotel_main_to_hotel_list"
+            app:destination="@+id/hotelListFragment" />
+        <action
+            android:id="@+id/action_hotel_main_to_date_range"
+            app:destination="@+id/rangeDateCalendarFragment" />
+        <action
+            android:id="@+id/action_hotel_main_to_traveller_room"
+            app:destination="@+id/travellerRoom" />
+        <action
+            android:id="@+id/action_hotel_main_to_hotel_search"
+            app:destination="@+id/hotelSearch" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hotelListFragment"
+        android:name="net.sharetrip.hotel.booking.view.hotellist.HotelListFragment"
+        tools:label="HotelListFragment"
+        tools:layout="@layout/fragment_hotel_list">
+        <argument
+            android:name="ARG_HOTEL_QUERY_MODEL"
+            app:argType="net.sharetrip.hotel.utils.HotelSearchQuery" />
+        <action
+            android:id="@+id/action_hotelListFragment_to_hotelFilterFragment"
+            app:destination="@id/hotelFilterFragment" />
+        <action
+            android:id="@+id/action_hotelListFragment_to_hotelDetailsFragment"
+            app:destination="@id/hotelDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/rangeDateCalendarFragment"
+        android:name="net.sharetrip.shared.view.RangeDateCalendarFragment"
+        tools:label="RangeDateCalendarFragment"
+        tools:layout="@layout/fragment_range_calendar">
+        <argument
+            android:name="ARG_CALENDER_DATA"
+            app:argType="net.sharetrip.shared.model.CalenderData" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/travellerRoom"
+        android:name="net.sharetrip.hotel.booking.view.travelleroom.TravellerRoomFragment"
+        tools:label="TravellerRoom"
+        tools:layout="@layout/fragment_traveller_room">
+        <argument
+            android:name="ARG_TRAVELER_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hotelSearch"
+        android:name="net.sharetrip.hotel.booking.view.search.HotelSearchFragment"
+        tools:label="TravellerRoom"
+        tools:layout="@layout/fragment_hotel_search" />
+    <fragment
+        android:id="@+id/hotelFilterFragment"
+        android:name="net.sharetrip.hotel.booking.view.hotelfilter.HotelFilterFragment"
+        android:label=""
+        tools:layout="@layout/fragment_hotel_filter">
+
+        <argument
+            android:name="ARG_HOTEL_FILTER_BUNDLE"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hotelDetailsFragment"
+        android:name="net.sharetrip.hotel.booking.view.hoteldetail.HotelDetailsFragment"
+        android:label="HotelDetailsFragment"
+        tools:layout="@layout/fragment_hotel_details">
+
+        <argument
+            android:name="ARG_HOTEL_DETAILS_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_hotelDetailsFragment_to_roomListFragment"
+            app:destination="@id/roomListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/roomListFragment"
+        android:name="net.sharetrip.hotel.booking.view.roomlist.RoomListFragment"
+        android:label="@string/reserve"
+        tools:layout="@layout/fragment_room_list">
+
+        <argument
+            android:name="ARG_ROOM_LIST_FRAGMENT_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_roomListFragment_to_roomDetailFragment"
+            app:destination="@id/roomDetailFragment" />
+        <action
+            android:id="@+id/action_roomListFragment_to_hotelDiscountFragment"
+            app:destination="@id/hotelDiscountFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/roomDetailFragment"
+        android:name="net.sharetrip.hotel.booking.view.roomdetail.RoomDetailFragment"
+        android:label="@string/room_details"
+        tools:layout="@layout/fragment_room_detail">
+
+        <argument
+            android:name="ARG_ROOM_DETAIL_BUNDLE"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hotelDiscountFragment"
+        android:name="net.sharetrip.hotel.booking.view.hoteldiscount.HotelDiscountFragment"
+        android:label="Reserve"
+        tools:layout="@layout/fragment_hotel_discount">
+
+        <argument
+            android:name="ARG_HOTEL_DISCOUNT_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_hotelDiscountFragment_to_travellerListFragment"
+            app:destination="@id/travellerListFragment" />
+        <argument
+            android:name="ARG_EXTRA_HOTEL_PROMOTIONAL_COUPON"
+            app:argType="net.sharetrip.hotel.booking.model.coupon.ListOfCoupon" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/travellerListFragment"
+        android:name="net.sharetrip.hotel.booking.view.travellerlist.TravellerListFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_traveller_list">
+
+        <argument
+            android:name="ARG_TRAVELLER_LIST_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_travellerListFragment_to_roomGuestFragment"
+            app:destination="@id/roomGuestFragment" />
+        <action
+            android:id="@+id/action_travellerListFragment_to_hotelInfoVerificationFragment"
+            app:destination="@id/hotelInfoVerificationFragment" />
+        <argument
+            android:name="ARG_EXTRA_HOTEL_PROMOTIONAL_COUPON"
+            app:argType="net.sharetrip.hotel.booking.model.coupon.ListOfCoupon" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/roomGuestFragment"
+        android:name="net.sharetrip.hotel.booking.view.guests.RoomGuestFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_room_guest">
+
+        <argument
+            android:name="ARG_ROOM_GUEST_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_roomGuestFragment_to_nationalityFragment"
+            app:destination="@id/nationalityFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nationalityFragment"
+        android:name="net.sharetrip.hotel.booking.view.nationality.NationalityFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_nationality_code_hotel" />
+    <fragment
+        android:id="@+id/hotelInfoVerificationFragment"
+        android:name="net.sharetrip.hotel.booking.view.verification.HotelInfoVerificationFragment"
+        android:label="Verify Information"
+        tools:layout="@layout/fragment_hotel_room_verification">
+
+        <argument
+            android:name="ARG_HOTEL_INFO_VERIFICATION_BUNDLE"
+            app:argType="android.os.Bundle" />
+        <action
+            android:id="@+id/action_hotelInfoVerificationFragment_to_bookingSummaryFragment"
+            app:destination="@id/bookingSummaryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookingSummaryFragment"
+        android:name="net.sharetrip.hotel.booking.view.summary.BookingSummaryFragment"
+        android:label="Booking Summary"
+        tools:layout="@layout/fragment_booking_summary">
+
+        <argument
+            android:name="ARG_HOTEL_SUMMARY_BUNDLE"
+            app:argType="android.os.Bundle" />
+
+        <action
+            android:id="@+id/navigate_payment_module"
+            app:destination="@+id/payment_nav_graph" />
+        <argument
+            android:name="ARG_EXTRA_HOTEL_PROMOTIONAL_COUPON"
+            app:argType="net.sharetrip.hotel.booking.model.coupon.ListOfCoupon" />
+
+    </fragment>
+
+    <include app:graph = "@navigation/payment_nav_graph" />
+
+</navigation>

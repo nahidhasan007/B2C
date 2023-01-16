@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bus_booking_navigation"
+    app:startDestination="@id/busHistoryListFragment">
+
+    <fragment
+        android:id="@+id/busHistoryListFragment"
+        android:name="net.sharetrip.bus.history.view.historylist.BusHistoryListFragment"
+        android:label="@string/bus_booking_history"
+        tools:layout="@layout/fragment_bus_history_list">
+        <action
+            android:id="@+id/action_busHomeFragment_to_busHistoryDetailsFragment"
+            app:destination="@id/busHistoryDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busHistoryDetailsFragment"
+        android:name="net.sharetrip.bus.history.view.historydetails.BusHistoryDetailsFragment"
+        android:label="@string/booking_details"
+        tools:layout="@layout/fragment_bus_history_details">
+        <argument
+            android:name="ARG_BUS_HISTORY_DETAILS"
+            app:argType="net.sharetrip.bus.history.model.HistoryDetails" />
+        <action
+            android:id="@+id/action_busHistoryDetailsFragment_to_busHistoryPassengerDetailFragment"
+            app:destination="@id/busHistoryPassengerDetailFragment" />
+        <action
+            android:id="@+id/action_busHistoryDetailsFragment_to_busHistoryPoliciesFragment"
+            app:destination="@id/busHistoryPoliciesFragment" />
+        <action
+            android:id="@+id/action_busHistoryDetailsFragment_to_busHistoryPricingDetailFragment"
+            app:destination="@id/busHistoryPricingDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busHistoryPassengerDetailFragment"
+        android:name="net.sharetrip.bus.history.view.passengerdetails.BusHistoryPassengerDetailFragment"
+        android:label="@string/passenger_details"
+        tools:layout="@layout/fragment_bus_history_passenger_detail">
+        <argument
+            android:name="ARG_BUS_PASSENGER_DETAILS"
+            app:argType="net.sharetrip.bus.history.model.HistoryDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/busHistoryPoliciesFragment"
+        android:name="net.sharetrip.bus.history.view.policydetails.BusHistoryPoliciesFragment"
+        android:label="@string/policy"
+        tools:layout="@layout/fragment_bus_history_policies" />
+
+    <fragment
+        android:id="@+id/busHistoryPricingDetailFragment"
+        android:name="net.sharetrip.bus.history.view.pricingdetails.BusHistoryPricingDetailFragment"
+        android:label="@string/price_details"
+        tools:layout="@layout/fragment_bus_history_pricing_detail">
+        <argument
+            android:name="ARG_BUS_PRICING_DETAILS"
+            app:argType="net.sharetrip.bus.history.model.HistoryDetails" />
+    </fragment>
+
+</navigation>

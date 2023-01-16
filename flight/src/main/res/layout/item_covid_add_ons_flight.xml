@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isActive"
+            type="Boolean" />
+
+        <variable
+            name="covidTestOption"
+            type="net.sharetrip.flight.booking.model.CovidTestOption" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:cardBackgroundColor="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_covid_add_on"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:background="@color/white"
+                android:drawablePadding="@dimen/font_small"
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="@dimen/spacing_medium2"
+                android:paddingBottom="@dimen/spacing_medium2"
+                android:setCompoundDrawable="@{isActive}"
+                android:text="@{covidTestOption.name}"
+                android:textColor="#de000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/upload" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_layout_address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:paddingBottom="@dimen/spacing_normal"
+                android:theme="@style/TextInputLayoutAppearance"
+                android:visibility="@{covidTestOption.selected&amp;&amp;covidTestOption.address?View.VISIBLE:View.GONE}"
+                app:boxBackgroundColor="@color/white"
+                app:helperTextEnabled="true"
+                app:hintTextColor="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_covid_add_on"
+                tools:ignore="RtlHardcoded">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/add_to_collect_the_sample"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:text="@{covidTestOption.addressDetails}"
+                    android:lines="1"
+                    android:maxLines="3"
+                    android:textSize="@dimen/font_medium"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

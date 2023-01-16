@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="net.sharetrip.shared.utils.DateUtil" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.profile.view.notification.NotificationDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/image_layout"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_feature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@color/colorPrimary"
+                    android:scaleType="fitXY"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_img_deals" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="8sp"
+                android:text="@{viewModel.notification.title}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_medium"
+                app:layout_constraintTop_toBottomOf="@+id/image_layout"
+                tools:text="Good News! US-Bangla Airlines is now available at ShareTrip" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="4sp"
+                android:text='@{viewModel.notification.publishDate!=null ? DateUtil.parseDisplayDateFormatFromApiDateFormat(viewModel.notification.publishDate) : ""}'
+                android:textColor="@color/blue_gray"
+                android:textSize="@dimen/font_tiny"
+                app:layout_constraintStart_toStartOf="@+id/txt_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title"
+                tools:text="7 Nov 18" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="6sp"
+                android:paddingBottom="@dimen/spacing_large"
+                android:text="@{viewModel.notification.description}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                android:textIsSelectable="true"
+                app:layout_constraintTop_toBottomOf="@+id/text_date"
+                tools:text="Before booking your next flight check out the best rates of US Bangla from the ShareTrip App. Flight from Dhaka to Kuala Lumpur to Langkawi. On arrival at Langkawi International Airport, you will be welcomed by our representative, then you will be transferred to hotel for check in, after check in free time for Leisure. Overnight stay at Langkawi.Before booking your next flight check out the best rates of US Bangla from the ShareTrip App." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

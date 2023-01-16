@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+
+    <entry>
+        <key>android_app_version</key>
+        <value>1.7.5</value>
+    </entry>
+
+    <entry>
+        <key>android_code_version</key>
+        <value>70</value>
+    </entry>
+
+    <entry>
+        <key>is_force_update_enable_for_android</key>
+        <value>false</value>
+    </entry>
+
+    <entry>
+        <key>flight_discount_offer_bank_list</key>
+        <value>*Instant discount available on AMEX, BRAC, EBL, NRB, Standard Chartered, UCBL card
+            payment. Please select the AMEX or Visa/Master card option
+        </value>
+    </entry>
+
+    <entry>
+        <key>flight_search_threshold_time</key>
+        <value>20:00</value>
+    </entry>
+
+    <entry>
+        <key>flight_discount_options</key>
+        <value>[{"type":"earnTC","title":"I want to earn Trip Coin &amp; avail discount
+            offer","subtitle":"*Instant discount for our partner banks' card
+            holders"},{"type":"redeemTC","title":"I want to redeem trip coin","subtitle":"Drag to
+            slider to redeem trip coin"},{"type":"useCoupon","title":"I want to Use
+            Coupon","subtitle":"Enter the coupon code"}]
+        </value>
+    </entry>
+
+    <entry>
+        <key>hotel_discount_options</key>
+        <value>[{"type":"earnTC","title":"I want to earn Trip Coin &amp; avail discount
+            offer","subtitle":"*Instant discount for our partner banks' card
+            holders"},{"type":"redeemTC","title":"I want to redeem trip coin","subtitle":"Drag to
+            slider to redeem trip coin"},{"type":"useCoupon","title":"I want to Use
+            Coupon","subtitle":"Enter the coupon code"}]
+        </value>
+    </entry>
+
+    <entry>
+        <key>quiz_term_and_condition</key>
+        <value></value>
+    </entry>
+
+    <entry>
+        <key>quiz_faq</key>
+        <value></value>
+    </entry>
+
+    <entry>
+        <key>quiz_timeout_time</key>
+        <value>25</value>
+    </entry>
+
+    <entry>
+        <key>quiz_homepage_promotion_text</key>
+        <value>Welcome to Daily Quiz.\nParticipate to Win 2 Air tickets, 2 Night Stay at Royal
+            Tulip/month. Weekly winner will win offer from top restaurants in Dhaka/week. Score the
+            highest point in the shortest time.
+        </value>
+    </entry>
+
+    <entry>
+        <key>need_to_show_banner</key>
+        <value>false</value>
+    </entry>
+
+    <entry>
+        <key>book_today_flight</key>
+        <value>false</value>
+    </entry>
+
+    <entry>
+        <key>encrypt_key</key>
+        <value>encrypt_key</value>
+    </entry>
+
+    <entry>
+        <key>success_urls</key>
+        <value>[ { "service_type": "Flight", "status": "success", "url":
+            "https://sharetrip.net/?type=flight-success" }, { "service_type": "Flight", "status":
+            "failed", "url": "https://sharetrip.net/?type=flight-fail" }, { "service_type": "Hotel",
+            "status": "success", "url": "https://sharetrip.net/?type=hotel-success" }, {
+            "service_type": "Hotel", "status": "failed", "url":
+            "httpshttps://sharetrip.net/?type=hotel-fail" }, { "service_type": "Visa", "status":
+            "success", "url": "https://sharetrip.net/?type=visa-success" }, { "service_type":
+            "Visa", "status": "failed", "url": "https://sharetrip.net/?type=visa-fail" }, {
+            "service_type": "Package", "status": "success", "url":
+            "https://sharetrip.net/?type=holiday-success" }, { "service_type": "Package", "status":
+            "failed", "url": "https://sharetrip.net/?type=holiday-fail" }, { "service_type": "Tour",
+            "status": "success", "url": "https://sharetrip.net/?type=tour-success" }, {
+            "service_type": "Tour", "status": "failed", "url":
+            "https://sharetrip.net/?type=tour-fail" }, { "service_type": "Transfer", "status":
+            "success", "url": "https://sharetrip.net/?type=transfer-success" }, { "service_type":
+            "Transfer", "status": "failed", "url": "https://sharetrip.net/?type=transfer-fail" } ]
+        </value>
+    </entry>
+
+    <entry>
+        <key>crisp_website_id</key>
+        <value>14009585-79af-47ed-ab9a-4b2d8133a3bd</value>
+    </entry>
+
+</defaultsMap>

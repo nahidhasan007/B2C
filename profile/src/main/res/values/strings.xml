@@ -1,0 +1,44 @@
+<resources>
+    <string name="user_information"> User Information</string>
+    <string name="select_your_gender">Select Your Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="passport_number">Passport Number</string>
+    <string name="frequent_flyer_number_if_any">Frequent Flyer Number (If any)</string>
+    <string name="passport_copy">Passport Copy</string>
+    <string name="upload">Upload</string>
+    <string name="visa_copy">Visa Copy</string>
+    <string name="visa_copy_upload">Visa copy upload</string>
+    <string name="passport_copy_upload">Passport Copy Upload</string>
+    <string name="view_photo">View photo</string>
+    <string name="view">View</string>
+    <string name="take_photo_with_camera">Take photo with camera</string>
+    <string name="camera">Camera</string>
+    <string name="image_upload_form_gallery">Image Upload Form Gallery</string>
+    <string name="gallery">Gallery</string>
+    <string name="add_traveler">Add Traveler</string>
+    <string name="select_country">Select country</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="use_letter_only">"Use only Letter"</string>
+    <string name="trip_coin">Trip Coin</string>
+    <string name="status_colon">Status:</string>
+    <string name="name_guideline">"Name Guideline"</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="mange_your_data">Manage Your Data</string>
+    <string name="deletion_of_your_account_is_permanent">Deletion of your account is permanent</string>
+    <string name="your_profile_photos_booking_guest_list_will_be_permanently_deleted">Your profile, photos, booking, guest list will be\npermanently deleted</string>
+    <string name="why_are_you_deleting_your_account">Why are you deleting your account?</string>
+    <string name="please_explain">Please Explain</string>
+    <string name="please_select_a_reason">Please select a reason!</string>
+    <string name="delete_your_sharetrip_account">Delete your\nShareTrip account?</string>
+    <string name="confirm_delete_account">CONFIRM DELETE ACCOUNT</string>
+    <string name="cancel">CANCEL</string>
+    <string name="dear_user">Dear User</string>
+    <string name="please_login_to_verify_your_identity">Please login to verify your identity</string>
+    <string name="notice">Notice!</string>
+    <string name="ok">ok</string>
+    <string name="first_name_not_required">First Name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

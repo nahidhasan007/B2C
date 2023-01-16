@@ -1,0 +1,535 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".history.view.detail.VisaHistoryDetailsFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.visa.history.view.detail.VisaHistoryDetailsViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_two">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isDataLoading() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_detail_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/center_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.50" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_horizontal_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/spacing_medium" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_horizontal_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_visa_Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{viewModel.visaHistoryDetailsResponse.visaProductSnapshot.title}"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@+id/text_view_currency_sym"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/begin_horizontal_guideline"
+                    tools:text="Malaysia Sticker Visa" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_currency_sym"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"
+                    android:text="@{viewModel.visaHistoryDetailsResponse.bookingCurrency}"
+                    android:textColor="@color/blue_blue"
+                    android:textSize="@dimen/font_medium"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_visa_Title"
+                    app:layout_constraintRight_toLeftOf="@+id/text_view_currency"
+                    app:layout_constraintTop_toTopOf="@+id/tv_visa_Title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:text="@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.visaHistoryDetailsResponse.totalAmount)}"
+                    android:textColor="@color/blue_blue"
+                    android:textSize="@dimen/font_medium"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_view_currency_sym"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintLeft_toRightOf="@+id/text_view_currency_sym"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_currency_sym"
+                    tools:text="23,916" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_booking_id_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="2sp"
+                    android:text="Booking ID: "
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_visa_Title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_booking_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{viewModel.visaHistoryDetailsResponse.bookingCode}"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_view_booking_id_head"
+                    app:layout_constraintStart_toEndOf="@+id/text_view_booking_id_head"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_booking_id_head"
+                    tools:text="STV123654789" />
+
+                <View
+                    android:id="@+id/horizontal_line_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/dotted_line"
+                    android:layerType="software"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_booking_id" />
+
+                <View
+                    android:id="@+id/content_first_divider_view"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/dot_vertical_line"
+                    android:layerType="software"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/horizontal_line_two"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintHorizontal_bias="0.33333"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+                <View
+                    android:id="@+id/content_second_divider_view"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/dot_vertical_line"
+                    android:layerType="software"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/horizontal_line_two"
+                    app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
+                    app:layout_constraintHorizontal_bias="0.66666"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+                <View
+                    android:id="@+id/horizontal_line_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/dotted_line"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_guest_header" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_check_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="Entry Date:"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_tour_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{viewModel.visaHistoryDetailsResponse.formattedEntryDate}"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_check_in"
+                    app:layout_constraintStart_toEndOf="@+id/title_check_in"
+                    app:layout_constraintTop_toTopOf="@+id/title_check_in"
+                    tools:text="20 Sep 19" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_exit_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:text="Exit Date:"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/center_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_line_one" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_exit_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{viewModel.visaHistoryDetailsResponse.formattedExitDate}"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_exit_date"
+                    app:layout_constraintStart_toEndOf="@+id/title_exit_date"
+                    app:layout_constraintTop_toTopOf="@+id/title_exit_date"
+                    tools:text="30 Sep 19" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_guest_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Traveler(s):"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@+id/center_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_booking_id" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_guest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="5sp"
+                    android:text="@{String.valueOf(viewModel.visaHistoryDetailsResponse.travellerCount)}"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_view_guest_header"
+                    app:layout_constraintStart_toEndOf="@+id/text_view_guest_header"
+                    app:layout_constraintTop_toTopOf="@+id/text_view_guest_header"
+                    tools:text="4" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_validity_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Validity Days: "
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/title_check_in" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_validity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{String.valueOf(viewModel.visaHistoryDetailsResponse.visaProductSnapshot.validityDays)}"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_validity_title"
+                    app:layout_constraintStart_toEndOf="@+id/tv_validity_title"
+                    app:layout_constraintTop_toTopOf="@+id/tv_validity_title"
+                    tools:text="30" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_max_day_stay_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Max Stay Days:"
+                    android:textColor="@color/greyish_brown"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_validity_title"
+                    app:layout_constraintStart_toEndOf="@+id/center_vertical_guideline"
+                    app:layout_constraintTop_toTopOf="@+id/tv_validity_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_max_day_stay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{String.valueOf(viewModel.visaHistoryDetailsResponse.visaProductSnapshot.maxStayDays)}"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_max_day_stay_title"
+                    app:layout_constraintStart_toEndOf="@+id/tv_max_day_stay_title"
+                    app:layout_constraintTop_toTopOf="@+id/tv_max_day_stay_title"
+                    tools:text="60" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Status:"
+                    android:textColor="#99000000"
+                    android:textSize="10sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_validity_title" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{viewModel.status}"
+                    android:textColor="@color/mid_green"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_status"
+                    app:layout_constraintStart_toEndOf="@+id/title_status"
+                    app:layout_constraintTop_toTopOf="@+id/title_status"
+                    app:textAllCaps="true"
+                    tools:text="PAID" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/spacing_small_tiny"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:text="@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.visaHistoryDetailsResponse.tripCoin)}"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:drawableLeftCompat="@drawable/ic_tripcoin_color_24dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_view_status"
+                    app:layout_constraintRight_toLeftOf="@+id/end_vertical_guideline"
+                    tools:text="2,000" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/retry_booking"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/font_normal"
+                    android:fontFamily="sans-serif"
+                    android:onClick="@{()-> viewModel.onClickRetryBooking()}"
+                    android:text="BOOK AGAIN"
+                    android:textStyle="bold"
+                    android:visibility='@{viewModel.isRetryButtonShow() ? View.VISIBLE : View.GONE}'
+                    app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/title_status" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_resend_vouchar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="sans-serif"
+                    android:onClick="@{()-> viewModel.onClickResendVoucher()}"
+                    android:text="RESEND VOUCHAR"
+                    android:textStyle="bold"
+                    android:visibility='@{viewModel.isResendVoucherButtonShow() ? View.VISIBLE:View.GONE}'
+                    app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/retry_booking" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:fontFamily="sans-serif"
+                    android:onClick="@{()-> viewModel.showAlert()}"
+                    android:text="CANCEL BOOKING"
+                    android:textStyle="bold"
+                    android:visibility='@{viewModel.isCancelableButtonShow() ? View.VISIBLE:View.GONE}'
+                    app:layout_constraintBottom_toTopOf="@+id/end_horizontal_guideline"
+                    app:layout_constraintEnd_toEndOf="@id/end_vertical_guideline"
+                    app:layout_constraintStart_toStartOf="@id/begin_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/button_resend_vouchar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingBottom="@dimen/spacing_small"
+                android:text="Details Information"
+                android:textColor="@color/gray_900"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_detail_info" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/transfer_information_button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:background="@color/windowBackground"
+                android:drawableRight="@drawable/ic_arrow_2_right_mono"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:onClick="@{() -> viewModel.onClickTravellerDetails()}"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_normal"
+                android:text="Traveller(s) Detail"
+                android:textColor="@color/black_100"
+                android:textSize="16sp"
+                android:visibility="@{viewModel.isStickerVisaType()? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pricing_information_button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:background="@color/windowBackground"
+                android:drawableRight="@drawable/ic_arrow_2_right_mono"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:onClick="@{() -> viewModel.onClickPriceInfo()}"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_normal"
+                android:text="Pricing Details"
+                android:textColor="@color/black_100"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/transfer_information_button" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cancellation_policy_button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:background="@color/windowBackground"
+                android:drawableRight="@drawable/ic_arrow_2_right_mono"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:onClick="@{() -> viewModel.onClickCancellationPolicy()}"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_normal"
+                android:text="@string/cancellation_policy"
+                android:textColor="@color/black_100"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/pricing_information_button" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/contact_information_button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:background="@color/windowBackground"
+                android:drawableRight="@drawable/ic_arrow_2_right_mono"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:onClick="@{() -> viewModel.onClickContactUs()}"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingRight="@dimen/spacing_normal"
+                android:text="Contact Us"
+                android:textColor="@color/black_100"
+                android:textSize="16sp"
+                android:visibility="@{viewModel.isStickerVisaType()? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/cancellation_policy_button"
+                tools:text="@string/contact_information" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

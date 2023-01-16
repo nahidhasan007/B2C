@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="net.sharetrip.hotel.utils.MoshiUtil" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.hotel.history.view.hotel.HotelInfoViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_detail"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:background="@drawable/ic_placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/font_normal"
+                app:drawableLeftCompat="@drawable/ic_image_16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_view_detail"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                tools:text=" 4/16" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewModel.hotel.name}"
+                android:textColor="@color/black_87"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/image_view_detail"
+                tools:text="Radioson Blue Water Garden Singapore City" />
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:rating="@{viewModel.hotel.starRating}"
+                android:theme="@style/CustomRatingBar"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_name" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/hotel_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
+                app:layout_constraintStart_toEndOf="@id/rating_bar"
+                app:srcCompat="@drawable/ic_hotel_mono" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/hotel_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="4sp"
+                android:text="@{viewModel.hotel.kind}"
+                android:textColor="@color/greyish_brown"
+                android:textSize="@dimen/font_small"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@id/hotel_icon"
+                app:layout_constraintStart_toEndOf="@id/hotel_icon"
+                app:layout_constraintTop_toTopOf="@id/hotel_icon"
+                tools:text="Resort" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_guest_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:background="@drawable/rounded_green_text_view"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@{String.valueOf(viewModel.hotel.rating)}"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/font_normal"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_thumb_up_12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/hotel_icon"
+                app:layout_constraintStart_toEndOf="@+id/hotel_type"
+                tools:layout_editor_absoluteY="318dp"
+                tools:text="8.5" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_hotel_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.hotel.cityName + ',' + ' ' + viewModel.hotel.countryName}"
+                android:textColor="@color/greyish_brown"
+                android:textSize="@dimen/font_small"
+                app:drawableLeftCompat="@drawable/ic_location_on_indigo_14dp"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/rating_bar"
+                tools:text="Chinatown, Singapore" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dumayLocation"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@drawable/hotel_map_back"
+                android:drawableTop="@drawable/ic_location_on_white_24dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.onClickedOpenMap()}"
+                android:paddingTop="@dimen/spacing_small"
+                android:text="@string/view_on_map"
+                android:textColor="@color/blue_blue"
+                android:textSize="@dimen/font_small"
+                android:textStyle="bold"
+                app:drawableTint="@color/orange_light"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@id/text_view_hotel_location" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_rooms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/text_level_amenities"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/dumayLocation" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_level_amenities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/amenities"
+                android:textColor="@color/black_87"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/list_rooms"
+                tools:text="Amenities" />
+
+            <LinearLayout
+                android:id="@+id/linear_amenities"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_level_amenities" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_level_policies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/policies"
+                android:textColor="@color/black_87"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/linear_amenities" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_policies"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:lineSpacingExtra="6sp"
+                android:text="@{MoshiUtil.convertStringToHotelPolicy(viewModel.hotel.policyStruct)}"
+                android:textColor="@color/black_mat"
+                android:textSize="@dimen/font_normal"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_level_policies"
+                tools:text="There is a tour counter in the reception area. This hotel is best for budget travelers, who will find warmth and hospitality at a price they can afford. (11/08SW)" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

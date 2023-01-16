@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="rewardWinner"
+            type="net.sharetrip.profile.model.RewardWinner" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_tiny">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_winner_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_avatar_ash_40dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_type"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/thumb_image"
+                android:padding="@dimen/spacing_tiny"
+                app:layout_constraintBottom_toBottomOf="@id/icon_winner_image"
+                app:layout_constraintStart_toStartOf="@id/icon_winner_image"
+                app:srcCompat="@drawable/ic_flight_56dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_special_reward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:text="@{rewardWinner.activity}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon_winner_image"
+                app:layout_constraintTop_toTopOf="@id/icon_winner_image"
+                tools:text="Dhaka - Bangkok Air Ticket Free  gfhghg ghfhghghghfhgfhg " />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_winner_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:fontFamily="sans-serif"
+                android:text='@{rewardWinner.name.trim().equals("") ? "No Name" : rewardWinner.name}'
+                android:textColor="@color/blue_gray"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="@+id/text_view_special_reward"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_special_reward"
+                tools:text="Andalib Saquib" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

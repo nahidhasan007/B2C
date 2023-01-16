@@ -1,0 +1,496 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="java.text.NumberFormat" />
+        <import type="java.util.Locale" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.holiday.booking.view.summary.HolidaySummaryViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_sheet_hotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_background"
+        android:clickable="true"
+        android:focusable="true"
+        app:behavior_peekHeight="72dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+        <View
+            android:layout_width="@dimen/spacing_huge"
+            android:layout_height="@dimen/spacing_small_tiny"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:background="@color/black_54"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_book_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:enabled="true"
+            android:onClick="@{() -> viewModel.onClickCheckBookingHoliday()}"
+            android:text="@{viewModel.payButtonText}"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_amount"
+            android:textColor="#434343"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toTopOf="@+id/btn_book_now" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_total_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{viewModel.currency + " "+NumberFormat.getNumberInstance(Locale.US).format(viewModel.totalPrice)}'
+            android:textColor="#212121"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_total"
+            tools:text="20,000" />
+
+        <View
+            android:id="@+id/line_one"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@color/black_38"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/btn_book_now" />
+
+        <View
+            android:id="@+id/line_two"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_huge"
+            android:background="@color/black_38"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_one" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pricing_details"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/line_two"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_one" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.currency}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/line_two"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_one"
+            tools:text="BDT" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_guest_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{viewModel.holidayParamObserver.singleRoom+ " * Single Room"}'
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.singleRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_two"
+            tools:text="4 * Single Room" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_total_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.holidayParamObserver.singleRoomPrice)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.singleRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_two"
+            tools:text="16,000.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_guest_count1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{viewModel.holidayParamObserver.doubleRoom+ " * Double Room"}'
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.doubleRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count"
+            tools:text="4 * Double Room" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_total_cost1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.holidayParamObserver.doubleRoomPrice)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.doubleRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_total_cost"
+            tools:text="16,000.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_guest_count2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{viewModel.holidayParamObserver.twinRoom+ " * Twin Room"}'
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.twinRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count1"
+            tools:text="4 * Twin Room" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_total_cost2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.holidayParamObserver.twinRoomPrice)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.twinRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_total_cost1"
+            tools:text="16,000.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_guest_count3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{viewModel.holidayParamObserver.tripleRoom+ " * Triple Room"}'
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.tripleRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count2"
+            tools:text="4 * Triple Room" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_total_cost3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.holidayParamObserver.tripleRoomPrice)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.tripleRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_total_cost2"
+            tools:text="16,000.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_guest_count_quad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{viewModel.holidayParamObserver.quadRoom+ " * Quad Room"}'
+            android:textColor="@color/greyish_brown_two"
+            android:textSize="@dimen/font_small"
+            android:visibility="@{viewModel.holidayParamObserver.quadRoomPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count3"
+            tools:text="4 * Quad Room" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_total_cost_quad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.holidayParamObserver.quadRoomPrice)}'
+            android:textColor="@color/black_87"
+            android:textSize="@dimen/font_small"
+            android:visibility="@{viewModel.holidayParamObserver.quadRoom == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_total_cost3"
+            tools:text="16,000.0" />
+
+        <View
+            android:id="@+id/line_three"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@color/black_38"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count_quad" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_guest_count4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{viewModel.holidayParamObserver.child7to12+ " * Child(7-12)"}'
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.child7to12Price == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_three"
+            tools:text="4 * Child(7-12)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_total_cost4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.holidayParamObserver.child7to12Price)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.child7to12Price == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_three"
+            tools:text="16,000.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_guest_count5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{viewModel.holidayParamObserver.child3to6+ " * Child(3-6)"}'
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.child3to6Price == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count4"
+            tools:text="4 * Child(3-6)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_total_cost5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.holidayParamObserver.child3to6Price)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.child3to6Price == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count4"
+            tools:text="16,000.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_guest_count6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{viewModel.holidayParamObserver.infant+ " * Infant"}'
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.infantPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count5"
+            tools:text="4 * Infant" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_room_total_cost6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.holidayParamObserver.infantPrice)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.holidayParamObserver.infantPrice == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count5"
+            tools:text="16,000.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_total_due_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/total_amount_before_discount"
+            android:textColor="#434343"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_four" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_total_due_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{NumberFormat.getNumberInstance(Locale.US).format(viewModel.totalPriceWithoutDiscount)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_label_total_due_property"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_label_total_due_property"
+            tools:text="218,820.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:text="@string/discount"
+            android:textColor="#434343"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_total_due_property" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_convenience_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:fontFamily="sans-serif"
+            android:text="@string/convenience_fee"
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.isConvenienceVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@+id/text_label_discount"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_discount" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_convenience_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{viewModel.totalConvenienceCharge.toString()}"
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.isConvenienceVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_convenience_header"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_view_convenience_header"
+            tools:text="1.15" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_vat_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:fontFamily="sans-serif"
+            android:text="@string/vat_on_st_convenience_fee"
+            android:textColor="#434343"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.vatCharge> 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_convenience_header" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_vat_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{viewModel.vatCharge.toString()}"
+            android:textColor="#212121"
+            android:textSize="12sp"
+            android:visibility="@{viewModel.vatCharge> 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_vat_header"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_view_vat_header"
+            tools:text="1.15" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text='@{"- " + String.valueOf(viewModel.discount)}'
+            android:textColor="#212121"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_label_discount"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_label_discount"
+            tools:text="-0.0" />
+
+        <View
+            android:id="@+id/line_four"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@color/black_38"
+            android:visibility="@{(viewModel.holidayParamObserver.infantPrice == 0 &amp;&amp; viewModel.holidayParamObserver.child3to6Price == 0 &amp;&amp; viewModel.holidayParamObserver.child7to12Price == 0) ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_room_guest_count6" />
+
+        <View
+            android:id="@+id/line_five"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@color/black_38"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_vat_header" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_total_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:text="@string/total_payable"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@id/line_five" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_total_payable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{viewModel.currency + " " +NumberFormat.getNumberInstance(Locale.US).format(viewModel.totalPrice)}'
+            android:textColor="#212121"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/text_label_total_payment"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/text_label_total_payment"
+            tools:text="BDT 00,000" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="status"
+            type="net.sharetrip.tracker.view.cirium.model.StatusInfo" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_flight_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingBottom="@dimen/spacing_tiny">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_carrier"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/ic_place_mono_blue"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_carrier_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:text="@{status.airlineName}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_carrier"
+                tools:text="Emirat" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_flight_number"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@{status.flightNumber}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/label_carrier_name"
+                tools:text="EK384" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/departure_time_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@{status.departureTime}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/image_carrier"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="RtlHardcoded"
+                tools:text="19:40 AM" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/departure_airline_code_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:text="@{status.departureStationCode}"
+                android:textColor="@color/gray_800"
+                android:textSize="@dimen/font_normal"
+                app:layout_constraintStart_toEndOf="@id/departure_time_text_View"
+                app:layout_constraintTop_toBottomOf="@id/image_carrier"
+                tools:ignore="RtlHardcoded"
+                tools:text="DAC" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/arrow_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:padding="@dimen/spacing_small_tiny"
+                android:rotation="90"
+                app:srcCompat="@drawable/ic_flight_16dp"
+                app:layout_constraintStart_toEndOf="@id/departure_airline_code_text_View"
+                app:layout_constraintTop_toBottomOf="@id/image_carrier" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/arrival_time_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@{status.arrivalTime}"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/font_normal"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/arrow_image_view"
+                app:layout_constraintTop_toBottomOf="@id/image_carrier"
+                tools:ignore="RtlHardcoded"
+                tools:text="15:25 PM" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/arrival_airline_code_text_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:text="@{status.arrivalStationCode}"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/font_normal"
+                app:layout_constraintStart_toEndOf="@id/arrival_time_text_View"
+                app:layout_constraintTop_toBottomOf="@id/image_carrier"
+                tools:ignore="RtlHardcoded"
+                tools:text="DAC" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/label_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Status: "
+                android:drawableLeft="@drawable/ic_done_indigo_24dp"
+                app:layout_constraintTop_toBottomOf="@+id/departure_time_text_View"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{status.status}"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/departure_time_text_View"
+                app:layout_constraintStart_toEndOf="@id/label_status"
+                tools:text="Active"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

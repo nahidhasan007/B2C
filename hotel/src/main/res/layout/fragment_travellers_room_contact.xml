@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="primaryContact"
+            type="net.sharetrip.hotel.history.model.PrimaryContact" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/spacing_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_room_information_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_hotel_history_travellers_detail" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_room_information_list_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_room_information_list"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_hotel_history_travellers_detail" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_room_information_list_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_room_information_list_two"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_hotel_history_travellers_detail" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_room_information_list_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_room_information_list_three"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_hotel_history_travellers_detail" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/contact_info_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recycler_room_information_list_four"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/contact_information"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recycler_room_information_list_four"
+                    tools:text="Contact Information" />
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/contact_info_text">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:tint="@color/gray_800"
+                        app:srcCompat="@drawable/ic_person_dark_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_full_name_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_toRightOf="@+id/img_name"
+                        android:text="@string/full_name_given_name_surname"
+                        android:textColor="@color/gray_800"
+                        android:textSize="@dimen/font_tiny" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_full_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_full_name_header"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_small_tiny"
+                        android:layout_toRightOf="@+id/img_name"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{primaryContact.fullName}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        tools:text="MR. Anamoul Rouf" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_for_full_name">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_nationality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:tint="@color/gray_800"
+                        app:srcCompat="@drawable/ic_assistant_photo_black_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_nationality_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_toRightOf="@+id/img_nationality"
+                        android:text="@string/nationality"
+                        android:textColor="@color/gray_800"
+                        android:textSize="@dimen/font_tiny" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_img_nationality"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_nationality_header"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_small_tiny"
+                        android:layout_toRightOf="@+id/img_nationality"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{primaryContact.nationality}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        tools:text="Bangladesh" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_for_nationality">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:tint="@color/gray_800"
+                        app:srcCompat="@drawable/ic_phone_black_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_toRightOf="@+id/img_phone"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/gray_800"
+                        android:textSize="@dimen/font_tiny"
+                        tools:text="Phone Number" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_contact_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_contact"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_small_tiny"
+                        android:layout_toRightOf="@+id/img_phone"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{primaryContact.mobileNumber}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        tools:text="01716464646" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_for_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_for_phone_number">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:tint="@color/gray_800"
+                        app:srcCompat="@drawable/ic_mail_black_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:layout_toRightOf="@+id/img_email"
+                        android:text="@string/email_address"
+                        android:textColor="@color/gray_800"
+                        android:textSize="@dimen/font_tiny"
+                        tools:text="Email Address" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_email_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_email"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:layout_marginTop="@dimen/spacing_small_tiny"
+                        android:layout_toRightOf="@+id/img_email"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@{primaryContact.email}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_normal"
+                        tools:text="tech@sharetrip.net" />
+
+                </RelativeLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

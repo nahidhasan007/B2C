@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.text.NumberFormat" />
+
+        <import type="java.util.Locale" />
+
+        <variable
+            name="model"
+            type="net.sharetrip.bus.history.view.historydetails.BusHistoryDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_variant"
+        tools:context=".ui.bus.history.details.view.BusHistoryDetailsFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/from_of_booking_detatils_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.01"
+            android:text="@{(model.busHistoryData.route.split(`-`))[0]}"
+            android:textColor="@color/dark_main"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/trip_type_of_bus_booking_details_imageview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/dhaka" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/trip_type_of_bus_booking_details_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/to_of_booking_details_text_view"
+            app:layout_constraintStart_toEndOf="@+id/from_of_booking_detatils_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_oneway" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/to_of_booking_details_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.01"
+            android:text="@{(model.busHistoryData.route.split(`-`))[1]}"
+            android:textColor="@color/dark_main"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/trip_type_of_bus_booking_details_imageview"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/chottogram" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/total_amount_of_booking_details_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-condensed"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="5sp"
+            android:text="@{model.busHistoryData.currency+` `+NumberFormat.getNumberInstance(Locale.US).format(model.busHistoryData.gatewayAmount)}"
+            android:textAlignment="textEnd"
+            android:textColor="@color/bus_history_bdt"
+            android:textSize="16sp"
+            android:translationY="-2.62sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/total_amount_3050" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBookingId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="san-serif"
+            android:letterSpacing="0.04"
+            android:text="@string/booking_id"
+            android:textColor="@color/dark_variant"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/booking_id_of_booking_details_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/from_of_booking_detatils_text_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/booking_id_of_booking_details_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.04"
+            android:text="@{model.busHistoryData.bookingId}"
+            android:textColor="@color/dark_main"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/tvBookingId"
+            app:layout_constraintTop_toBottomOf="@+id/to_of_booking_details_text_view"
+            tools:text="@string/booking_id_value" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

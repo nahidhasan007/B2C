@@ -1,0 +1,263 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="net.sharetrip.flight.booking.model.SortingType" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.flight.booking.view.flightlist.FlightListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#d1d1d6"
+        android:clickable="true"
+        android:focusable="true"
+        tools:context="net.sharetrip.ui.flights.booking.view.flightlist.FlightListFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/filter_constrain_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/filters_sheet_background"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/spacing_small"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filter_title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                app:layout_constraintEnd_toStartOf="@+id/filter_image_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="200 Available Flights" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filter_subtitle_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/price_inclusive_of_vat_tax"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/filter_image_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filter_title_text_view" />
+
+            <LinearLayout
+                android:id="@+id/sorter_parent_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.isShowSort() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/filter_subtitle_text_view">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnCheapest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@{viewModel.sortingObserver == SortingType.CHEAPEST ? @drawable/blue_rounded_shape_selected : @drawable/gender_non_selector}"
+                    android:gravity="center"
+                    android:onClick="@{viewModel::onSortingBtnClick}"
+                    android:paddingStart="10dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="6dp"
+                    android:text="Cheapest"
+                    android:textColor="@{viewModel.sortingObserver == SortingType.CHEAPEST ? @color/white : @color/blue_gray}"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:textAllCaps="true"
+                    tools:background="@drawable/gender_non_selector"
+                    tools:textColor="@color/blue_gray" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnFastest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@{viewModel.sortingObserver == SortingType.FASTEST ? @drawable/blue_rounded_shape_selected : @drawable/gender_non_selector}"
+                    android:gravity="center"
+                    android:onClick="@{viewModel::onSortingBtnClick}"
+                    android:paddingStart="10dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="6dp"
+                    android:text="Fastest"
+                    android:textColor="@{viewModel.sortingObserver == SortingType.FASTEST ? @color/white : @color/blue_gray}"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:textAllCaps="true"
+                    tools:background="@drawable/gender_non_selector"
+                    tools:textColor="@color/blue_gray" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnEarliest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@{viewModel.sortingObserver == SortingType.EARLIEST ? @drawable/blue_rounded_shape_selected : @drawable/gender_non_selector}"
+                    android:gravity="center"
+                    android:onClick="@{viewModel::onSortingBtnClick}"
+                    android:paddingStart="10dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="6dp"
+                    android:text="Earliest"
+                    android:textColor="@{viewModel.sortingObserver == SortingType.EARLIEST ? @color/white : @color/blue_gray}"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:textAllCaps="true"
+                    tools:background="@drawable/gender_non_selector"
+                    tools:textColor="@color/blue_gray" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sortOpenBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:drawableTint="@color/colorPrimary"
+                android:gravity="center"
+                android:onClick="@{viewModel::onSortingBtnClick}"
+                android:text="Sort"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_sort_mono"
+                app:layout_constraintBottom_toBottomOf="@id/filter_subtitle_text_view"
+                app:layout_constraintEnd_toStartOf="@id/filter_image_button"
+                app:layout_constraintTop_toTopOf="@id/filter_title_text_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/filter_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:drawableTint="@color/colorPrimary"
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.onClickFilter()}"
+                android:text="Filter"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_filter_blue_24dp"
+                app:layout_constraintBottom_toBottomOf="@id/filter_subtitle_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/filter_title_text_view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/airlinesRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_constrain_layout"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_airlines_layout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/flight_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="false"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/airlinesRecycler"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_flights" />
+
+        <include
+            android:id="@+id/include_shimmer"
+            layout="@layout/shimmer_flight_list_base"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_normal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFF9C4"
+                android:paddingLeft="@dimen/spacing_medium"
+                android:paddingTop="@dimen/spacing_tiny_large"
+                android:paddingRight="@dimen/spacing_medium"
+                android:paddingBottom="@dimen/spacing_tiny_large">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_info"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/amber"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_info_light_24dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_info_msg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_tiny_large"
+                    android:textColor="@color/amber"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/icon_info"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Unfortunately the domestic flights are only available from 9:00AM till 10:00PM. Please search for your required flight during this time. Thank you." />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

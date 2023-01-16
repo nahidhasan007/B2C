@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="net.sharetrip.shared.utils.DateFormatChangerKt" />
+
+        <import type="android.view.View" />
+
+        <import type="net.sharetrip.shared.utils.Strings" />
+
+        <variable
+            name="flight"
+            type="net.sharetrip.flight.history.model.Flight" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@android:color/transparent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/flightRoot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#2e3192"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text='@{flight.originName.code+" - "+flight.destinationName.code}'
+            tools:text="DAC - KUL"
+            android:layout_marginLeft="16dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/arrow_image_view"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="@dimen/spacing_small_tiny"
+            app:layout_constraintTop_toTopOf="@id/flightRoot"
+            app:layout_constraintBottom_toBottomOf="@id/flightRoot"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:rotation="90"
+            android:layout_centerVertical="true"
+            android:tint="#2e3192"
+            app:srcCompat="@drawable/ic_flight_16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

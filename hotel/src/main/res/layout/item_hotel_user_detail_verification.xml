@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="net.sharetrip.shared.utils.DateFormatChangerKt" />
+
+        <variable
+            name="guest"
+            type="net.sharetrip.hotel.booking.model.GuestInfo" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/type_of_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            tools:text="Adult 1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_username"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                app:srcCompat="@drawable/ic_person_dark_24dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_adult_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_toRightOf="@+id/img_username"
+                android:fontFamily="sans-serif"
+                android:text="@string/full_name_given_name_surname"
+                android:textColor="@color/gray_800"
+                android:textSize="10sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_adult_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_adult_text"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_toRightOf="@+id/img_username"
+                android:fontFamily="sans-serif-medium"
+                android:text='@{guest.givenName + " " + guest.surName}'
+                android:textColor="#000000"
+                android:textSize="14sp"
+                tools:text="MD ANAMOUL ROUF" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_nationality"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    app:srcCompat="@drawable/ic_assistant_photo_black_24dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_nationality_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_nationality"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/nationality"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Nationality" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_nationality_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_nationality_text"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_nationality"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{guest.nationality}"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="BE0859962" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_age"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_huge"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_age"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    app:srcCompat="@drawable/ic_child_mono" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_age_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_age"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/age"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Age" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_child_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_age_text"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_age"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="6sp"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="5 Years" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

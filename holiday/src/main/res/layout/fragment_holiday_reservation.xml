@@ -1,0 +1,380 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="holiday"
+            type="net.sharetrip.holiday.booking.model.HolidayOffer" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.holiday.booking.view.reserve.HolidayReserveViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/windowBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_constrain_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/spacing_large">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/activity_horizontal_margin" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_calender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_travel_day"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_travel_day"
+                app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_travel_day"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:errorEnabled="true"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_calender"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_filed_travel_date"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/select_travel_date"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:onClick="@{() -> viewModel.onClickDate()}"
+                    android:paddingBottom="@dimen/spacing_small"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_hotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                android:visibility="@{holiday.singlePerPax > 0 ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_single_room"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_single_room"
+                app:srcCompat="@drawable/ic_hotel_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_single_room"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:visibility="@{holiday.singlePerPax > 0 ? View.VISIBLE : View.GONE}"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:errorEnabled="true"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_hotel"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_travel_day">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_single_room"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addTextChangedListener="@{viewModel.roomWatcher}"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/single_room"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_double_room"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:visibility="@{holiday.doublePerPax > 0 ? View.VISIBLE : View.GONE}"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:errorEnabled="true"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_hotel"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_single_room"
+                tools:ignore="RtlHardcoded">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_double_room"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addTextChangedListener="@{viewModel.roomWatcher}"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/double_room"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_child_twin"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:visibility="@{holiday.twinPerPax > 0 ? View.VISIBLE : View.GONE}"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_hotel"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_double_room">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_twin_room"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addTextChangedListener="@{viewModel.roomWatcher}"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/twin_room"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_triple_room"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:visibility="@{holiday.triplePerPax > 0 ? View.VISIBLE : View.GONE}"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_hotel"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_child_twin"
+                tools:ignore="RtlHardcoded">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_triple_room"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addTextChangedListener="@{viewModel.roomWatcher}"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/triple_room"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_quad_room"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:visibility="@{holiday.quadPerPax > 0 ? View.VISIBLE : View.GONE}"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_hotel"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_triple_room">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_quad_room"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:addTextChangedListener="@{viewModel.roomWatcher}"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/quad"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_adult_count"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_adult_count"
+                app:srcCompat="@drawable/ic_person_white_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_adult_count"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:errorEnabled="true"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_person"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_quad_room">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_number_of_adult"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/adult_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_child_7to12"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:errorEnabled="true"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_hotel"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_adult_count"
+                tools:ignore="RtlHardcoded">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_child_7to12"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/child_7_12_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_child_3to6"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_person"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_child_7to12">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_child_3to6"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/child_3_6_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_infant"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/windowBackground"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_person"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_child_3to6"
+                tools:ignore="RtlHardcoded">
+
+                <net.sharetrip.shared.view.widgets.TextInputAutoCompleteTextView
+                    android:id="@+id/text_field_infant"
+                    style="?attr/editTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/infant_0_2_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:text="@string/zero"
+                    android:textSize="14sp"
+                    app:drawableRightCompat="@drawable/ic_arrow_drop_down_24dp"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

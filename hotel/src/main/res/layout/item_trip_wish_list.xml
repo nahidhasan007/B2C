@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginRight="@dimen/spacing_normal" >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_city"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="220dp"
+            tools:background="@color/colorPrimary"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/expiring_trip_coins"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginRight="@dimen/spacing_normal"
+            android:layout_marginTop="-16dp"
+
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="4dp"
+            app:strokeColor="#29000000"
+            app:strokeWidth="1dp"
+            android:layout_below="@+id/image_view_city">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/spacing_normal"
+                android:paddingBottom="@dimen/spacing_normal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_wish_city_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/black_87"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Do you want to go to Paris?" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_want_to_go"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginRight="4dp"
+                    android:paddingLeft="@dimen/spacing_small_tiny"
+                    android:paddingRight="@dimen/spacing_small_tiny"
+                    android:text="@string/wanna_go"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_have_been_there"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_wish_city_name" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_have_been_there"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:text="@string/been_there"
+                    android:paddingLeft="@dimen/spacing_small_tiny"
+                    android:paddingRight="@dimen/spacing_small_tiny"
+                    android:singleLine="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_want_to_go"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_wish_city_name" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+</layout>

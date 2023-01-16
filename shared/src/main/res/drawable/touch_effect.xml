@@ -1,0 +1,9 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_shortAnimTime">
+    <item android:state_pressed="false">
+        <color android:color="@android:color/transparent" />
+    </item>
+    <item android:state_pressed="true">
+        <color android:color="@color/flight_landing_body" />
+    </item>
+    <item android:drawable="@android:color/transparent" />
+</selector>

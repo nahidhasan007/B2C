@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+
+    <color name="colorPrimary">#1882ff</color>
+    <color name="colorPrimaryAlpha">#5bb4ff</color>
+    <color name="error_color">#d32f2f</color>
+    <color name="colorPrimaryVariant">#245dd8</color>
+    <color name="colorSecondaryVariant">#de1921</color>
+    <color name="surface_color">#fafafa</color>
+    <color name="colorPrimaryDark">#4dabff</color>
+    <color name="colorAccent">@color/indigo</color>
+    <color name="indigo">#665eff</color>
+    <color name="indigoAlpha">#7c4dff</color>
+    <color name="colorOverlay">#78ffffff</color>
+    <color name="example_4_grey_past">#BEBEBE</color>
+    <color name="green_700">#43a046</color>
+    <color name="example_7_yellow">#f9a825</color>
+    <color name="red_800">#ff3326</color>
+
+    <color name="amber">#f57f17</color>
+    <color name="amberAlpha">#ffcc00</color>
+    <color name="discount_color">#ff6c00</color>
+    <color name="deal_red">#FF214D</color>
+
+    <color name="orange">#dd2c00</color>
+
+
+    <color name="mid_green">#43a046</color>
+
+    <color name="blackOverlay">#66000000</color>
+    <color name="rippleColor">@android:color/white</color>
+
+    <color name="blue_blue">#235fd8</color>
+    <color name="blue">#3497fd</color>
+    <color name="clear_blue">#1882ff</color>
+    <color name="blueAlpha">#8ebff2</color>
+    <color name="windowBackground">@android:color/white</color>
+    <color name="gray">#efefef</color>
+    <color name="gray_50">#9e9e9e</color>
+    <color name="gray_dark">#de000000</color>
+    <color name="gray_light">#f5f6f8</color>
+    <color name="gray_100">#FAFAFA</color>
+    <color name="gray_200">#f2f3f4</color>
+    <color name="gray_300">#e4e7e9</color>
+    <color name="gray_500">#808285</color>
+    <color name="gray_700">#636363</color>
+    <color name="gray_800">#4c4c4c</color>
+    <color name="gray_900">#99000000</color>
+
+    <color name="gray_off_dark">#7F919A</color>
+    <color name="pale_grey">#efeff4</color>
+    <color name="pale_grey_two">#e5e5ea</color>
+
+    <color name="grey_iron">#e0e0e1</color>
+
+    <color name="black">@android:color/black</color>
+    <color name="black_100">#000000</color>
+    <color name="black_87">#212121</color>
+    <color name="black_54">#747474</color>
+    <color name="black_38">#9D9D9D</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="white_two">#fafafa</color>
+    <color name="white_three">#fbfbfb</color>
+    <color name="surface">#f5f5f5</color>
+    <color name="blue_dark">#2a8cff</color>
+    <color name="orange_light">#f37b20</color>
+    <color name="bright_orange">#ff5a00</color>
+
+    <color name="silver">#c0c0c0</color>
+    <color name="gold">#FCB900</color>
+    <color name="platinum">#e5e4e2</color>
+    <color name="textSelected">#1882ff</color>
+    <color name="flight_landing_body">#1f71eb</color>
+    <color name="greyish_brown">#4c4c4c</color>
+    <color name="greyish_brown_two">#434343</color>
+    <color name="blue_gray">#8e8e93</color>
+    <color name="egg_shell">#fff9c4</color>
+    <color name="black_60">#99000000</color>
+    <color name="visa_selection_bg">#efeff4</color>
+    <color name="silver_two">#d1d1d6</color>
+    <color name="ripple_custom_gray">#c7c7cc</color>
+    <color name="very_light_pink">#fff3f3</color>
+    <color name="light_green">#f4f9f4</color>
+    <color name="mango">#f9a825</color>
+    <color name="off_white">#fefaf3</color>
+    <color name="french_blue">#444db4</color>
+    <color name="white_48">#7AFFFFFF</color>
+    <color name="powder_blue">#bbddff</color>
+    <color name="steel">#8e8e93</color>
+    <color name="very_light_blue">#daf7ff</color>
+
+    <color name="light_2">#EFEFF4</color>
+    <color name="dark_main">#000000</color>
+    <color name="dark_light_1">#8E8E93</color>
+    <color name="primary_main_ofbottom_sheet">#1882FF</color>
+    <color name="bus_history_bdt">#235FD8</color>
+    <color name="dark_variant">#4C4C4C</color>
+    <color name="success_main">#43A046</color>
+    <color name="light_main">#FFFFFF</color>
+    <color name="primary_main">#1882FF</color>
+    <color name="light_variant">#FAFAFA</color>
+    <color name="light_light">#F5F5F5</color>
+    <color name="blue_selected">#1882ff</color>
+</resources>

@@ -1,0 +1,471 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="net.sharetrip.holiday.booking.view.booking.HolidayBookingViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        tools:context="net.sharetrip.ui.transfer.TransferActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/begin_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_label_arrival_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/black_87"
+                android:text="@string/arrival_details"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                tools:text="Arrival Details"/>
+
+            <RadioGroup
+                android:id="@+id/radio_group_arrival_type"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@drawable/radio_group_background"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_label_arrival_detail">
+
+                <RadioButton
+                    android:clickable="@{!viewModel.withAirFare}"
+                    android:id="@+id/option_arrival_airline"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbtn_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/airlines"
+                    android:tag="Airlines"
+                    android:textColor="@drawable/rbtn_textcolor_selector"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:clickable="@{!viewModel.withAirFare}"
+                    android:id="@+id/option_arrival_cuise"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbtn_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/cruise"
+                    android:tag="Cruise"
+                    android:textColor="@drawable/rbtn_textcolor_selector" />
+
+                <RadioButton
+                    android:clickable="@{!viewModel.withAirFare}"
+                    android:id="@+id/option_arrival_train"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbtn_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/train"
+                    android:tag="Train"
+                    android:textColor="@drawable/rbtn_textcolor_selector" />
+
+                <RadioButton
+                    android:clickable="@{!viewModel.withAirFare}"
+                    android:id="@+id/option_arrival_boat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbtn_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/boat"
+                    android:tag="Boat"
+                    android:textColor="@drawable/rbtn_textcolor_selector" />
+
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_arrival_transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_arrival_transport"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_arrival_transport"
+                app:srcCompat="@drawable/ic_flight_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_arrival_transport"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_arrival_transport"
+                app:layout_constraintTop_toBottomOf="@+id/radio_group_arrival_type">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_field_arrival_transport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/transport_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:text="@{viewModel.holidayParam.arrivalTransportName}"
+                    android:focusable="@{!viewModel.withAirFare}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_arrival_transport_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_arrival_transport_code"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_arrival_transport_code"
+                app:srcCompat="@drawable/ic_info_black_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_arrival_transport_code"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_arrival_transport_code"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_arrival_transport">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_field_arrival_transport_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/code"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:text="@{viewModel.holidayParam.arrivalTransportCode}"
+                    android:focusable="@{!viewModel.withAirFare}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_arrival_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_arrival_time"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_arrival_time"
+                app:srcCompat="@drawable/ic_time_light_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_arrival_time"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_arrival_time"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_arrival_transport_code">
+
+                <net.sharetrip.shared.view.widgets.TimePickerTextInputEditText
+                    android:id="@+id/text_field_arrival_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/arrival_time"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:text="@{viewModel.holidayParam.arrivalPickupTime}"
+                    android:focusable="@{!viewModel.withAirFare}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_label_departure_details"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/black_87"
+                android:text="@string/departure_details"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_arrival_time"
+                tools:text="Departure Details" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_departure_type"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:background="@drawable/radio_group_background"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/text_label_departure_details">
+
+                <RadioButton
+                    android:clickable="@{!viewModel.withAirFare}"
+                    android:id="@+id/option_departure_airline"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbtn_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/airlines"
+                    android:tag="Airlines"
+                    android:textColor="@drawable/rbtn_textcolor_selector"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:clickable="@{!viewModel.withAirFare}"
+                    android:id="@+id/option_departure_cuise"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbtn_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/cruise"
+                    android:tag="Cruise"
+                    android:textColor="@drawable/rbtn_textcolor_selector" />
+
+                <RadioButton
+                    android:clickable="@{!viewModel.withAirFare}"
+                    android:id="@+id/option_departure_train"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbtn_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/train"
+                    android:tag="Train"
+                    android:textColor="@drawable/rbtn_textcolor_selector" />
+
+                <RadioButton
+                    android:clickable="@{!viewModel.withAirFare}"
+                    android:id="@+id/option_departure_boat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/rbtn_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/boat"
+                    android:tag="Boat"
+                    android:textColor="@drawable/rbtn_textcolor_selector" />
+
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_departure_transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_departure_transport"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_departure_transport"
+                app:srcCompat="@drawable/ic_flight_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_departure_transport"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_departure_transport"
+                app:layout_constraintTop_toBottomOf="@+id/radio_group_departure_type">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_field_departure_transport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/transport_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:text="@{viewModel.holidayParam.departureTransportName}"
+                    android:focusable="@{!viewModel.withAirFare}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_departure_transport_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_departure_transport_code"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_departure_transport_code"
+                app:srcCompat="@drawable/ic_info_black_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_departure_transport_code"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_departure_transport_code"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_departure_transport">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_field_departure_transport_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/code"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:text="@{viewModel.holidayParam.departureTransportCode}"
+                    android:focusable="@{!viewModel.withAirFare}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_departure_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_departure_time"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_departure_time"
+                app:srcCompat="@drawable/ic_time_light_24dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_departure_time"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_arrival_time"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_departure_transport_code">
+
+                <net.sharetrip.shared.view.widgets.TimePickerTextInputEditText
+                    android:id="@+id/text_field_departure_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/departure_time"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:text="@{viewModel.holidayParam.departureTime}"
+                    android:focusable="@{!viewModel.withAirFare}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_departure_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/gray_800"
+                app:layout_constraintBottom_toBottomOf="@+id/input_layout_pickup_time"
+                app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                app:layout_constraintTop_toTopOf="@+id/input_layout_pickup_time"
+                app:srcCompat="@drawable/ic_time_light_24dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_pickup_time"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                app:boxBackgroundColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/icon_arrival_time"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_departure_time">
+
+                <net.sharetrip.shared.view.widgets.TimePickerTextInputEditText
+                    android:id="@+id/text_field_pickup_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="@string/pickup_time"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:text="@{viewModel.holidayParam.pickupTime}"
+                    android:focusable="@{!viewModel.holidayParam.withAirFare}"
+                    tools:ignore="RtlHardcoded" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

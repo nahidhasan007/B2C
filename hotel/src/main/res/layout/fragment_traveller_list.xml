@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.hotel.booking.view.travellerlist.TravellerListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_two"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/begin_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/spacing_small" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/spacing_small" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_traveller_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="@dimen/spacing_small"
+            android:text="@string/guests_information"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_room_one_traveller_info"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/top_round_shape"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> viewModel.onClickFirstRoomTravellerInfo()}"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/guests_of_room_1"
+            android:textColor="@color/black_87"
+            app:drawableRightCompat="@drawable/ic_navigate_next_blue_color_24dp"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_traveller_detail" />
+
+        <View
+            android:id="@+id/line_two"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toStartOf="@id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_room_one_traveller_info" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_room_two_traveller_info"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:background="@color/white"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> viewModel.onClickSecondRoomTravellerInfo()}"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/guests_of_room_2"
+            android:textColor="@color/black_87"
+            android:visibility="@{viewModel.hotelBookingParams.rooms.get(0).guests.size() > 1 ? View.VISIBLE : View.GONE}"
+            app:drawableRightCompat="@drawable/ic_navigate_next_blue_color_24dp"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_two" />
+
+        <View
+            android:id="@+id/line_three"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:background="@color/gray"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toStartOf="@id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_room_two_traveller_info" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_room_three_traveller_info"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:background="@color/white"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> viewModel.onClickThirdRoomTravellerInfo()}"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/guests_of_room_3"
+            android:textColor="@color/black_87"
+            android:visibility="@{viewModel.hotelBookingParams.rooms.get(0).guests.size() > 2 ? View.VISIBLE : View.GONE}"
+            app:drawableRightCompat="@drawable/ic_navigate_next_blue_color_24dp"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_three" />
+
+        <View
+            android:id="@+id/line_four"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/line_divider_size"
+            android:background="@color/gray"
+            android:visibility="@{viewModel.hotelBookingParams.rooms.get(0).guests.size() > 1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@id/end_guideline"
+            app:layout_constraintStart_toStartOf="@id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/text_label_room_three_traveller_info" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_label_room_four_traveller_info"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bottom_round_shape_white"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> viewModel.onClickFourthRoomTravellerInfo()}"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/guests_of_room_4"
+            android:textColor="@color/black_87"
+            android:visibility="@{viewModel.hotelBookingParams.rooms.get(0).guests.size() > 3 ? View.VISIBLE : View.GONE}"
+            app:drawableRightCompat="@drawable/ic_navigate_next_blue_color_24dp"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/line_four" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/button_select_room"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.onClickNext()}"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:textAllCaps="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

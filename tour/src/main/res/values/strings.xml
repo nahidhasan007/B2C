@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="reserve">Reserve</string>
+    <string name="tours">Tours</string>
+    <string name="tour_detail">Tour Detail</string>
+    <string name="price_starts_from_per_person">Price starts from (per person)</string>
+    <string name="pickup_location">Pickup Location</string>
+    <string name="contact_information">Contact Information</string>
+    <string name="tour_summary">Tour Summary</string>
+    <string name="tour_history">Tour History</string>
+    <string name="tour_history_details">Tour History Details</string>
+    <string name="tour_pricing">Tour Pricing</string>
+    <string name="adult_number">Adult number</string>
+    <string name="zero">0</string>
+    <string name="child_7_12_number">Child (7-12) number</string>
+</resources>

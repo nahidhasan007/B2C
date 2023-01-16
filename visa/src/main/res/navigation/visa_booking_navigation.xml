@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/visa_booking_navigation"
+    app:startDestination="@id/visaHome">
+
+    <fragment
+        android:id="@+id/visaHome"
+        android:name="net.sharetrip.visa.booking.view.home.VisaHomeFragment"
+        tools:layout="@layout/fragment_visa_home">
+        <action
+            android:id="@+id/action_visaHome_to_visaHomeExtendedFragment"
+            app:destination="@id/visaHomeExtendedFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visaHomeExtendedFragment"
+        android:name="net.sharetrip.visa.booking.view.homeextended.VisaHomeExtendedFragment"
+        android:label="Visa"
+        tools:layout="@layout/fragment_visa_home_extended">
+        <argument
+            android:name="ARG_VISA_SEARCH_QUERY_MODEL"
+            app:argType="net.sharetrip.visa.booking.model.VisaSearchQuery" />
+        <action
+            android:id="@+id/action_visaHomeExtendedFragment_to_singleDateCalendarFragment"
+            app:destination="@id/singleDateCalendarFragment" />
+        <action
+            android:id="@+id/action_visaHomeExtendedFragment_to_visaCountrySearchFragment"
+            app:destination="@id/visaCountrySearchFragment" />
+        <action
+            android:id="@+id/action_visaHomeExtendedFragment_to_visaTravellerNumberFragment"
+            app:destination="@id/visaTravellerNumberFragment" />
+        <action
+            android:id="@+id/action_visaHomeExtendedFragment_to_visaSelectionFragment"
+            app:destination="@id/visaSelectionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/singleDateCalendarFragment"
+        android:name="net.sharetrip.shared.view.SingleDateCalendarFragment"
+        tools:label="SingleDateCalendarFragment"
+        tools:layout="@layout/fragment_single_calendar">
+        <argument
+            android:name="ARG_CALENDER_DATA"
+            app:argType="net.sharetrip.shared.model.CalenderData" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visaCountrySearchFragment"
+        android:name="net.sharetrip.visa.booking.view.countrysearch.VisaCountrySearchFragment"
+        android:label="VisaCountrySearchFragment"
+        tools:layout="@layout/fragment_visa_country_search"/>
+
+    <fragment
+        android:id="@+id/visaTravellerNumberFragment"
+        android:name="net.sharetrip.visa.booking.view.traveller.VisaTravellerNumberFragment"
+        android:label="Travellers"
+        tools:layout="@layout/fragment_visa_traveller_number">
+        <argument
+            android:name="ARG_NUMBER_OF_ADULT"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visaSelectionFragment"
+        android:name="net.sharetrip.visa.booking.view.selection.VisaSelectionFragment"
+        tools:layout="@layout/fragment_visa_selection">
+        <argument
+            android:name="ARG_VISA_SELECTION_MODEL"
+            app:argType="net.sharetrip.visa.booking.model.VisaSearchQuery" />
+        <action
+            android:id="@+id/action_visaSelectionFragment_to_visaApplicationFragment"
+            app:destination="@id/visaApplicationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visaApplicationFragment"
+        android:name="net.sharetrip.visa.booking.view.application.VisaApplicationFragment"
+        android:label="Visa Application"
+        tools:layout="@layout/fragment_visa_application">
+        <argument
+            android:name="ARG_VISA_APPLICATION_DATA_MODEL"
+            app:argType="net.sharetrip.visa.booking.model.VisaSearchQuery" />
+        <action
+            android:id="@+id/action_visaApplicationFragment_to_visaCheckoutFragment"
+            app:destination="@id/visaCheckoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visaCheckoutFragment"
+        android:name="net.sharetrip.visa.booking.view.checkout.VisaCheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_visa_checkout">
+        <argument
+            android:name="ARG_VISA_CHECKOUT_DATA_MODEL"
+            app:argType="net.sharetrip.visa.booking.model.VisaSearchQuery" />
+        <action
+            android:id="@+id/action_visaCheckoutFragment_to_visaTravellerInfoFragment"
+            app:destination="@id/visaTravellerInfoFragment" />
+        <action
+            android:id="@+id/action_visaCheckoutFragment_to_visaBookingSummaryFragment"
+            app:destination="@id/visaBookingSummaryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visaTravellerInfoFragment"
+        android:name="net.sharetrip.visa.booking.view.travellerInfo.VisaTravellerInfoFragment"
+        android:label="VisaTravellerInfoFragment"
+        tools:layout="@layout/fragment_visa_traveller_info">
+        <argument
+            android:name="ARG_VISA_TRAVELLER_INFO_MODEL"
+            app:argType="net.sharetrip.visa.booking.model.VisaSearchQuery" />
+        <action
+            android:id="@+id/action_visaTravellerInfoFragment_to_nationalityFragment"
+            app:destination="@id/nationalityFragment" />
+        <action
+            android:id="@+id/action_visaTravellerInfoFragment_to_travelerVerificationFragment"
+            app:destination="@id/travelerVerificationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nationalityFragment"
+        android:name="net.sharetrip.visa.booking.view.nationality.NationalityFragment"
+        android:label="Select Your Country"
+        tools:layout="@layout/fragment_nationality_code_visa"/>
+
+    <fragment
+        android:id="@+id/travelerVerificationFragment"
+        android:name="net.sharetrip.visa.booking.view.verification.TravelerVerificationFragment"
+        android:label="Verify Information"
+        tools:layout="@layout/fragment_traveler_verification">
+        <argument
+            android:name="ARG_TRAVELLER_VERIFICATION_DATA_MODEL"
+            app:argType="net.sharetrip.visa.booking.model.VisaSearchQuery" />
+        <action
+            android:id="@+id/action_travelerVerificationFragment_to_visaCheckoutFragment"
+            app:destination="@id/visaCheckoutFragment"
+            app:popUpTo="@id/visaCheckoutFragment" />
+        <action
+            android:id="@+id/action_travelerVerificationFragment_to_photoVerificationFragment"
+            app:destination="@id/photoVerificationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/photoVerificationFragment"
+        android:name="net.sharetrip.visa.booking.view.photoverification.PhotoVerificationFragment"
+        android:label="Photo Verification"
+        tools:layout="@layout/fragment_visa_photo_verification">
+        <argument
+            android:name="ARG_PHOTO_VERIFICATION_DATA_MODEL"
+            app:argType="net.sharetrip.visa.booking.model.VisaSearchQuery" />
+        <action
+            android:id="@+id/action_photoVerificationFragment_to_visaCheckoutFragment"
+            app:destination="@id/visaCheckoutFragment"
+            app:popUpTo="@id/visaCheckoutFragment" />
+        <action
+            android:id="@+id/action_photoVerificationFragment_to_imagePreviewFragment"
+            app:destination="@id/imagePreviewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imagePreviewFragment"
+        android:name="net.sharetrip.visa.booking.view.imagepreview.ImagePreviewFragment"
+        tools:label="ImagePreviewFragment"
+        tools:layout="@layout/fragment_image_preview_in_visa">
+        <argument
+            android:name="ARG_IMAGE_DATA"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/visaBookingSummaryFragment"
+        android:name="net.sharetrip.visa.booking.view.summary.VisaBookingSummaryFragment"
+        android:label="Booking Summary"
+        tools:layout="@layout/fragment_visa_booking_summary">
+        <argument
+            android:name="ARG_VISA_SUMMARY_DATA_MODEL"
+            app:argType="net.sharetrip.visa.booking.model.VisaSearchQuery" />
+        <action
+            android:id="@+id/navigate_to_payment"
+            app:destination="@+id/payment_nav_graph" />
+    </fragment>
+
+    <include app:graph = "@navigation/payment_nav_graph" />
+
+</navigation>

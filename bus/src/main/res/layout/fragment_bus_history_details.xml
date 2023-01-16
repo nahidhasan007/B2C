@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="net.sharetrip.shared.utils.DateUtil" />
+
+        <variable
+            name="status"
+            type="String" />
+
+        <variable
+            name="statusColor"
+            type="Integer" />
+
+        <variable
+            name="model"
+            type="net.sharetrip.bus.history.view.historydetails.BusHistoryDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bus_history_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_variant"
+        android:clickable="true"
+        android:focusable="true"
+        tools:context=".ui.bus.history.details.view.BusHistoryDetailsFragment">
+
+        <include
+            android:id="@+id/bus_history_details_top"
+            layout="@layout/bus_history_details_top_part"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:model="@{model}" />
+
+        <include
+            android:id="@+id/booking_details_part_view"
+            layout="@layout/bus_history_details_part_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bus_history_details_top" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bus_history_details_end_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/booking_details_part_view">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDepartureTitle_of_Details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="san-serif"
+                android:text="@string/departure"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boarding_station_of_roundtrip_onwards_text_view_end" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/journey_type_text_view_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@string/onwards"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/tvJourneyTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvJourneyTitle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDateHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/date"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/departure_time_of_rountrip_onwards_text_view_end" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bus_service_text_view_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.busHistoryData.busOperator}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_info_textView_end"
+                tools:text="@string/bus_service_Hanif_Enterprize" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBusTypeTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/bus_type"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/bus_type_of_roundtrip_onwards_text_view_end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_of_onwards_journey_text_view_end" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/seats_of_roundtrip_onwards_journey_text_view_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.busHistoryData.seatsNo}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/tvSeatsHeader"
+                app:layout_constraintTop_toBottomOf="@+id/tvSeatsHeader" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/arrival_time_of_roundtrip_onwards_text_view_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.busHistoryData.droppingTime}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/tvArrivalTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvArrivalTitle"
+                tools:text="@string/time_value_2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvJourneyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="133dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/journey"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/boarding_station_of_roundtrip_onwards_text_view_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.busHistoryData.boardingPoint}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBoardingTitleDetails"
+                tools:text="@string/boarding_counter" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSeatsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/seats"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/arrival_time_of_roundtrip_onwards_text_view_end"
+                app:layout_constraintTop_toBottomOf="@+id/arrival_time_of_roundtrip_onwards_text_view_end" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/date_of_onwards_journey_text_view_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{DateUtil.parseDisplayDateFormatFromApiDateFormat(model.busHistoryData.journeyDate)}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDateHeader"
+                tools:text="@string/date_value" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/droping_satation_of_trip_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.busHistoryData.droppingPoint}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/tvDroppingOf_details"
+                app:layout_constraintTop_toBottomOf="@+id/tvDroppingOf_details"
+                tools:text="@string/droping_counter" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDroppingOf_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/dropping"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/journey_type_text_view_end"
+                app:layout_constraintTop_toBottomOf="@+id/journey_type_text_view_end" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bus_type_of_roundtrip_onwards_text_view_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="26dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.busHistoryData.coachType}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_of_onwards_journey_text_view_end"
+                tools:text="@string/bus_type_value" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvBoardingTitleDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/boarding"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bus_service_text_view_end" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/departure_time_of_rountrip_onwards_text_view_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{model.busHistoryData.boardingTime}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDepartureTitle_of_Details"
+                tools:text="@string/time_value_1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvArrivalTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="san-serif"
+                android:text="@string/arrive"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/droping_satation_of_trip_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/droping_satation_of_trip_text_view" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ticket_info_textView_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@{model.busHistoryData.coachNumber}"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/dhk_ctg_d" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvStatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="san-serif"
+                android:letterSpacing="0.04"
+                android:text="@string/status2"
+                android:textColor="@color/dark_variant"
+                android:textSize="10sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bus_type_of_roundtrip_onwards_text_view_end" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/booking_history_details_status_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.03"
+                android:text="@{status}"
+                android:textColor="@{statusColor}"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/tvStatusLabel"
+                app:layout_constraintTop_toBottomOf="@+id/bus_type_of_roundtrip_onwards_text_view_end"
+                tools:text="@string/completed"
+                tools:textColor="@color/success_main" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/tripCoin_Image_View"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="54dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/trip_coin_amount_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/seats_of_roundtrip_onwards_journey_text_view_end"
+                app:srcCompat="@drawable/ic_tripcoin" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/trip_coin_amount_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{model.busHistoryData.tripCoin+``}"
+                android:textColor="@color/dark_main"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:fontFamily="sans-serif-medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seats_of_roundtrip_onwards_journey_text_view_end"
+                tools:text="@string/tripcoin_value" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/resend_voucher_button"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bus_history_details_resend_voucher_button_style"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="0.09"
+                android:lineSpacingExtra="0sp"
+                android:text="@string/resend_voucher"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/booking_history_details_status_text_view"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/bus_history_details_bottom"
+            layout="@layout/bus_history_details_bottom_part"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bus_history_details_end_view"
+            bind:model="@{model}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

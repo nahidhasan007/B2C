@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.sharetrip.view.blog.search.SearchBlogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+                    app:title="@string/search" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_trip_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:drawablePadding="@dimen/spacing_small"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    app:drawableLeftCompat="@drawable/ic_tripcoin_light_24dp"
+                    android:text="@{viewModel.formattedPoints}"
+                    tools:text="@string/_870" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintSearch"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@drawable/blue_bottom_rounded_shape_selected"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextSearching"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:background="@drawable/edittext_white_round"
+                android:drawableLeft="@drawable/ic_search_20dp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:hint="@string/search"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingStart="@dimen/spacing_small"
+                android:paddingLeft="@dimen/spacing_small"
+                android:paddingEnd="@dimen/spacing_normal"
+                android:paddingRight="@dimen/spacing_normal"
+                android:text="@={viewModel.searchText}"
+                android:textColor="@color/pale_grey"
+                android:textColorHint="@color/pale_grey"
+                android:textSize="@dimen/font_small"
+                app:layout_constraintEnd_toStartOf="@+id/text_view_category"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:background="?attr/selectableItemBackground"
+                android:drawablePadding="@dimen/spacing_small"
+                android:onClick="@{()-> viewModel.onClickCategory()}"
+                android:text="@string/categories"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_filter_light_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextSearching"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textAllCaps="true" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSearchResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:fontFamily="sans-serif"
+            android:text="@{viewModel.searchResult}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/recyclerBlog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintSearch"
+            tools:text="123 articles found for “Travel Guide”" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerBlog"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/spacing_greater"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSearchResult"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_blog" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isDataLoading() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintSearch" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

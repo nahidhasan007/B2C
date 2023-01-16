@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_navigation"
+    app:startDestination="@id/referEarnFragment">
+
+    <fragment
+        android:id="@+id/quickPickFragment"
+        android:name="net.sharetrip.profile.view.quickpick.QuickPickFragment"
+        tools:layout="@layout/fragment_quick_pick">
+        <action
+            android:id="@+id/action_quickPickFragment_to_travelerShowFragment"
+            app:destination="@id/travelerShowFragment" />
+        <action
+            android:id="@+id/action_quickPickFragment_to_addTravelerFragment"
+            app:destination="@id/addTravelerFragment" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_quickPickFragment"
+        app:destination="@id/quickPickFragment" />
+
+    <fragment
+        android:id="@+id/travelerShowFragment"
+        android:name="net.sharetrip.profile.view.travelerShow.TravelerShowFragment"
+        tools:layout="@layout/fragment_traveler_show">
+        <argument
+            android:name="ARG_PASSENGER_MODEL"
+            app:argType="net.sharetrip.profile.model.Traveler" />
+        <action
+            android:id="@+id/action_travelerShowFragment_to_imagePreviewFragment"
+            app:destination="@id/imagePreviewFragment" />
+        <action
+            android:id="@+id/action_travelerShowFragment_to_countryCurrencyFragment"
+            app:destination="@id/countryCurrencyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addTravelerFragment"
+        android:name="net.sharetrip.profile.view.addtraveler.AddTravelerFragment"
+        tools:layout="@layout/fragment_add_traveler">
+        <action
+            android:id="@+id/action_addTravelerFragment_to_imagePreviewFragment"
+            app:destination="@id/imagePreviewFragment" />
+        <action
+            android:id="@+id/action_addTravelerFragment_to_countryCurrencyFragment"
+            app:destination="@id/countryCurrencyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imagePreviewFragment"
+        android:name="net.sharetrip.profile.view.imagePreview.ImagePreviewFragment"
+        tools:layout="@layout/fragment_image_preview">
+        <argument
+            android:name="ARG_IMAGE_URL"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/countryCurrencyFragment"
+        android:name="net.sharetrip.profile.view.list.CountryCurrencyFragment"
+        tools:layout="@layout/fragment_country_currency">
+        <argument
+            android:name="ARG_COUNTRY_CURRENCY"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="net.sharetrip.profile.view.user.UserInfoFragment"
+        tools:layout="@layout/fragment_user_info_new">
+        <action
+            android:id="@+id/action_userInfoFragment_to_imagePreviewFragment"
+            app:destination="@id/imagePreviewFragment" />
+        <action
+            android:id="@+id/action_userInfoFragment_to_nameGuidelineFragment"
+            app:destination="@id/nameGuidelineFragment" />
+        <action
+            android:id="@+id/action_userInfoFragment_to_countryCurrencyFragment"
+            app:destination="@id/countryCurrencyFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_userInfoFragment"
+        app:destination="@id/userInfoFragment" />
+
+    <fragment
+        android:id="@+id/referEarnFragment"
+        android:name="net.sharetrip.profile.view.referearn.ReferEarnFragment"
+        android:label="ReferEarnFragment"
+        tools:layout="@layout/fragment_refer_earn" />
+
+    <action
+        android:id="@+id/action_global_referEarnFragment"
+        app:destination="@id/referEarnFragment" />
+
+    <fragment
+        android:id="@+id/savedCardsFragment"
+        android:name="net.sharetrip.profile.view.savedcards.SavedCardsFragment"
+        tools:layout="@layout/fragment_save_crads" />
+
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="net.sharetrip.profile.view.password.PasswordFragment"
+        tools:layout="@layout/fragment_change_password" />
+
+    <fragment
+        android:id="@+id/contentFragment"
+        android:name="net.sharetrip.profile.view.content.ContentFragment"
+        tools:layout="@layout/fragment_content">
+        <argument
+            android:name="ARG_FAQ_NUMBER"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="net.sharetrip.profile.view.faq.FaqFragment"
+        tools:layout="@layout/fragment_all_faq">
+        <action
+            android:id="@+id/action_faqFragment_to_contentFragment"
+            app:destination="@id/contentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/leaderBoardFragment"
+        android:name="net.sharetrip.profile.view.leaderboard.LeaderBoardFragment"
+        tools:layout="@layout/fragment_leaderboard" />
+
+    <fragment
+        android:id="@+id/tripCoinFragment"
+        android:name="net.sharetrip.profile.view.tripCoin.TripCoinFragment"
+        tools:layout="@layout/fragment_user_trip_coin" />
+
+    <fragment
+        android:id="@+id/nameGuidelineFragment"
+        android:name="net.sharetrip.profile.view.nameguideline.NameGuidelineFragment"
+        tools:layout="@layout/fragment_name_guideline" />
+
+    <fragment
+        android:id="@+id/notificationDetailFragment"
+        android:name="net.sharetrip.profile.view.notification.NotificationDetailFragment"
+        tools:layout="@layout/fragment_notification_detail" />
+
+    <fragment
+        android:id="@+id/rewardFragment"
+        android:name="net.sharetrip.profile.view.reward.RewardFragment"
+        tools:layout="@layout/fragment_reward" />
+    <fragment
+        android:id="@+id/manageYourDataFragment"
+        android:name="net.sharetrip.profile.view.manageyourdata.ManageYourDataFragment"
+        android:label="ManageYourDataFragment"
+        tools:layout="@layout/fragment_manage_your_data">
+        <action
+            android:id="@+id/action_manageYourDataFragment_to_deleteAccountFragment"
+            app:destination="@id/deleteAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="net.sharetrip.profile.view.deleteaccount.DeleteAccountFragment"
+        android:label="DeleteAccountFragment"
+        tools:layout="@layout/fragment_delete_account"/>
+    <fragment
+        android:id="@+id/myUserInfoFragment"
+        android:name="net.sharetrip.profile.view.nahid.MyUserInfoFragment"
+        android:label="fragment_my_user_info"
+        tools:layout="@layout/fragment_my_user_info" />
+
+</navigation>

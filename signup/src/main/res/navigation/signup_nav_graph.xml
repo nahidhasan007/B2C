@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup_nav_graph"
+    app:startDestination="@id/socialLoginFragment">
+
+    <fragment
+        android:id="@+id/socialLoginFragment"
+        android:name="net.sharetrip.signup.view.login.social.SocialLoginFragment"
+        tools:layout="@layout/fragment_social_login" >
+        <action
+            android:id="@+id/action_socialLoginFragment_to_signupFragment"
+            app:destination="@id/signupFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_socialLoginFragment_to_emailLoginFragment"
+            app:destination="@id/emailLoginFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="net.sharetrip.signup.view.signup.SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signupFragment_to_emailLoginFragment"
+            app:destination="@id/emailLoginFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/emailLoginFragment"
+        android:name="net.sharetrip.signup.view.login.email.EmailLoginFragment"
+        tools:layout="@layout/fragment_email_login" >
+        <action
+            android:id="@+id/action_emailLoginFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_emailLoginFragment_to_signupFragment"
+            app:destination="@id/signupFragment"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="net.sharetrip.signup.view.forget.ForgetPasswordFragment"
+        tools:layout="@layout/fragment_forgot_password" />
+
+</navigation>

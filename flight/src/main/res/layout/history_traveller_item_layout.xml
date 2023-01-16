@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="net.sharetrip.shared.utils.DateFormatChangerKt" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="passenger"
+            type="net.sharetrip.flight.history.model.Traveller" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/type_of_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            tools:text="Adult 1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_username"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                app:srcCompat="@drawable/ic_person_dark_24dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_adult_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_toRightOf="@+id/img_username"
+                android:fontFamily="sans-serif"
+                android:text="Full Name (Given Name + Surname)"
+                android:textColor="@color/gray_800"
+                android:textSize="11sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_adult_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_adult_text"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_toRightOf="@+id/img_username"
+                android:fontFamily="sans-serif-medium"
+                android:text='@{passenger.givenName + " " + passenger.surName}'
+                android:textColor="#000000"
+                android:textSize="14sp"
+                tools:text="MD ANAMOUL ROUF" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_usergender"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:tint="@color/black"
+                    app:srcCompat='@drawable/ic_male_mono' />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_gender_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_usergender"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Gender"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Gender" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_gender_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_gender_text"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_usergender"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{passenger.gender}"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="Male" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_huge"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_userdob"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    app:srcCompat="@drawable/ic_black_callender_20dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_dob_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_userdob"
+                    android:fontFamily="sans-serif"
+                    android:text="Date of Birth"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Date of Birth" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_dob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_dob_text"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_userdob"
+                    android:fontFamily="sans-serif-medium"
+                    android:text='@{passenger.dateOfBirth.replace("/","-")}'
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="01-01-1992" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_passport"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    app:srcCompat="@drawable/ic_passport_black_24dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_passport_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_passport"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Passport Number"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Passport Number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_passport_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_passport_text"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_passport"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{passenger.passportNumber}"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="BE0859962" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_huge"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_passportexpiry"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    app:srcCompat="@drawable/ic_black_callender_20dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_passportexp_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_passportexpiry"
+                    android:fontFamily="sans-serif"
+                    android:text="Passport Expiry Date"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Passport Expiry Date" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_passport_exp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_passportexp_text"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_passportexpiry"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="6sp"
+                    android:text="@{DateFormatChangerKt.dateChangeToDDMMYYYY(passenger.passportExpireDate)}"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="01-01-1992" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_nationality"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    app:srcCompat="@drawable/ic_assistant_photo_black_24dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_nationality_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_nationality"
+                    android:fontFamily="sans-serif"
+                    android:text="Nationality"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Nationality" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_nationality_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_nationality_text"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_nationality"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{passenger.nationality}"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="BE0859962" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_huge"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_ffn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    app:srcCompat="@drawable/ic_ffn_dark_24dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_ffn_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_ffn"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="FFN (If any)"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="FFN (If any)" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_ffn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_ffn_text"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_toRightOf="@+id/img_ffn"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="6sp"
+                    android:text="@{passenger.frequentFlyerNumber}"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="123456789" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_passport_copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Passport Copy"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Passport Copy" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_passport_copy"
+                    android:layout_width="156dp"
+                    android:layout_height="84dp"
+                    android:layout_below="@+id/text_passport_copy"
+                    android:layout_marginTop="8dp"
+                    android:background="#aff0ff"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_image_16dp" />
+
+                <LinearLayout
+                    android:id="@+id/img_passport_copy_no_image"
+                    android:layout_width="176dp"
+                    android:layout_height="84dp"
+                    android:layout_below="@+id/text_passport_copy"
+                    android:layout_marginTop="8dp"
+                    android:background="#aff0ff"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        app:srcCompat="@drawable/icon_noimage" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/spacing_huge"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_visa_copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Visa Copy"
+                    android:textColor="@color/gray_800"
+                    android:textSize="10sp"
+                    tools:text="Visa Copy" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_visa_copy"
+                    android:layout_width="156dp"
+                    android:layout_height="84dp"
+                    android:layout_below="@+id/text_visa_copy"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_image_16dp" />
+
+                <LinearLayout
+                    android:id="@+id/img_visa_copy_no_image"
+                    android:layout_width="176dp"
+                    android:layout_height="84dp"
+                    android:layout_below="@+id/text_visa_copy"
+                    android:layout_marginTop="8dp"
+                    android:background="#aff0ff"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        app:srcCompat="@drawable/icon_noimage" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="@{passenger.covid==null?View.GONE:View.VISIBLE}">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/covidIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_covid_shield_fill_mono" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/covidTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_toEndOf="@id/covidIcon"
+                android:layout_toRightOf="@id/covidIcon"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="4sp"
+                android:text="@string/covid_19_test"
+                android:textColor="@color/greyish_brown"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/covidTitle"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@id/covidIcon"
+                android:layout_toRightOf="@id/covidIcon"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="6sp"
+                android:maxLines="1"
+                android:text="@{passenger.covid.center+`, `+passenger.covid.option}"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="Praava Health, Lab Collection at Banani…" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

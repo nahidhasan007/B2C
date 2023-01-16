@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item xmlns:tools="http://schemas.android.com/tools"
+        android:drawable="@color/colorPrimary"
+        tools:height="680dp"
+        tools:width="360dp" />
+    <item
+        android:drawable="@drawable/ic_top_left_fly"
+        android:gravity="top|left"
+        android:top="33dp" />
+    <item
+        android:drawable="@drawable/ic_top_right_fly"
+        android:gravity="top|right"
+        android:top="66dp" />
+    <item
+        android:drawable="@drawable/ic_light_share_trip_logo"
+        android:gravity="center" />
+    <item
+        android:bottom="48dp"
+        android:drawable="@drawable/ic_bottom_cities"
+        android:gravity="bottom|center" />
+</layer-list>

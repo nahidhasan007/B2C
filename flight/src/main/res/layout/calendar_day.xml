@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:id="@+id/exFourRoundBgView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/exFourDayText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            tools:text="22" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/exFourDayTextDummy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:drawablePadding="20dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</FrameLayout>

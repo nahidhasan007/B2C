@@ -1,0 +1,186 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="net.sharetrip.view.profile.loyalty.LoyaltyViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/loyalty_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pale_grey">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="@{viewModel.isLogin() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/begin_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/spacing_normal" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/spacing_normal" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/loyaltyHeader"
+                    android:layout_width="328dp"
+                    android:layout_height="192dp"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:background="@color/pale_grey"
+                    app:cardCornerRadius="@dimen/spacing_normal"
+                    app:layout_constraintEnd_toEndOf="@id/end_guideline"
+                    app:layout_constraintStart_toStartOf="@id/begin_guideline"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="@dimen/spacing_normal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivLoyaltyCard"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> viewModel.onClickTripCoin()}"
+                            app:cardCornerRadius="@dimen/spacing_small"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_carddesign_silver" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvUserName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:layout_marginLeft="@dimen/spacing_large"
+                            android:layout_marginTop="@dimen/button_height_tall"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@{viewModel.userName}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/font_huge"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/ivLoyaltyCard"
+                            tools:text="Mehedee Hasan" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvUserType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="4sp"
+                            android:text="@{viewModel.userType}"
+                            android:textColor="@color/greyish_brown"
+                            android:textSize="@dimen/font_medium"
+                            app:drawableLeftCompat="@drawable/ic_star_coin_mono"
+                            app:layout_constraintStart_toStartOf="@+id/tvUserName"
+                            app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+                            tools:text="SILVER" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvUserTripCoin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:layout_marginBottom="@dimen/spacing_large"
+                            android:drawablePadding="@dimen/spacing_tiny"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@{viewModel.userTripCoin}"
+                            android:textColor="@color/greyish_brown"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:drawableLeftCompat="@drawable/ic_trip_coin_32dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ivLoyaltyCard"
+                            app:layout_constraintStart_toStartOf="@+id/tvUserType"
+                            app:layout_constraintTop_toBottomOf="@+id/tvUserType"
+                            tools:text="870" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <include
+                    android:id="@+id/tabLayout"
+                    layout="@layout/loyalty_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/button_height_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/loyaltyHeader" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnTermsCondition"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.onClickTermsAndCondition()}"
+                    android:text="@string/term_and_condition"
+                    android:textColor="@color/clear_blue"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                    app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn_leader_board"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_marginBottom="90dp"
+                    android:background="@drawable/blue_rounded_shape_selected"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.onClickLeaderBoard()}"
+                    android:text="@string/leader_board"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                    app:layout_constraintStart_toStartOf="@+id/begin_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/btnTermsCondition" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/guestLayout"
+                layout="@layout/guest_user_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:visibility="@{viewModel.isLogin() ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
